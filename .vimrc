@@ -26,6 +26,13 @@ nnoremap k gk
 " Scroll when 8 off from top
 set scrolloff=8
 
+" Statusline
+set laststatus=2
+set cmdheight=2
+set showmode
+set showcmd
+set statusline=%f%m%r%h%w[%L]
+
 "OCaml
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
