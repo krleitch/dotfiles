@@ -1,13 +1,16 @@
 # dotfiles
 
-create soft link
+### create soft link
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 
-get monokai-phoenix
+### get monokai-phoenix
 https://github.com/Reewr/vim-monokai-phoenix
+
 add to .vim/colors
 
-source .bashrc from .bash_profile
+### source .bashrc from .bash_profile
 if [ -r ~/.bashrc ]; then
+
    source ~/.bashrc
+   
 fi
