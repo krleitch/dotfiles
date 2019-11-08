@@ -14,3 +14,5 @@ if [ -r ~/.bashrc ]; then
    source ~/.bashrc
    
 fi
+
+http://bashrcgenerator.com/
