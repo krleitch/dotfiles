@@ -1,0 +1,8 @@
+# dotfiles
+
+create soft link
+ln -s ~/dotfiles/.vimrc ~/.vimrc
+
+get monokai-phoenix
+https://github.com/Reewr/vim-monokai-phoenix
+add to .vim/colors
