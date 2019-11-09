@@ -34,6 +34,8 @@ set showcmd
 set statusline=%f%m%r%h%w[%L]
 
 "OCaml
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+"execute "set rtp+=" . g:opamshare . "/merlin/vim"
         
+
+nnoremap <F2> :buffers<Cr>:b<Space>
