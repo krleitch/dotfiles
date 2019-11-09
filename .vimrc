@@ -13,7 +13,7 @@ set autoindent
 " Change the colorscheme. Colors are stored in ~/.vim/color
 " Enable 256 colors
 set t_Co=256
-colorscheme monokai-phoenix
+colorscheme monokai
 syntax enable
 
 syntax on
