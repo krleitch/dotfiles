@@ -33,9 +33,11 @@ set showmode
 set showcmd
 set statusline=%f%m%r%h%w[%L]
 
-"OCaml
-"let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-"execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" OCaml
+" let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
         
+" Allow saving of files as sudo when I forget to start vim using sudo
+cmap w!! w !sudo tee > /dev/null %
 
 nnoremap <F2> :buffers<Cr>:b<Space>
