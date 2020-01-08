@@ -24,7 +24,11 @@ alias ssh-waterloo='ssh krleitch@linux.student.cs.uwaterloo.ca'
 
 # $1 is file to copy. $2 is destination
 scp-waterloo() {
-    scp "$1" "krleitch@linux.student.cs.uwaterloo.ca:~/$2"
+    if  [[ -d "$1" ]]; then
+        scp -r "$1" "krleitch@linux.student.cs.uwaterloo.ca:~/$2"
+    else
+        scp "$1" "krleitch@linux.student.cs.uwaterloo.ca:~/$2"
+    fi
 }
 
 parse_git_branch() {
