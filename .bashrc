@@ -22,6 +22,11 @@ export EDITOR=vim
 # SSH
 alias ssh-waterloo='ssh krleitch@linux.student.cs.uwaterloo.ca'
 
+# $1 is file to copy. $2 is destination
+scp-waterloo() {
+    scp "$1" "krleitch@linux.student.cs.uwaterloo.ca:~/$2"
+}
+
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
