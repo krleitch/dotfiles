@@ -23,6 +23,8 @@ filetype plugin on
 nnoremap j gj
 nnoremap k gk
 
+inoremap jj <ESC>
+
 " Scroll when 8 off from top
 set scrolloff=8
 
