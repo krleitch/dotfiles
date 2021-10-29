@@ -3,7 +3,31 @@
         {
             "before": ["j", "j"],
             "after": ["<esc>"]
-        }
+        },
+        {
+            "before": ["C-e"],
+            "after": ["C-o", "$"]
+        },
+        {
+            "before": ["C-a"],
+            "after": ["C-o", "^"]
+        },
+        {
+            "before": ["C-h"],
+            "after": ["<Left>"]
+        },
+        {
+            "before": ["C-j"],
+            "after": ["<Down>"]
+        },
+        {
+            "before": ["C-k"],
+            "after": ["<Up>"]
+        },
+        {
+            "before": ["C-l"],
+            "after": ["<Right>"]
+        },
     ],
     "vim.normalModeKeyBindings": [
         {
