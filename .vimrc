@@ -22,6 +22,16 @@ filetype plugin on
 " Remaps
 nnoremap j gj
 nnoremap k gk
+nnoremap H ^
+nnoremap L $
+
+" Cursor movement while in insert mode
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>^
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 
 inoremap jj <ESC>
 
