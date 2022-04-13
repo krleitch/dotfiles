@@ -1,5 +1,6 @@
 " Display line numbers
 set number
+set relativenumber
 
 " Makes tabs equal to 4 spaces
 set expandtab
