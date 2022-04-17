@@ -7,6 +7,32 @@ call plug#begin('~/.config/nvim/bundle')
     Plug 'neovim/nvim-lspconfig'
     " improve lsp ui
     Plug 'glepnir/lspsaga.nvim'
+    " tree sitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+    " auto completion
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+    " 9000+ Snippets
+    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+    " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+    " Need to **configure separately**
+    Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+    " - shell repl
+    " - nvim lua api
+    " - scientific calculator
+    " - comment banner
+    " - etc
+    
+    " telescope fo fuzzy finder
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+
+    " status line
+    Plug 'nvim-lualine/lualine.nvim'
+    " web-dev icons
+    Plug 'kyazdani42/nvim-web-devicons'
+
 
 call plug#end()
 
@@ -29,6 +55,63 @@ let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
  " Load the colorscheme
  colorscheme tokyonight
 
+" auto start COQ
+let g:coq_settings = { 'auto_start': "shut-up" }
+" coq changes cmd height
+set cmdheight=1
+
+" Telescope key maps
+nnoremap <silent> ;f <cmd>Telescope find_files<cr>
+nnoremap <silent> ;r <cmd>Telescope live_grep<cr>
+nnoremap <silent> \\ <cmd>Telescope buffers<cr>
+nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
+
+" Telescope close window on q
+lua << EOF
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      n = {
+        ["q"] = actions.close
+      },
+    },
+  }
+}
+EOF
+
+" setup lualine
+lua << EOF
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = '',
+    section_separators = '',
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+EOF
 
 " Nicer LSP UI
 lua << EOF
@@ -51,7 +134,6 @@ nnoremap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
 nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
 " keymaps for jump diagnostic
 nnoremap <silent> <C-j> :Lspsaga diagnostic_jump_next<CR>
-
 
 
 " lsp config for each language server and keybinding
@@ -85,27 +167,37 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  -- auto run eslint and prettier on save
+  if client.resolved_capabilities.document_formatting then
+    vim.api.nvim_command [[augroup Format]]
+    vim.api.nvim_command [[autocmd! * <buffer>]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[augroup END]]
+  end
 end
+
+-- coq snippets
+local coq = require "coq" -- add this
 
 local servers = { 'angularls', 'tsserver' }
 for _, lsp in pairs(servers) do
-  nvim_lsp[lsp].setup {
+  nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
     on_attach = on_attach,
     flags = {
       -- This will be the default in neovim 0.7+
       debounce_text_changes = 150,
     }
-  }
+  }))
 end
 
 -- elixirls required cmd to with ls path
-nvim_lsp.elixirls.setup {
+nvim_lsp.elixirls.setup(coq.lsp_ensure_capabilities({
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150,
     },
     cmd = { "/Users/kevin/Documents/dev/elixir-ls/language_server.sh" };
-}
+}))
 
 -- Diagnostics with eslint and prettier
 nvim_lsp.diagnosticls.setup {
@@ -165,6 +257,21 @@ nvim_lsp.diagnosticls.setup {
     }
   }
 }
+
+
+-- custom diagnostic icons
+--[[
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    -- This sets the spacing and the prefix, obviously.
+    virtual_text = {
+      spacing = 4,
+      prefix = ''
+    }
+  }
+)
+--]]
 
 EOF
 
