@@ -1,7 +1,8 @@
 call plug#begin('~/.config/nvim/bundle')
 
     " colorscheme
-    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 
     " lsp defualt config
     Plug 'neovim/nvim-lspconfig'
@@ -42,30 +43,36 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 " colorscheme config
-let g:tokyonight_style = "night"
-let g:tokyonight_italic_functions = 1
-let g:tokyonight_sidebars = [ "qf", "vista_kind", "terminal", "packer" ]
-
+" tokyo night
+" let g:tokyonight_style = 'night'
+" let g:tokyonight_italic_functions = 1
+" let g:tokyonight_sidebars = [ 'qf', 'vista_kind', 'terminal', 'packer' ]
 " Change colors
 " let g:tokyonight_colors = {
 "   \ 'hint': 'orange',
 "   \ 'error': '#ff0000'
 " \ }
 
- " Load the colorscheme
- colorscheme tokyonight
+" catppuccin
+lua << EOF
+local catppuccin = require("catppuccin")
+-- configure it
+catppuccin.setup()
+EOF
+
+" Load the colorscheme
+" colorscheme tokyonight
+colorscheme catppuccin
 
 " auto start COQ
 let g:coq_settings = { 'auto_start': "shut-up" }
-" coq changes cmd height
-set cmdheight=1
+set cmdheight=2
 
 " Telescope key maps
 nnoremap <silent> ;f <cmd>Telescope find_files<cr>
 nnoremap <silent> ;r <cmd>Telescope live_grep<cr>
 nnoremap <silent> \\ <cmd>Telescope buffers<cr>
 nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
-
 " Telescope close window on q
 lua << EOF
 local actions = require('telescope.actions')
@@ -117,11 +124,11 @@ EOF
 lua << EOF
 local saga = require 'lspsaga'
 saga.init_lsp_saga {
-    error_sign = '',
-    warn_sign = '',
-    hint_sign = '',
-    infor_sign = '',
-    border_style = "round",
+  error_sign = '',
+  warn_sign = '',
+  hint_sign = '',
+  infor_sign = '',
+  border_style = "round",
 }
 -- saga.init_lsp_saga()
 EOF
@@ -177,7 +184,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- coq snippets
-local coq = require "coq" -- add this
+local coq = require "coq"
 
 local servers = { 'angularls', 'tsserver' }
 for _, lsp in pairs(servers) do
@@ -258,9 +265,7 @@ nvim_lsp.diagnosticls.setup {
   }
 }
 
-
 -- custom diagnostic icons
---[[
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
@@ -271,7 +276,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
   }
 )
---]]
 
 EOF
 
