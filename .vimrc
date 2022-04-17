@@ -2,20 +2,43 @@
 set number
 set relativenumber
 
+" Fundamental settings
+set title
+set scrolloff=8
+set hlsearch
+set showcmd
+set nocompatible
+set ignorecase
+
 " Makes tabs equal to 4 spaces
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-
-" Will auto indent the file
 set autoindent
 
+" Statusline
+set laststatus=2
+set cmdheight=1
+set showmode
+set showcmd
+set statusline=%f%m%r%h%w[%L]
+
+" Finding files - Search down into subfolders
+set path+=**
+set wildignore+=*/node_modules/*
+
+" true color
+if exists("&termguicolors") && exists("&winblend")
+  syntax enable
+  set termguicolors
+  set winblend=0
+  set wildoptions=pum
+  set pumblend=5
+  set background=dark
+endif
 " Change the colorscheme. Colors are stored in ~/.vim/color
-" Enable 256 colors
-set t_Co=256
 colorscheme monokai
-syntax enable
 
 syntax on
 filetype plugin on
@@ -35,16 +58,6 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
 inoremap jj <ESC>
-
-" Scroll when 8 off from top
-set scrolloff=8
-
-" Statusline
-set laststatus=2
-set cmdheight=2
-set showmode
-set showcmd
-set statusline=%f%m%r%h%w[%L]
 
 " OCaml
 " let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
@@ -131,4 +144,25 @@ function MyTabLabel(n)
   return len(label) == 0 ? '[No Name]' : label
 endfunction
 set tabline=%!MyTabLine() 
+
+" Windows
+
+" Split window
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w
+" Move window
+nmap <Space> <C-w>w
+map s<left> <C-w>h
+map s<up> <C-w>k
+map s<down> <C-w>j
+map s<right> <C-w>l
+map sh <C-w>h
+map sk <C-w>k
+map sj <C-w>j
+map sl <C-w>l
+" Resize window
+nmap <C-w><left> <C-w><
+nmap <C-w><right> <C-w>>
+nmap <C-w><up> <C-w>+
+nmap <C-w><down> <C-w>-
 

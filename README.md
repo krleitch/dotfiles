@@ -54,6 +54,7 @@ Inspiration: https://blog.inkdrop.app/how-to-set-up-neovim-0-5-modern-plugins-ls
 #### Treesitter
 
 - https://github.com/nvim-treesitter/nvim-treesitter
+- npm install -g tree-sitter-cli
 - :TSInstall javascript
 - :TSInstallInfo
 - Install any other languages you want syntax for

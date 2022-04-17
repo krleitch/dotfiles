@@ -66,7 +66,6 @@ colorscheme catppuccin
 
 " auto start COQ
 let g:coq_settings = { 'auto_start': "shut-up" }
-set cmdheight=2
 
 " Telescope key maps
 nnoremap <silent> ;f <cmd>Telescope find_files<cr>
@@ -87,6 +86,37 @@ require('telescope').setup{
 }
 EOF
 
+" tree sitter
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = true,
+    disable = {},
+  },
+  ensure_installed = {
+    "tsx",
+    "toml",
+    "fish",
+    "php",
+    "json",
+    "yaml",
+    "swift",
+    "html",
+    "scss"
+  },
+  autotag = {
+    enable = true,
+  }
+}
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+EOF
+
 " setup lualine
 lua << EOF
 require('lualine').setup {
@@ -101,9 +131,13 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_b = {'branch'},
     lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_x = {
+      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+      'encoding',
+      'filetype'
+    },
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
