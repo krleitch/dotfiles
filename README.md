@@ -1,10 +1,11 @@
 # dotfiles
 
 ### create soft links
-ln -s ~/dotfiles/.vimrc ~/.vimrc
-ln -s ~/dotfiles/init.vim ~/.config/nvim
+- ln -s ~/dotfiles/.vimrc ~/.vimrc
+- ln -s ~/dotfiles/init.vim ~/.config/nvim
+- + any other configs you have
 
-### get monokai-phoenix
+### monokai-phoenix
 https://github.com/Reewr/vim-monokai-phoenix
 
 add to .vim/colors
@@ -17,11 +18,31 @@ if [ -r ~/.bashrc ]; then
    
 fi
 
-### Fonts
-https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack
-
-### nvim-lspconfig
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-
 ### PS1 Generator
 http://bashrcgenerator.com/
+
+### Neovim Setup
+
+#### Fonts
+- https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack
+- Make sure you have the patched Mono version 
+
+#### nvim-lspconfig
+- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+- call setup on each lsp config
+- npm install -g typescript typescript-language-server
+- install the lsp for everything you setup
+
+#### Diagnostics
+- npm install -g diagnostic-languageserver
+- npm install -g eslint_d prettier
+
+#### Coq
+- https://github.com/ms-jpq/coq_nvim
+- requires sqlite3, python 3.8.2, python3-venv
+
+#### Treesitter
+- https://github.com/nvim-treesitter/nvim-treesitter
+- :TSInstall javascript
+- :TSInstallInfo
+- Install any other languages you want syntax for
