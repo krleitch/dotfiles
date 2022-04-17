@@ -48,13 +48,44 @@ set statusline=%f%m%r%h%w[%L]
 
 " OCaml
 " let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-" execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" execute 'set rtp+=' . g:opamshare . '/merlin/vim'
         
 " Allow saving of files as sudo when I forget to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
 
 " Buffers
 nnoremap <F2> :buffers<Cr>:b<Space>
+" Search for buffers by name with partial atchings
+function! BufSel(pattern)
+  let bufcount = bufnr("$")
+  let currbufnr = 1
+  let nummatches = 0
+  let firstmatchingbufnr = 0
+  while currbufnr <= bufcount
+    if(bufexists(currbufnr))
+      let currbufname = bufname(currbufnr)
+      if(match(currbufname, a:pattern) > -1)
+        echo currbufnr . ": ". bufname(currbufnr)
+        let nummatches += 1
+        let firstmatchingbufnr = currbufnr
+      endif
+    endif
+    let currbufnr = currbufnr + 1
+  endwhile
+  if(nummatches == 1)
+    execute ":buffer ". firstmatchingbufnr
+  elseif(nummatches > 1)
+    let desiredbufnr = input("Enter buffer number: ")
+    if(strlen(desiredbufnr) != 0)
+      execute ":buffer ". desiredbufnr
+    endif
+  else
+    echo "No matching buffers"
+  endif
+endfunction
+
+"Bind the BufSel) function to a user-command
+command! -nargs=1 Bs :call BufSel("<args>")( 
 
 " Tabs
 " Open current directory
@@ -100,7 +131,4 @@ function MyTabLabel(n)
   return len(label) == 0 ? '[No Name]' : label
 endfunction
 set tabline=%!MyTabLine() 
-
-
-
 
