@@ -17,4 +17,8 @@ if [ -r ~/.bashrc ]; then
    
 fi
 
+### Fonts
+https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack
+
+### PS1 Generator
 http://bashrcgenerator.com/
