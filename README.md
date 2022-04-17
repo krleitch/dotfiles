@@ -20,5 +20,8 @@ fi
 ### Fonts
 https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack
 
+### nvim-lspconfig
+https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+
 ### PS1 Generator
 http://bashrcgenerator.com/
