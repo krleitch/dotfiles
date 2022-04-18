@@ -41,6 +41,9 @@ call plug#begin('~/.config/nvim/bundle')
     " web-dev icons
     Plug 'kyazdani42/nvim-web-devicons'
 
+    " Elixir mix format on save
+    Plug 'mhinz/vim-mix-format'
+
 
 call plug#end()
 
@@ -73,6 +76,9 @@ colorscheme catppuccin
 
 " auto start COQ
 let g:coq_settings = { 'auto_start': "shut-up" }
+
+" elixir format on save
+let g:mix_format_on_save = 1
 
 " Telescope key maps
 nnoremap <silent> ff <cmd>Telescope find_files hidden=true<cr>
