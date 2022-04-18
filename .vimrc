@@ -2,6 +2,10 @@
 set number
 set relativenumber
 
+" `matchit.vim` is built-in so let's enable it!
+" Hit `%` on `if` to jump to `else`.
+runtime macros/matchit.vim
+
 " Fundamental settings
 set title
 set scrolloff=8
@@ -9,8 +13,12 @@ set hlsearch
 set showcmd
 set nocompatible
 set ignorecase
+set backspace=indent,eol,start
+set ruler
+set hidden
+set incsearch
 
-" Makes tabs equal to 4 spaces
+" Makes tabs equal to 2 spaces
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -25,6 +33,7 @@ set showcmd
 set statusline=%f%m%r%h%w[%L]
 
 " Finding files - Search down into subfolders
+set wildmenu
 set path+=**
 set wildignore+=*/node_modules/*
 
@@ -41,7 +50,7 @@ endif
 colorscheme monokai
 
 syntax on
-filetype plugin on
+filetype plugin indent on
 
 " Remaps
 nnoremap j gj
