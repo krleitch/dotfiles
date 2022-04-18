@@ -41,6 +41,10 @@ Inspiration: https://blog.inkdrop.app/how-to-set-up-neovim-0-5-modern-plugins-ls
 - npm install -g typescript typescript-language-server
 - install the lsp for everything you setup
 
+Angular Notes:
+
+- install typescript and angular-language-server as dev dependencies in the project
+
 #### Diagnostics
 
 - npm install -g diagnostic-languageserver

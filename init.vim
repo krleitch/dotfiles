@@ -28,6 +28,7 @@ call plug#begin('~/.config/nvim/bundle')
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
     " status line
     Plug 'nvim-lualine/lualine.nvim'
@@ -68,10 +69,10 @@ colorscheme catppuccin
 let g:coq_settings = { 'auto_start': "shut-up" }
 
 " Telescope key maps
-nnoremap <silent> ;f <cmd>Telescope find_files<cr>
-nnoremap <silent> ;r <cmd>Telescope live_grep<cr>
-nnoremap <silent> \\ <cmd>Telescope buffers<cr>
-nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
+nnoremap <silent> ff <cmd>Telescope find_files<cr>
+nnoremap <silent> fg <cmd>Telescope live_grep<cr>
+nnoremap <silent> fb <cmd>Telescope buffers<cr>
+nnoremap <silent> fn <cmd>Telescope help_tags<cr>
 " Telescope close window on q
 lua << EOF
 local actions = require('telescope.actions')
@@ -82,8 +83,10 @@ require('telescope').setup{
         ["q"] = actions.close
       },
     },
+    file_ignore_patterns = { "node_modules" }
   }
 }
+require('telescope').load_extension('fzf')
 EOF
 
 " tree sitter
@@ -220,7 +223,7 @@ end
 -- coq snippets
 local coq = require "coq"
 
-local servers = { 'angularls', 'tsserver' }
+local servers = { 'tsserver', 'angularls' }
 for _, lsp in pairs(servers) do
   nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
     on_attach = on_attach,
@@ -239,6 +242,23 @@ nvim_lsp.elixirls.setup(coq.lsp_ensure_capabilities({
     },
     cmd = { "/Users/kevin/Documents/dev/elixir-ls/language_server.sh" };
 }))
+
+-- angular
+--[[
+local configPath = vim.fn.stdpath("config")
+local languageServerPath = configPath.."/languageserver"
+local angular_cmd = {"node", languageServerPath.."/node_modules/@angular/language-server/index.js", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath}
+nvim_lsp.angularls.setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  cmd = angular_cmd,
+  on_new_config = function(new_config,new_root_dir)
+    new_config.cmd = angular_cmd
+  end,
+}
+--]]
 
 -- Diagnostics with eslint and prettier
 nvim_lsp.diagnosticls.setup {

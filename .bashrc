@@ -7,6 +7,12 @@ alias home='cd ~'
 alias root='cd /'
 alias repos='cd ~/Documents/repos'
 
+# Alias Current project
+alias spot='cd ~/Documents/repos/spot'
+alias spots='cd ~/Documents/repos/spot/spot-web'
+alias spotw='cd ~/Documents/repos/spot/spot-server'
+alias spotc='cd ~/Documents/repos/spot-chat'
+
 # Alias git
 alias gs='git status'
 alias ga='git add -A'
