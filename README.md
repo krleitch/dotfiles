@@ -4,6 +4,7 @@
 
 - ln -s ~/dotfiles/.vimrc ~/.vimrc
 - ln -s ~/dotfiles/init.vim ~/.config/nvim
+- ln -s ~/dotfiles/plugin/ ~/.config/nvim/after/
 - - any other configs you have
 
 ### monokai-phoenix
