@@ -4,12 +4,19 @@ call plug#begin('~/.config/nvim/bundle')
     " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 
+    " git
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+
     " lsp defualt config
     Plug 'neovim/nvim-lspconfig'
     " improve lsp ui
     Plug 'glepnir/lspsaga.nvim'
+
     " tree sitter
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " Trouble
+    Plug 'folke/trouble.nvim'
 
     " auto completion
     Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
@@ -157,19 +164,33 @@ require('lualine').setup {
 }
 EOF
 
+" setup trouble
+lua << EOF
+  require("trouble").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  }
+EOF
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap gR <cmd>TroubleToggle lsp_references<cr>
+
 " Nicer LSP UI
 lua << EOF
 local saga = require 'lspsaga'
 saga.init_lsp_saga {
-  error_sign = '',
-  warn_sign = '',
-  hint_sign = '',
-  infor_sign = '',
+  error_sign = '',
+  warn_sign = '',
+  hint_sign = '',
+  infor_sign = '',
   border_style = "round",
 }
 -- saga.init_lsp_saga()
 EOF
-
 " show hover doc
 nnoremap <silent>K :Lspsaga hover_doc<CR>
 " signature help
@@ -243,23 +264,6 @@ nvim_lsp.elixirls.setup(coq.lsp_ensure_capabilities({
     cmd = { "/Users/kevin/Documents/dev/elixir-ls/language_server.sh" };
 }))
 
--- angular
---[[
-local configPath = vim.fn.stdpath("config")
-local languageServerPath = configPath.."/languageserver"
-local angular_cmd = {"node", languageServerPath.."/node_modules/@angular/language-server/index.js", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath}
-nvim_lsp.angularls.setup{
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  cmd = angular_cmd,
-  on_new_config = function(new_config,new_root_dir)
-    new_config.cmd = angular_cmd
-  end,
-}
---]]
-
 -- Diagnostics with eslint and prettier
 nvim_lsp.diagnosticls.setup {
   on_attach = on_attach,
@@ -331,5 +335,16 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+local signs = {
+    Error = " ",
+    Warning = " ",
+    Hint = " ",
+    Information = " "
+}
+
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
+end
 EOF
 

@@ -9,8 +9,9 @@ alias repos='cd ~/Documents/repos'
 
 # Alias Current project
 alias spot='cd ~/Documents/repos/spot'
-alias spots='cd ~/Documents/repos/spot/spot-web'
-alias spotw='cd ~/Documents/repos/spot/spot-server'
+alias spotw='cd ~/Documents/repos/spot/spot-web'
+alias spots='cd ~/Documents/repos/spot/spot-server'
+alias spotco='cd ~/Documents/repos/spot/spot-commons'
 alias spotc='cd ~/Documents/repos/spot-chat'
 
 # Alias git
