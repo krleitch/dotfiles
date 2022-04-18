@@ -6,6 +6,7 @@ alias c='clear'
 alias home='cd ~'
 alias root='cd /'
 alias repos='cd ~/Documents/repos'
+alias nv='nvim'
 
 # Alias Current project
 alias spot='cd ~/Documents/repos/spot'
