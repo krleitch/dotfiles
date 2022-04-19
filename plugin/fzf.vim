@@ -8,3 +8,7 @@ nnoremap <C-p> :GFiles<CR>
 " Window Mode
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
+" find only files in same directory as current buffer
+nnoremap <silent> ff :GFiles <C-r>=expand("%:h")<CR>/<CR>
+" show git files that edited
+nnoremap <silent> fg :GF?<CR>

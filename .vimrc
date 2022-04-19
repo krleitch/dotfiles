@@ -87,9 +87,9 @@ nnoremap <Leader>g :e#<Cr>
 " list buffers
 nnoremap <Leader>l :ls<Cr>
 
-" Ngb for N = [1,20] for switching to that buffer
+" Ngb for N = [1,99] for switching to that buffer
 let c = 1
-while c <= 20
+while c <= 99
   execute "nnoremap " . c . "gb :" . c . "b\<CR>"
   let c += 1
 endwhile
