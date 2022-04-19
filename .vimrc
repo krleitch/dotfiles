@@ -7,23 +7,24 @@ set relativenumber
 runtime macros/matchit.vim
 
 " Fundamental settings
-set title
-set scrolloff=8
-set hlsearch
-set showcmd
-set nocompatible
-set ignorecase
-set backspace=indent,eol,start
-set ruler
-set hidden
-set incsearch
+set title "show the title at top
+set scrolloff=8 "scroll before at top or bottom
+set backspace=indent,eol,start "make backspace work like normal
+set ruler "show line position in bottom right
+set hidden "hide file buffers
+
+" searching
+set hlsearch "highlight search results
+set incsearch "show results while typing
+set ignorecase "search results ignore case
+set smartcase "if you search with one or more uppercase then case matters
 
 " Makes tabs equal to 2 spaces
-set expandtab
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set autoindent
+set expandtab "convert tabs to spaces
+set tabstop=2 "the number of spaces
+set softtabstop=2 "insert and delete correct number of spaces
+set shiftwidth=2 "spaces for indentation
+set autoindent "let vim auto indent new lines
 
 " Statusline
 set laststatus=2
@@ -46,10 +47,9 @@ if exists("&termguicolors") && exists("&winblend")
   set pumblend=5
   set background=dark
 endif
+
 " Change the colorscheme. Colors are stored in ~/.vim/color
 colorscheme monokai
-
-syntax on
 filetype plugin indent on
 
 " Remaps
@@ -77,7 +77,7 @@ cmap w!! w !sudo tee > /dev/null %
 
 " Buffers
 nnoremap <F2> :buffers<Cr>:b<Space>
-" Search for buffers by name with partial atchings
+" Search for buffers by name with partial matchings
 function! BufSel(pattern)
   let bufcount = bufnr("$")
   let currbufnr = 1
@@ -110,6 +110,7 @@ endfunction
 command! -nargs=1 Bs :call BufSel("<args>")( 
 
 " Tabs
+"
 " Open current directory
 nmap te :tabedit 
 nmap <S-Tab> :tabprev<Return>

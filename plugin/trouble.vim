@@ -1,4 +1,5 @@
-if !exists('g:loaded_trouble') | finish | endif
+" Trouble doesnt set loaded...
+" if !exists('g:loaded_trouble') | finish | endif
 
 lua << EOF
 require("trouble").setup {

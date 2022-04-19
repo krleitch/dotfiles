@@ -1,19 +1,22 @@
 # Alias commands
 alias q='exit'
 alias c='clear'
+alias nv='nvim'
 
-# Alias directories
+# Alias Directories
 alias home='cd ~'
 alias root='cd /'
 alias repos='cd ~/Documents/repos'
-alias nv='nvim'
+alias dot='cd ~/dotfiles'
 
 # Alias Current project
 alias spot='cd ~/Documents/repos/spot'
-alias spotw='cd ~/Documents/repos/spot/spot-web'
-alias spots='cd ~/Documents/repos/spot/spot-server'
-alias spotco='cd ~/Documents/repos/spot/spot-commons'
-alias spotc='cd ~/Documents/repos/spot-chat'
+alias sweb='cd ~/Documents/repos/spot/spot-web'
+alias sapi='cd ~/Documents/repos/spot/spot-server'
+alias scom='cd ~/Documents/repos/spot/spot-commons'
+alias smob='cd ~/Documents/repos/spot-mobile'
+alias scha='cd ~/Documents/repos/spot-chat'
+alias slam='cd ~/Documents/repos/spot-lambda'
 
 # Alias git
 alias gs='git status'
