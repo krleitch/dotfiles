@@ -27,11 +27,12 @@ set shiftwidth=2 "spaces for indentation
 set autoindent "let vim auto indent new lines
 
 " Statusline
-set laststatus=2
+set laststatus=2 "always show last status
 set cmdheight=1
 set showmode
 set showcmd
-set statusline=%f%m%r%h%w[%L]
+"set statusline=%f%m%r%h%w[%L]
+set statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " Finding files - Search down into subfolders
 set wildmenu
@@ -77,6 +78,22 @@ cmap w!! w !sudo tee > /dev/null %
 
 " Buffers
 nnoremap <F2> :buffers<Cr>:b<Space>
+" next buffer
+nnoremap <Leader>f :bn<Cr>
+" previous buffer
+nnoremap <Leader>b :bp<Cr>
+" last used buffer
+nnoremap <Leader>g :e#<Cr>
+" list buffers
+nnoremap <Leader>l :ls<Cr>
+
+" Ngb for N = [1,20] for switching to that buffer
+let c = 1
+while c <= 20
+  execute "nnoremap " . c . "gb :" . c . "b\<CR>"
+  let c += 1
+endwhile
+
 " Search for buffers by name with partial matchings
 function! BufSel(pattern)
   let bufcount = bufnr("$")
