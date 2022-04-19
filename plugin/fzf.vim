@@ -1,6 +1,6 @@
 if !exists('g:loaded_fzf_vim') | finish | endif
 
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :GFiles<CR>
 
 " Bottom mode
 "let g:fzf_layout = { 'down': '40%' }
