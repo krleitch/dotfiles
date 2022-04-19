@@ -1,46 +1,48 @@
 call plug#begin('~/.config/nvim/bundle')
 
-    " Colorscheme
-    " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-    Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+  " Colorscheme
+  " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+  Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 
-    " Git
-    Plug 'tpope/vim-fugitive'
+  " Git
+  Plug 'tpope/vim-fugitive'
+  " Show git diff column
+  Plug 'mhinz/vim-signify'
 
-    " Lsp defualt config
-    Plug 'neovim/nvim-lspconfig'
-    " Improve lsp ui
-    Plug 'tami5/lspsaga.nvim'
+  " Lsp defualt config
+  Plug 'neovim/nvim-lspconfig'
+  " Improve lsp ui
+  Plug 'tami5/lspsaga.nvim'
 
-    " Treesitter for syntax highlighting
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " Trouble for viewing diagnostics better
-    Plug 'folke/trouble.nvim'
+  " Treesitter for syntax highlighting
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  " Trouble for viewing diagnostics better
+  Plug 'folke/trouble.nvim'
 
-    " auto completion
-    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-    " 9000+ Snippets
-    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-    " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-    " Need to **configure separately**
-    Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-    " - shell repl
-    " - nvim lua api
-    " - scientific calculator
-    " - comment banner
-    " - etc
+  " auto completion
+  Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+  " 9000+ Snippets
+  Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+  " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+  " Need to **configure separately**
+  Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+  " - shell repl
+  " - nvim lua api
+  " - scientific calculator
+  " - comment banner
+  " - etc
 
-    " fuzzy finder
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
+  " fuzzy finder
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
 
-    " status line
-    Plug 'nvim-lualine/lualine.nvim'
-    " web-dev icons
-    Plug 'kyazdani42/nvim-web-devicons'
+  " status line
+  Plug 'nvim-lualine/lualine.nvim'
+  " web-dev icons
+  Plug 'kyazdani42/nvim-web-devicons'
 
-    " Elixir mix format on save
-    Plug 'mhinz/vim-mix-format'
+  " Elixir mix format on save
+  Plug 'mhinz/vim-mix-format'
 
 call plug#end()
 
@@ -48,6 +50,9 @@ call plug#end()
 set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
+
+" vim-signify update time
+set updatetime=100
 
 " auto start COQ
 let g:coq_settings = { 'auto_start': "shut-up" }
