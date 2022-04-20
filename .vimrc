@@ -50,7 +50,10 @@ if exists("&termguicolors") && exists("&winblend")
 endif
 
 " Change the colorscheme. Colors are stored in ~/.vim/color
-colorscheme monokai
+if !has('nvim')
+  colorscheme monokai
+endif
+
 syntax on
 filetype plugin indent on
 
