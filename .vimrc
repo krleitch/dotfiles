@@ -51,6 +51,7 @@ endif
 
 " Change the colorscheme. Colors are stored in ~/.vim/color
 colorscheme monokai
+syntax on
 filetype plugin indent on
 
 " Remaps

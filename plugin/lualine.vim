@@ -6,7 +6,7 @@ lua << EOF
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'auto',
+    theme = 'catppuccin',
     component_separators = '',
     section_separators = '',
     disabled_filetypes = {},
@@ -16,7 +16,8 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch'},
-    lualine_c = {'filename'},
+    lualine_c = {'%02n', { 'filename', path = 1} },
+
     lualine_x = {
       { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
       'encoding',
