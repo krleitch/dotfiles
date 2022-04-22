@@ -12,3 +12,5 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 nnoremap <silent> ff :GFiles <C-r>=expand("%:h")<CR>/<CR>
 " show git files that edited
 nnoremap <silent> fg :GF?<CR>
+" show open buffers
+nnoremap <silent> fb :Buffers<CR>
