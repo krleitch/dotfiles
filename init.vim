@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/bundle')
   " Colorscheme
   " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+  Plug 'norcalli/nvim-colorizer.lua'
 
   " Git
   Plug 'tpope/vim-fugitive'
@@ -50,6 +51,11 @@ call plug#end()
 set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
+
+" colorizer
+lua << EOF
+require'colorizer'.setup()
+EOF
 
 " vim-signify update time
 set updatetime=100
