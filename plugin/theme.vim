@@ -1,19 +1,9 @@
-" colorscheme config
-" tokyo night
-" let g:tokyonight_style = 'night'
-" let g:tokyonight_italic_functions = 1
-" let g:tokyonight_sidebars = [ 'qf', 'vista_kind', 'terminal', 'packer' ]
-" Change colors
-" let g:tokyonight_colors = {
-"   \ 'hint': 'orange',
-"   \ 'error': '#ff0000'
-" \ }
+" lychee is based off of catppuccin
 
-" catppuccin
 lua << EOF
-local catppuccin = require("catppuccin")
+local lychee = require("lychee")
 -- configure it
-catppuccin.setup({
+lychee.setup({
   transparent_background = false,
   term_colors = false,
   styles = {
@@ -79,5 +69,10 @@ catppuccin.setup({
 EOF
 
 " Load the colorscheme
-" colorscheme tokyonight
-colorscheme catppuccin
+colorscheme lychee
+
+" colorizer
+lua << EOF
+require'colorizer'.setup()
+EOF
+

@@ -1,8 +1,8 @@
 call plug#begin('~/.config/nvim/bundle')
 
   " Colorscheme
-  " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-  Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+  " Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+  Plug 'krleitch/nvim-lychee'
   Plug 'norcalli/nvim-colorizer.lua'
 
   " Git
@@ -45,6 +45,9 @@ call plug#begin('~/.config/nvim/bundle')
   " Elixir mix format on save
   Plug 'mhinz/vim-mix-format'
 
+  " Use emacs best feature
+  Plug 'alec-gibson/nvim-tetris'
+
 call plug#end()
 
 " Import vim settings
@@ -52,13 +55,8 @@ set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
-" colorizer
-lua << EOF
-require'colorizer'.setup()
-EOF
-
 " vim-signify update time
-set updatetime=100
+set updatetime=1000
 
 " auto start COQ
 let g:coq_settings = { 'auto_start': "shut-up" }
