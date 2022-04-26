@@ -45,6 +45,9 @@ call plug#begin('~/.config/nvim/bundle')
   " Elixir mix format on save
   Plug 'mhinz/vim-mix-format'
 
+  " Smooth scrolling
+  Plug 'karb94/neoscroll.nvim'
+
   " Use emacs best feature
   Plug 'alec-gibson/nvim-tetris'
 
