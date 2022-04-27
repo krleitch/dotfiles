@@ -21,17 +21,15 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'folke/trouble.nvim'
 
   " auto completion
-  Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-  " 9000+ Snippets
-  Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-  " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
-  " Need to **configure separately**
-  Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-  " - shell repl
-  " - nvim lua api
-  " - scientific calculator
-  " - comment banner
-  " - etc
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
+
+  " For vsnip users.
+  Plug 'hrsh7th/cmp-vsnip'
+  Plug 'hrsh7th/vim-vsnip'  
 
   " fuzzy finder
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -60,9 +58,6 @@ source ~/.vimrc
 
 " vim-signify update time
 set updatetime=1000
-
-" auto start COQ
-let g:coq_settings = { 'auto_start': "shut-up" }
 
 " elixir format on save
 let g:mix_format_on_save = 1

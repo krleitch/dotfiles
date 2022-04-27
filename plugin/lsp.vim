@@ -38,28 +38,30 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- coq snippets
-local coq = require "coq"
+-- Setup lspconfig for cmp
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local servers = { 'tsserver', 'angularls' }
 for _, lsp in pairs(servers) do
-  nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
+  nvim_lsp[lsp].setup({
+    capabilities = capabilities,
     on_attach = on_attach,
     flags = {
       -- This will be the default in neovim 0.7+
       debounce_text_changes = 150,
     }
-  }))
+  })
 end
 
 -- elixirls required cmd to with ls path
-nvim_lsp.elixirls.setup(coq.lsp_ensure_capabilities({
+nvim_lsp.elixirls.setup({
+    capabilities = capabilities,
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150,
     },
     cmd = { "/Users/kevin/Documents/dev/elixir-ls/language_server.sh" };
-}))
+})
 
 -- Diagnostics with eslint and prettier
 nvim_lsp.diagnosticls.setup {
