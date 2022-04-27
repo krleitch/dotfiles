@@ -32,8 +32,9 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'hrsh7th/vim-vsnip'  
 
   " fuzzy finder
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
   " auto pairs and auto tags
   Plug 'windwp/nvim-autopairs'
