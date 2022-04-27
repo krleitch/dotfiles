@@ -2,6 +2,25 @@
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
+--notify
+local notify = require 'notify'
+vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
+  local client = vim.lsp.get_client_by_id(ctx.client_id)
+  local lvl = ({
+    'ERROR',
+    'WARN',
+    'INFO',
+    'DEBUG',
+  })[result.type]
+  notify({ result.message }, lvl, {
+    title = 'LSP | ' .. client.name,
+    timeout = 10000,
+    keep = function()
+      return lvl == 'ERROR' or lvl == 'WARN'
+    end,
+  })
+end
+
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
