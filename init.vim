@@ -8,7 +8,7 @@ call plug#begin('~/.config/nvim/bundle')
   " Git
   Plug 'tpope/vim-fugitive'
   " Show git diff column
-  Plug 'mhinz/vim-signify'
+  Plug 'lewis6991/gitsigns.nvim'
 
   " Lsp defualt config
   Plug 'neovim/nvim-lspconfig'
@@ -35,16 +35,28 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
+  " auto pairs and auto tags
+  Plug 'windwp/nvim-autopairs'
+  Plug 'windwp/nvim-ts-autotag'
+
   " status line
   Plug 'nvim-lualine/lualine.nvim'
   " web-dev icons
   Plug 'kyazdani42/nvim-web-devicons'
 
-  " Elixir mix format on save
-  Plug 'mhinz/vim-mix-format'
-
   " Smooth scrolling
   Plug 'karb94/neoscroll.nvim'
+  " Comments
+  Plug 'terrortylor/nvim-comment'
+  " Add Indent lines
+  Plug 'lukas-reineke/indent-blankline.nvim'
+  " Startup screen
+  Plug 'goolord/alpha-nvim'
+  " Faster Startup
+  Plug 'lewis6991/impatient.nvim'
+
+  " Elixir mix format on save
+  Plug 'mhinz/vim-mix-format'
 
   " Use emacs best feature
   Plug 'alec-gibson/nvim-tetris'
@@ -55,6 +67,9 @@ call plug#end()
 set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
+
+" Impatient needs to start near first
+lua require('impatient')
 
 " vim-signify update time
 set updatetime=1000
