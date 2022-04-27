@@ -55,6 +55,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'goolord/alpha-nvim'
   " Faster Startup
   Plug 'lewis6991/impatient.nvim'
+  " notifs
+  Plug 'rcarriga/nvim-notify'
 
   " Elixir mix format on save
   Plug 'mhinz/vim-mix-format'
