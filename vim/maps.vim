@@ -28,9 +28,3 @@ nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1
 " Allow saving of files as sudo when I forget to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
 
-" replace f with vim sneak
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
-" vim sneak makes cc equiv to S
-" vim sneak makes cl equiv to s
-
