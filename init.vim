@@ -14,7 +14,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'neovim/nvim-lspconfig'
   " Improve lsp ui
   Plug 'tami5/lspsaga.nvim'
-
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " Trouble for viewing diagnostics better
@@ -26,7 +25,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'
   Plug 'hrsh7th/nvim-cmp'
-
   " For vsnip users.
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'  
@@ -57,6 +55,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'lewis6991/impatient.nvim'
   " notifs
   Plug 'rcarriga/nvim-notify'
+  " Vim sneak
+  Plug 'justinmk/vim-sneak'
 
   " Elixir mix format on save
   Plug 'mhinz/vim-mix-format'
@@ -66,16 +66,19 @@ call plug#begin('~/.config/nvim/bundle')
 
 call plug#end()
 
+" Impatient needs to start near first
+lua require('impatient')
+
 " Import vim settings
 set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
-" Impatient needs to start near first
-lua require('impatient')
-
 " vim-signify update time
 set updatetime=1000
+
+" minimalist vim-easymotion
+let g:sneak#label = 1
 
 " elixir format on save
 let g:mix_format_on_save = 1

@@ -10,13 +10,6 @@ nnoremap <Leader>g :e#<Cr>
 " list buffers
 nnoremap <Leader>l :ls<Cr>
 
-" Ngb for N = [1,99] for switching to that buffer
-let c = 1
-while c <= 99
-  execute "nnoremap " . c . "gb :" . c . "b\<CR>"
-  let c += 1
-endwhile
-
 " Search for buffers by name with partial matchings
 function! BufSel(pattern)
   let bufcount = bufnr("$")
