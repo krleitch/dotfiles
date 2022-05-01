@@ -12,6 +12,7 @@ set scrolloff=8 "scroll before at top or bottom
 set backspace=indent,eol,start "make backspace work like normal
 set ruler "show line position in bottom right
 set hidden "hide file buffers
+set ttyfast "speed up typing
 "highlight cursor line only on active window
 augroup CursorLine
   au!
