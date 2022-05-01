@@ -55,6 +55,17 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
     vim.api.nvim_command [[augroup END]]
   end
+  -- attach aerial  
+  require("aerial").on_attach(client, bufnr)
+  -- Toggle the aerial window with <leader>a
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
+  -- Jump forwards/backwards with '{' and '}'
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>{', '<cmd>AerialPrev<CR>', {})
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>}', '<cmd>AerialNext<CR>', {})
+  -- Jump up the tree with '[[' or ']]'
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+
 end
 
 -- Setup lspconfig for cmp

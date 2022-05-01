@@ -57,6 +57,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'rcarriga/nvim-notify'
   " Vim sneak
   Plug 'justinmk/vim-sneak'
+  " Show symbols list
+  Plug 'stevearc/aerial.nvim'
 
   " Elixir mix format on save
   Plug 'mhinz/vim-mix-format'
@@ -74,11 +76,9 @@ set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
-" vim-signify update time
-set updatetime=1000
-
 " minimalist vim-easymotion
 let g:sneak#label = 1
+let g:sneak#use_ic_scs = 1
 
 " elixir format on save
 let g:mix_format_on_save = 1

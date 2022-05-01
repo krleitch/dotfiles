@@ -17,7 +17,11 @@ require('telescope').setup {
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
+require('telescope').load_extension('aerial')
 EOF
+
+" Since using vim sneak f is not used
+" Searching is important enough to take priority
 
 nnoremap <C-p> <cmd>Telescope find_files<CR>
 " find only files in same directory as current buffer
@@ -30,4 +34,7 @@ nnoremap <silent> fb <cmd>Telescope buffers<CR>
 nnoremap <silent> fh <cmd>Telescope help_tags<CR>
 " git status
 nnoremap <silent> fs <cmd>Telescope git_status<CR>
-
+" current bufferr fuzzy find
+nnoremap <silent> fc <cmd>Telescope current_buffer_fuzzy_find<CR>
+" search aerial
+nnoremap <silent> fa <cmd>Telescope aerial<CR>

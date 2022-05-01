@@ -9,6 +9,34 @@ lua <<EOF
 
   cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 
+  local lsp_symbols = {
+      Text = "   (Text) ",
+      Method = "   (Method)",
+      Function = "   (Function)",
+      Constructor = "   (Constructor)",
+      Field = " ﴲ  (Field)",
+      Variable = "[] (Variable)",
+      Class = "   (Class)",
+      Interface = " ﰮ  (Interface)",
+      Module = "   (Module)",
+      Property = " 襁 (Property)",
+      Unit = "   (Unit)",
+      Value = "   (Value)",
+      Enum = " 練 (Enum)",
+      Keyword = "   (Keyword)",
+      Snippet = "   (Snippet)",
+      Color = "   (Color)",
+      File = "   (File)",
+      Reference = "   (Reference)",
+      Folder = "   (Folder)",
+      EnumMember = "   (EnumMember)",
+      Constant = " ﲀ  (Constant)",
+      Struct = " ﳤ  (Struct)",
+      Event = "   (Event)",
+      Operator = "   (Operator)",
+      TypeParameter = "   (TypeParameter)",
+  }
+
   cmp.setup({
     snippet = {
       -- REQUIRED - you must specify a snippet engine
@@ -18,6 +46,17 @@ lua <<EOF
         -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
+    },
+    formatting = {
+        format = function(entry, item)
+            item.kind = lsp_symbols[item.kind]
+            item.menu = ({
+                buffer = "[Buffer]",
+                nvim_lsp = "[LSP]",
+                vsnip = "[Snippet]"
+            })[entry.source.name]
+            return item
+        end,
     },
     window = {
       -- completion = cmp.config.window.bordered(),
@@ -35,13 +74,11 @@ lua <<EOF
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
+      ['<C-c>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ['<Tab>'] = function(fallback)
         if cmp.visible() then
             cmp.select_next_item()
-        -- elseif luasnip.expand_or_jumpable() then
-        --    luasnip.expand_or_jump()
         else
             fallback()
         end
@@ -49,8 +86,6 @@ lua <<EOF
       ['<S-Tab>'] = function(fallback)
         if cmp.visible() then
             cmp.select_prev_item()
-        -- elseif luasnip.jumpable(-1) then
-        --     luasnip.jump(-1)
         else
             fallback()
         end
