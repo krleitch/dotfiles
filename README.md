@@ -33,12 +33,11 @@ http://bashrcgenerator.com/
 ## Neovim Setup
 
 - Philosophy: https://github.com/romainl/idiomatic-vimrc
-- Inspiration: https://blog.inkdrop.app/how-to-set-up-neovim-0-5-modern-plugins-lsp-treesitter-etc-542c3d9c9887
 
 ### Fonts
 
 - https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack
-- Make sure you have the patched Mono version
+- https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/RobotoMono
 
 ### nvim-lspconfig
 
@@ -55,11 +54,6 @@ Angular Notes:
 
 - npm install -g diagnostic-languageserver
 - npm install -g eslint_d prettier
-
-### Coq
-
-- https://github.com/ms-jpq/coq_nvim
-- requires sqlite3, python 3.8.2, python3-venv
 
 ### Treesitter
 
