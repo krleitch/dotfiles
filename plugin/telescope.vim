@@ -23,6 +23,7 @@ EOF
 " Since using vim sneak f is not used
 " Searching is important enough to take priority
 
+" show hidden files as well
 nnoremap <C-p> :lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>", {noremap = true, silent = true})
 " find only files in same directory as current buffer
 nnoremap <silent> ff :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
