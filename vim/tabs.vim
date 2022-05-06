@@ -2,8 +2,8 @@
 
 " Open current directory
 nmap te :tabedit 
-nmap <S-Tab> :tabprev<Return>
-nmap <Tab> :tabnext<Return>
+nnoremap ]t :tabn<cr>
+nnoremap [t :tabp<cr>
 
 " Custom tabline with nerd font
 function MyTabLine()
