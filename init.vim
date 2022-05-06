@@ -60,6 +60,8 @@ call plug#begin('~/.config/nvim/bundle')
   
   " Markdown preview, requires yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+  " Latex preview
+  Plug 'lervag/vimtex'
 
   " Smooth scrolling
   Plug 'karb94/neoscroll.nvim'
