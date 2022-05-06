@@ -1,3 +1,4 @@
+if !exists('g:diffview_nvim_loaded') | finish | endif
 lua << EOF
 local cb = require'diffview.config'.diffview_callback
 

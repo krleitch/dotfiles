@@ -1,3 +1,4 @@
+if !exists('g:loaded_lychee') | finish | endif
 " lychee is based off of catppuccin
 
 lua << EOF

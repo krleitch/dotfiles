@@ -1,3 +1,5 @@
+if !exists('g:loaded_transparent') | finish | endif
+
 lua << EOF
 require("transparent").setup({
   enable = true, -- boolean: enable transparent
