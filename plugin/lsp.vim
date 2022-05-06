@@ -1,8 +1,10 @@
 " lsp config for each language server and keybinding
+" Includes setup for diagnostics, cmp, format and lint, aerial symbol list
+
 lua << EOF
 local nvim_lsp = require('lspconfig')
 
---notify
+-- Use notify for messages from the lsp
 local notify = require 'notify'
 vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
   local client = vim.lsp.get_client_by_id(ctx.client_id)
@@ -21,6 +23,22 @@ vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
   })
 end
 
+-- filter lsp defualt formatting for null-ls
+local lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(clients)
+            -- filter out clients that you don't want to use
+            return vim.tbl_filter(function(client)
+                return client.name ~= "tsserver"
+            end, clients)
+        end,
+        bufnr = bufnr,
+    })
+end
+-- format on save for null-ls
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+-- Diagnostics maps
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
@@ -48,14 +66,20 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  -- auto run eslint and prettier on save
-  if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-    vim.api.nvim_command [[augroup END]]
+
+  -- null-ls auto format on save and clear native formatting
+  if client.supports_method("textDocument/formatting") then
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+              lsp_formatting(bufnr)
+          end,
+      })
   end
-  -- attach aerial  
+
+  -- attach aerial with keymaps for symbol list  
   require("aerial").on_attach(client, bufnr)
   -- Toggle the aerial window with <leader>a
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
@@ -71,7 +95,8 @@ end
 -- Setup lspconfig for cmp
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'tsserver', 'angularls' }
+-- generics lsp setup for list of servers
+local servers = { 'angularls' }
 for _, lsp in pairs(servers) do
   nvim_lsp[lsp].setup({
     capabilities = capabilities,
@@ -83,6 +108,19 @@ for _, lsp in pairs(servers) do
   })
 end
 
+-- disable the tsserver diagnostics because eslint_d is better
+nvim_lsp.tsserver.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
+  },
+  handlers = {
+      ['textDocument/publishDiagnostics'] = function(...) end
+  }
+})
+
 -- elixirls required cmd to with ls path
 nvim_lsp.elixirls.setup({
     capabilities = capabilities,
@@ -93,65 +131,17 @@ nvim_lsp.elixirls.setup({
     cmd = { "/Users/kevin/Documents/dev/elixir-ls/language_server.sh" };
 })
 
--- Diagnostics with eslint and prettier
-nvim_lsp.diagnosticls.setup {
-  on_attach = on_attach,
-  filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'html', 'css', 'less', 'scss', 'markdown', 'pandoc' },
-  init_options = {
-    linters = {
-      eslint = {
-        command = 'eslint_d',
-        rootPatterns = { '.git' },
-        debounce = 100,
-        args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
-        sourceName = 'eslint_d',
-        parseJson = {
-          errorsRoot = '[0].messages',
-          line = 'line',
-          column = 'column',
-          endLine = 'endLine',
-          endColumn = 'endColumn',
-          message = '[eslint] ${message} [${ruleId}]',
-          security = 'severity'
-        },
-        securities = {
-          [2] = 'error',
-          [1] = 'warning'
-        }
-      },
+-- nullls prettier/eslint_d
+local null_ls = require("null-ls")
+null_ls.setup({
+    sources = {
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.tsc
     },
-    filetypes = {
-      javascript = 'eslint',
-      javascriptreact = 'eslint',
-      typescript = 'eslint',
-      typescriptreact = 'eslint',
-    },
-    formatters = {
-      eslint_d = {
-        command = 'eslint_d',
-        args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
-        rootPatterns = { '.git' },
-      },
-      prettier = {
-        command = 'prettier',
-        args = { '--stdin-filepath', '%filename' }
-      }
-    },
-    formatFiletypes = {
-      css = 'prettier',
-      html = 'prettier',
-      javascript = 'prettier',
-      javascriptreact = 'prettier',
-      json = 'prettier',
-      scss = 'prettier',
-      less = 'prettier',
-      typescript = 'prettier',
-      typescriptreact = 'prettier',
-      json = 'prettier',
-      markdown = 'prettier',
-    }
-  }
-}
+    on_attach = on_attach
+})
 
 -- custom diagnostic icons
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -164,14 +154,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
   }
 )
-
+-- custom diagnostic icons
 local signs = {
     Error = " ",
     Warning = " ",
     Hint = " ",
     Information = " "
 }
-
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})

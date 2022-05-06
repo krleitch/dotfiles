@@ -27,6 +27,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'tami5/lspsaga.nvim'
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  " interact with lsp for format/lint
+  Plug 'jose-elias-alvarez/null-ls.nvim'
   " Trouble for viewing diagnostics better
   Plug 'folke/trouble.nvim'
 
