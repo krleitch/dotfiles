@@ -5,10 +5,17 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'krleitch/nvim-lychee'
   Plug 'norcalli/nvim-colorizer.lua'
 
+  " fuzzy finder
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
   " Git
   Plug 'tpope/vim-fugitive'
   " Show git diff column
   Plug 'lewis6991/gitsigns.nvim'
+  " diff views
+  Plug 'sindrets/diffview.nvim'
 
   " Lsp defualt config
   Plug 'neovim/nvim-lspconfig'
@@ -29,11 +36,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'  
 
-  " fuzzy finder
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
   " auto pairs and auto tags
   Plug 'windwp/nvim-autopairs'
   Plug 'windwp/nvim-ts-autotag'
@@ -43,22 +45,30 @@ call plug#begin('~/.config/nvim/bundle')
   " web-dev icons
   Plug 'kyazdani42/nvim-web-devicons'
 
-  " Smooth scrolling
-  Plug 'karb94/neoscroll.nvim'
-  " Comments
-  Plug 'terrortylor/nvim-comment'
-  " Add Indent lines
-  Plug 'lukas-reineke/indent-blankline.nvim'
   " Startup screen
   Plug 'goolord/alpha-nvim'
   " Faster Startup
   Plug 'lewis6991/impatient.nvim'
   " notifs
   Plug 'rcarriga/nvim-notify'
+  " transparency
+  Plug 'xiyaowong/nvim-transparent' 
+
+  " Smooth scrolling
+  Plug 'karb94/neoscroll.nvim'
+  " Comments
+  Plug 'terrortylor/nvim-comment'
+  " Todo Comments
+  Plug 'folke/todo-comments.nvim'
+  " Add Indent lines
+  Plug 'lukas-reineke/indent-blankline.nvim'
   " Vim sneak
   Plug 'justinmk/vim-sneak'
   " Show symbols list
   Plug 'stevearc/aerial.nvim'
+
+  " notes, requires plenary 
+  Plug 'nvim-neorg/neorg'
 
   " Elixir mix format on save
   Plug 'mhinz/vim-mix-format'
