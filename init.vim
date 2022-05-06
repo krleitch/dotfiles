@@ -1,7 +1,7 @@
 call plug#begin('~/.config/nvim/bundle')
 
   " Colorscheme
-  " Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+  Plug 'catppuccin/nvim', {'as': 'catppuccin'}
   Plug 'krleitch/nvim-lychee'
   Plug 'norcalli/nvim-colorizer.lua'
 
@@ -99,6 +99,7 @@ source ~/.vimrc
 
 " show nerdtree hidden files
 let NERDTreeShowHidden=1
+nnoremap <leader>n :NERDTreeToggle<cr>
 
 " minimalist vim-easymotion
 let g:sneak#label = 1

@@ -2,9 +2,9 @@
 
 nnoremap <F2> :buffers<Cr>:b<Space>
 " next buffer
-nnoremap <Leader>f :bn<Cr>
+nnoremap b] :bn<Cr>
 " previous buffer
-nnoremap <Leader>b :bp<Cr>
+nnoremap b[ :bp<Cr>
 " last used buffer
 nnoremap <Leader>g :e#<Cr>
 " list buffers
