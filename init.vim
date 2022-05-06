@@ -9,6 +9,10 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  " file tree, useful for learning structure and creating dirs
+  Plug 'preservim/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   " Git
   Plug 'tpope/vim-fugitive'
@@ -85,6 +89,9 @@ lua require('impatient')
 set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
+
+" show nerdtree hidden files
+let NERDTreeShowHidden=1
 
 " minimalist vim-easymotion
 let g:sneak#label = 1
