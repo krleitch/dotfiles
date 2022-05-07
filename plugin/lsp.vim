@@ -96,7 +96,7 @@ end
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- generics lsp setup for list of servers
-local servers = { 'angularls' }
+local servers = { 'tsserver', 'angularls' }
 for _, lsp in pairs(servers) do
   nvim_lsp[lsp].setup({
     capabilities = capabilities,
@@ -107,19 +107,6 @@ for _, lsp in pairs(servers) do
     }
   })
 end
-
--- disable the tsserver diagnostics because eslint_d is better
-nvim_lsp.tsserver.setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  flags = {
-    -- This will be the default in neovim 0.7+
-    debounce_text_changes = 150,
-  },
-  handlers = {
-      ['textDocument/publishDiagnostics'] = function(...) end
-  }
-})
 
 -- elixirls required cmd to with ls path
 nvim_lsp.elixirls.setup({
