@@ -1,7 +1,7 @@
 " Tabs
 
 " Open current directory
-nmap te :tabedit 
+nmap <leader>te :tabedit 
 nnoremap ]t :tabn<cr>
 nnoremap [t :tabp<cr>
 

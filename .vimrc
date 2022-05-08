@@ -8,7 +8,7 @@ runtime macros/matchit.vim
 
 " Fundamental settings
 set title "show the title at top
-set scrolloff=8 "scroll before at top or bottom
+set scrolloff=5 "scroll before at top or bottom
 set backspace=indent,eol,start "make backspace work like normal
 set ruler "show line position in bottom right
 set hidden "hide file buffers
@@ -46,24 +46,21 @@ set path+=**
 set wildignore+=*/node_modules/*
 
 " true color
-if exists("&termguicolors") && exists("&winblend")
-  syntax enable
-  set termguicolors
-  set winblend=0
-  set wildoptions=pum
-  set pumblend=5
-  set background=dark
-endif
+syntax enable
+filetype plugin indent on
+set t_Co=256
+set termguicolors
+set winblend=0
+set wildoptions=pum
+set pumblend=5
+set background=dark
 
 " Change the colorscheme. Colors are stored in ~/.vim/color
 if !has('nvim')
   colorscheme monokai
 endif
 
-syntax on
-filetype plugin indent on
-
-" Imports
+" Sources
 source ~/dotfiles/vim/maps.vim
 source ~/dotfiles/vim/languages.vim
 source ~/dotfiles/vim/buffers.vim

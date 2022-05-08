@@ -31,6 +31,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'jose-elias-alvarez/null-ls.nvim'
   " Trouble for viewing diagnostics better
   Plug 'folke/trouble.nvim'
+  " Show symbols list
+  Plug 'stevearc/aerial.nvim'
 
   " auto completion
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -65,20 +67,30 @@ call plug#begin('~/.config/nvim/bundle')
   " Latex preview
   Plug 'lervag/vimtex'
 
-  " Smooth scrolling
-  Plug 'karb94/neoscroll.nvim'
   " Comments
   Plug 'terrortylor/nvim-comment'
-  " Todo Comments
+  " Todo comments list
   Plug 'folke/todo-comments.nvim'
+  " Fast comment frames
+  Plug 's1n7ax/nvim-comment-frame'
+  " Fast comment docs
+  Plug 'danymat/neogen'
+
+  " Smooth scrolling
+  Plug 'karb94/neoscroll.nvim'
   " Add Indent lines
   Plug 'lukas-reineke/indent-blankline.nvim'
+  " get highlights out of the way after searching
+  Plug 'rktjmp/highlight-current-n.nvim'
+
   " Vim sneak
   Plug 'justinmk/vim-sneak'
-  " Show symbols list
-  Plug 'stevearc/aerial.nvim'
+  " Surround operations
+  Plug 'tpope/vim-surround'
+  " comp pairs of mappings for common operations
+  Plug 'tpope/vim-unimpaired'
 
-  " notes, requires plenary 
+  " notes inspired by emacs org mode, requires plenary 
   Plug 'nvim-neorg/neorg'
 
   " Elixir mix format on save
