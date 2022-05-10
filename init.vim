@@ -83,8 +83,10 @@ call plug#begin('~/.config/nvim/bundle')
   " get highlights out of the way after searching
   Plug 'rktjmp/highlight-current-n.nvim'
 
-  " Vim sneak
-  Plug 'justinmk/vim-sneak'
+  " Vim sneak like motion with more brains
+  Plug 'ggandor/lightspeed.nvim'
+  " more repeat motions with .
+  Plug 'tpope/vim-repeat'
   " Surround operations
   Plug 'tpope/vim-surround'
   " comp pairs of mappings for common operations
@@ -112,10 +114,6 @@ source ~/.vimrc
 " show nerdtree hidden files
 let NERDTreeShowHidden=1
 nnoremap <leader>n :NERDTreeToggle<cr>
-
-" minimalist vim-easymotion
-let g:sneak#label = 1
-let g:sneak#use_ic_scs = 1
 
 " elixir format on save
 let g:mix_format_on_save = 1
