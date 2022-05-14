@@ -8,3 +8,8 @@ nnoremap <silent> ff :GFiles <C-r>=expand("%:h")<CR>/<CR>
 nnoremap <silent> fb :Buffers<CR>
 " git status
 nnoremap <silent> fs :GFiles?<CR>
+" Rg
+nnoremap <silent> fg :Rg<CR>
+" find in open buffer
+nnoremap <silent> fc :BLines<CR>
+
