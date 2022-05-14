@@ -4,8 +4,6 @@ inoremap jj <ESC>
 
 nnoremap j gj
 nnoremap k gk
-nnoremap H ^
-nnoremap L $
 
 " Cursor movement while in insert mode
 inoremap <C-e> <C-o>$
