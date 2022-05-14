@@ -175,3 +175,6 @@ end
 
 EOF
 
+" show diagnostics on cursorhold of line
+" set refresh time faster
+" autocmd CursorHold * lua vim.lsp.diagnostic.open_float()
