@@ -33,6 +33,7 @@ http://bashrcgenerator.com/
 ## Neovim Setup
 
 - Philosophy: https://github.com/romainl/idiomatic-vimrc
+- Useful Gists: https://gist.github.com/romainl/4b9f139d2a8694612b924322de1025ce
 
 ### Fonts
 

@@ -5,10 +5,16 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'krleitch/nvim-lychee'
   Plug 'norcalli/nvim-colorizer.lua'
 
-  " fuzzy finder
+  " notes inspired by emacs org mode, requires plenary 
   Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-neorg/neorg'
+
+  " fuzzy finder
+  " Plug 'nvim-telescope/telescope.nvim'
+  " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+
   " file tree, useful for learning structure and creating dirs
   Plug 'preservim/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -28,7 +34,10 @@ call plug#begin('~/.config/nvim/bundle')
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " interact with lsp for format/lint
-  Plug 'jose-elias-alvarez/null-ls.nvim'
+  " Plug 'jose-elias-alvarez/null-ls.nvim'
+
+  " Formatter
+  Plug 'sbdchd/neoformat'
   " Trouble for viewing diagnostics better
   Plug 'folke/trouble.nvim'
   " Show symbols list
@@ -76,8 +85,6 @@ call plug#begin('~/.config/nvim/bundle')
   " Fast comment docs
   Plug 'danymat/neogen'
 
-  " Smooth scrolling
-  Plug 'karb94/neoscroll.nvim'
   " Add Indent lines
   Plug 'lukas-reineke/indent-blankline.nvim'
   " get highlights out of the way after searching
@@ -91,12 +98,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'tpope/vim-surround'
   " comp pairs of mappings for common operations
   Plug 'tpope/vim-unimpaired'
-
-  " notes inspired by emacs org mode, requires plenary 
-  Plug 'nvim-neorg/neorg'
-
-  " Elixir mix format on save
-  Plug 'mhinz/vim-mix-format'
 
   " Use emacs best feature
   Plug 'alec-gibson/nvim-tetris'
@@ -113,8 +114,5 @@ source ~/.vimrc
 
 " show nerdtree hidden files
 let NERDTreeShowHidden=1
-nnoremap <leader>n :NERDTreeToggle<cr>
-
-" elixir format on save
-let g:mix_format_on_save = 1
+nnoremap <leader>n :NERDTreeFind<cr>
 

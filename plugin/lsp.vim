@@ -24,19 +24,19 @@ vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
 end
 
 -- filter lsp defualt formatting for null-ls
-local lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
-        filter = function(clients)
-            -- filter out clients that you don't want to use
-            return vim.tbl_filter(function(client)
-                return client.name ~= "tsserver"
-            end, clients)
-        end,
-        bufnr = bufnr,
-    })
-end
+-- local lsp_formatting = function(bufnr)
+--     vim.lsp.buf.format({
+--         filter = function(clients)
+--             -- filter out clients that you don't want to use
+--             return vim.tbl_filter(function(client)
+--                 return client.name ~= "tsserver"
+--             end, clients)
+--         end,
+--         bufnr = bufnr,
+--     })
+-- end
 -- format on save for null-ls
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- Diagnostics maps
 local opts = { noremap=true, silent=true }
@@ -68,16 +68,16 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
   -- null-ls auto format on save and clear native formatting
-  if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-          group = augroup,
-          buffer = bufnr,
-          callback = function()
-              lsp_formatting(bufnr)
-          end,
-      })
-  end
+  -- if client.supports_method("textDocument/formatting") then
+  --     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  --     vim.api.nvim_create_autocmd("BufWritePre", {
+  --         group = augroup,
+  --         buffer = bufnr,
+  --         callback = function()
+  --             lsp_formatting(bufnr)
+  --         end,
+  --     })
+  -- end
 
   -- attach aerial with keymaps for symbol list  
   require("aerial").on_attach(client, bufnr)
@@ -119,16 +119,16 @@ nvim_lsp.elixirls.setup({
 })
 
 -- nullls prettier/eslint_d
-local null_ls = require("null-ls")
-null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.eslint_d,
-        null_ls.builtins.code_actions.eslint_d,
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.tsc
-    },
-    on_attach = on_attach
-})
+-- local null_ls = require("null-ls")
+-- null_ls.setup({
+--     sources = {
+--         null_ls.builtins.diagnostics.eslint_d,
+--         null_ls.builtins.code_actions.eslint_d,
+--         null_ls.builtins.formatting.prettier,
+--         null_ls.builtins.diagnostics.tsc
+--     },
+--     on_attach = on_attach
+-- })
 
 -- custom diagnostic icons
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
