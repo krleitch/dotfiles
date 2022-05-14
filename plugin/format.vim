@@ -1,7 +1,7 @@
 " For all formatting and linitng and quickfix
 
 " prettier
-nmap <Leader>p :Neoformat prettier<CR>
+nmap <Leader>p :Neoformat <CR>
 
 " make (eslint, pylint)
 " :view $VIMRUNTIME/compiler
@@ -16,3 +16,4 @@ nmap <Leader>m :lmake %<CR>
 
 " automatically open quickfix list if there are changes
 " autocmd QuickFixCmdPost [^l]* TroubleToggle quickfix
+
