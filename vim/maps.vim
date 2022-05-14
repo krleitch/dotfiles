@@ -14,6 +14,7 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 
 " run through camelCase characters better
+" generally use sneak or f/t for this in singlue use. use meta in rare case
 nnoremap <silent><M-b> :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
 nnoremap <silent><M-w> :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
 inoremap <silent><M-b> <C-o>:call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>

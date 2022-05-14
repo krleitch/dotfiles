@@ -1,14 +1,14 @@
 " Buffers
 
 nnoremap <F2> :buffers<Cr>:b<Space>
-" next buffer
-nnoremap <leader>f :bn<Cr>
-" previous buffer
-nnoremap <leader>b :bp<Cr>
 " last used buffer
 nnoremap <Leader>g :e#<Cr>
-" list buffers
-nnoremap <Leader>l :ls<Cr>
+
+" delete all buffers but current one
+command! Bonly execute '%bdelete|edit#|bdelete#|normal `"'
+command! BOnly execute '%bdelete|edit#|bdelete#|normal `"'
+command! Bo execute '%bdelete|edit#|bdelete#|normal `"'
+command! BO execute '%bdelete|edit#|bdelete#|normal `"'
 
 " Search for buffers by name with partial matchings
 function! BufSel(pattern)

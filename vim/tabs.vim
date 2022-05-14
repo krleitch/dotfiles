@@ -1,7 +1,7 @@
 " Tabs
 
 " Open current directory
-nmap <leader>te :tabedit 
+nmap <leader>te :tabnew %<cr>
 nnoremap ]t :tabn<cr>
 nnoremap [t :tabp<cr>
 
@@ -20,11 +20,11 @@ function MyTabLine()
     " the label is made by MyTabLabel()
     let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
     if i + 1 == tabpagenr()
-      let s .= '%#TabLineSep#'
+      let s .= '%#TabLineSep#'
     elseif i + 2 == tabpagenr()
-      let s .= '%#TabLineSep2#'
+      let s .= '%#TabLineSep2#'
     else
-      let s .= ''
+      let s .= ''
     endif
   endfor
   " after the last tab fill with TabLineFill and reset tab page nr
