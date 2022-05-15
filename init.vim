@@ -8,6 +8,7 @@ call plug#begin('~/.config/nvim/bundle')
   " notes inspired by emacs org mode, requires plenary 
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-neorg/neorg'
+  Plug 'max397574/neorg-kanban'
 
   " fuzzy finder
   " Plug 'nvim-telescope/telescope.nvim'
@@ -75,6 +76,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
   " Latex preview
   Plug 'lervag/vimtex'
+  " Zen mode
+  Plug 'Pocco81/TrueZen.nvim'
 
   " Comments
   Plug 'terrortylor/nvim-comment'
