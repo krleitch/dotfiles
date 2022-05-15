@@ -71,6 +71,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'rcarriga/nvim-notify'
   " transparency
   Plug 'xiyaowong/nvim-transparent' 
+  " Which key
+  Plug 'folke/which-key.nvim'
   
   " Markdown preview, requires yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
