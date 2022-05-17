@@ -7,7 +7,7 @@
 - ln -s ~/dotfiles/plugin/ ~/.config/nvim/after/
 - any other configs you have
 
-## monokai-phoenix for vim
+## Colors
 
 vim - https://github.com/Reewr/vim-monokai-phoenix
 neovim - https://github.com/krleitch/nvim-lychee
