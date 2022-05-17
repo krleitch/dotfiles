@@ -20,6 +20,8 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('aerial')
 EOF
 
+if exists('g:loaded_fzf_vim') | finish | endif
+
 " Since using vim sneak f is not used
 " Searching is important enough to take priority
 

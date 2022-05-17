@@ -2,6 +2,7 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Colorscheme
   Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+  Plug 'drewtempelmeyer/palenight.vim'
   Plug 'krleitch/nvim-lychee'
   Plug 'norcalli/nvim-colorizer.lua'
 
@@ -11,8 +12,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'max397574/neorg-kanban'
 
   " fuzzy finder
-  " Plug 'nvim-telescope/telescope.nvim'
-  " Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
@@ -71,8 +72,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'rcarriga/nvim-notify'
   " transparency
   Plug 'xiyaowong/nvim-transparent' 
-  " Which key
-  Plug 'folke/which-key.nvim'
   
   " Markdown preview, requires yarn
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
@@ -92,6 +91,8 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Add Indent lines
   Plug 'lukas-reineke/indent-blankline.nvim'
+  " Format lines with tabs nicely
+  Plug 'godlygeek/tabular'
   " get highlights out of the way after searching
   Plug 'rktjmp/highlight-current-n.nvim'
 

@@ -1,11 +1,12 @@
-" lychee, catppuccin
+" lychee, catppuccin, palenight
 let g:use_colorscheme = 'lychee'
 " let g:use_colorscheme = 'catppuccin'
+" let g:use_colorscheme = 'palenight'
 
 if g:use_colorscheme == 'lychee'
+
 lua << EOF
 local lychee = require("lychee")
--- configure it
 lychee.setup({
   transparent_background = false,
   term_colors = false,
@@ -59,9 +60,9 @@ lychee.setup({
     vim_sneak = false,
     fern = false,
     barbar = false,
-    bufferline = true,
+    bufferline = false,
     markdown = true,
-    lightspeed = false,
+    lightspeed = true,
     ts_rainbow = false,
     hop = false,
     notify = true,
@@ -70,12 +71,12 @@ lychee.setup({
   }
 })
 EOF
-" Load the colorscheme
 colorscheme lychee
+
 elseif g:use_colorscheme == 'catppuccin'
+
 lua << EOF
 local catppuccin = require("catppuccin")
--- configure 
 catppuccin.setup({
   transparent_background = false,
   term_colors = false,
@@ -131,7 +132,7 @@ catppuccin.setup({
     barbar = false,
     bufferline = true,
     markdown = true,
-    lightspeed = false,
+    lightspeed = true,
     ts_rainbow = false,
     hop = false,
     notify = true,
@@ -140,8 +141,12 @@ catppuccin.setup({
   }
 })
 EOF
-" Load the colorscheme
 colorscheme catppuccin
+
+elseif g:use_colorscheme == 'palenight'
+
+colorscheme palenight
+let g:palenight_terminal_italics=1
 
 else
 

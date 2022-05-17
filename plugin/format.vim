@@ -17,3 +17,6 @@ nmap <Leader>m :lmake %<CR>
 " automatically open quickfix list if there are changes
 " autocmd QuickFixCmdPost [^l]* TroubleToggle quickfix
 
+" vim dispatch
+autocmd FileType javascript let b:dispatch = 'eslint %'
+autocmd FileType typescript let b:dispatch = 'eslint %'
