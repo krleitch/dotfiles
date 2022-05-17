@@ -24,6 +24,19 @@ inoremap <silent><M-w> <C-o>:call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@
 nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
+" use [[ ]] ][ [] when not in first column
+map [[ :silent! eval search('{', 'b')<CR>w99[{
+map ][ :silent! eval search('}')<CR>b99]}
+map ]] j0[[%:silent! eval search('{')<CR>
+map [] k$][%:silent! eval search('}', 'b')<CR>
+
+" jump to the previous function
+nnoremap <silent> [f :call
+\ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "bw")<CR>
+" jump to the next function
+nnoremap <silent> ]f :call
+\ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "w")<CR>
+
 " Allow saving of files as sudo when I forget to start vim using sudo
 cmap w!! w !sudo tee > /dev/null %
 

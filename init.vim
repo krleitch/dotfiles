@@ -82,7 +82,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'Pocco81/TrueZen.nvim'
 
   " Comments
-  Plug 'terrortylor/nvim-comment'
+  Plug 'tpope/vim-commentary'
   " Todo comments list
   Plug 'folke/todo-comments.nvim'
   " Fast comment frames
@@ -103,6 +103,10 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'tpope/vim-surround'
   " comp pairs of mappings for common operations
   Plug 'tpope/vim-unimpaired'
+  " abbreviation / searching / switch cases
+  Plug 'tpope/vim-abolish'
+  " make async
+  Plug 'tpope/vim-dispatch'
 
   " Use emacs best feature
   Plug 'alec-gibson/nvim-tetris'
