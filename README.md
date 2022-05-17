@@ -9,18 +9,19 @@
 
 ## monokai-phoenix for vim
 
-https://github.com/Reewr/vim-monokai-phoenix
+vim - https://github.com/Reewr/vim-monokai-phoenix
+neovim - https://github.com/krleitch/nvim-lychee
 
 add to .vim/colors
 add to .config/nvim/colors
 
 ## source .bashrc from .bash_profile
 
+```
 if [ -r ~/.bashrc ]; then
-
-source ~/.bashrc
-
+  source ~/.bashrc
 fi
+```
 
 ## PS1 Generator
 
@@ -28,7 +29,8 @@ http://bashrcgenerator.com/
 
 ## Tmux
 
-- https://github.com/wfxr/tmux-power
+- https://github.com/tmux-plugins/tmux-cpu
+- https://github.com/tmux-plugins/tmux-battery
 
 ## Neovim Setup
 
@@ -44,8 +46,8 @@ http://bashrcgenerator.com/
 
 - https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 - call setup on each lsp config
-- npm install -g typescript typescript-language-server
 - install the lsp for everything you setup
+- ex. npm install -g typescript typescript-language-server
 
 Angular Notes:
 
