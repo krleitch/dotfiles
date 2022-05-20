@@ -19,6 +19,7 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
+set nocompatible "nvim is always nocompatible
 
 " searching
 set hlsearch "highlight search results

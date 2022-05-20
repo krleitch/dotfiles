@@ -10,6 +10,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-neorg/neorg'
   Plug 'max397574/neorg-kanban'
+  " vim wiki
+  Plug 'vimwiki/vimwiki'
 
   " fuzzy finder
   Plug 'nvim-telescope/telescope.nvim'
