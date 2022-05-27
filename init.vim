@@ -12,6 +12,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'max397574/neorg-kanban'
   " vim wiki
   Plug 'vimwiki/vimwiki'
+  " floating term
+  Plug 'voldikss/vim-floaterm'
 
   " fuzzy finder
   Plug 'nvim-telescope/telescope.nvim'

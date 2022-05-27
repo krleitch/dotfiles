@@ -13,6 +13,9 @@ set backspace=indent,eol,start "make backspace work like normal
 set ruler "show line position in bottom right
 set hidden "hide file buffers
 set ttyfast "speed up typing
+set exrc "use local .vimrc if exists 
+set guicursor= "keep cursor as block
+set noerrorbells "remove error bells
 "highlight cursor line only on active window
 augroup CursorLine
   au!
@@ -42,6 +45,7 @@ set showcmd
 set statusline=%02n:%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 " Finding files - Search down into subfolders
+set wildmode=longest,list,full
 set wildmenu
 set path+=**
 set wildignore+=*/node_modules/*
