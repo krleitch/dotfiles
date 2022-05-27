@@ -102,6 +102,8 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Vim sneak like motion with more brains
   Plug 'ggandor/lightspeed.nvim'
+  " marks for core files
+  Plug 'ThePrimeagen/harpoon'
   " more repeat motions with .
   Plug 'tpope/vim-repeat'
   " Surround operations
