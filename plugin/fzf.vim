@@ -3,13 +3,13 @@ if !exists('g:loaded_fzf_vim') | finish | endif
 " show hidden files as well
 nnoremap <silent> <C-p> :GFiles<CR>
 " find only files in same directory as current buffer
-nnoremap <silent> ff :GFiles <C-r>=expand("%:h")<CR>/<CR>
+nnoremap <silent> <leader>ff :GFiles <C-r>=expand("%:h")<CR>/<CR>
 " show open buffers
-nnoremap <silent> fb :Buffers<CR>
+nnoremap <silent> <leader>fb :Buffers<CR>
 " git status
-nnoremap <silent> fs :GFiles?<CR>
+nnoremap <silent> <leader>fs :GFiles?<CR>
 " Rg
-nnoremap <silent> fg :Rg<CR>
+nnoremap <silent> <leader>fg :Rg<CR>
 " find in open buffer
-nnoremap <silent> fc :BLines<CR>
+nnoremap <silent> <leader>fc :BLines<CR>
 

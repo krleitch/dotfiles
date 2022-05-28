@@ -37,6 +37,12 @@ set softtabstop=2 "insert and delete correct number of spaces
 set shiftwidth=2 "spaces for indentation
 set autoindent "let vim auto indent new lines
 
+" swp/undotree
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+
 " Statusline
 set laststatus=2 "always show last status
 set cmdheight=1

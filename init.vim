@@ -104,6 +104,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ggandor/lightspeed.nvim'
   " marks for core files
   Plug 'ThePrimeagen/harpoon'
+  " undo tree, prefer this over using swp files
+  Plug 'mbbill/undotree'
   " more repeat motions with .
   Plug 'tpope/vim-repeat'
   " Surround operations
