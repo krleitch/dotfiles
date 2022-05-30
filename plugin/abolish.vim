@@ -7,6 +7,8 @@ Abolish fucnton function
 Abolish fucntion function
 Abolish fuction function
 
+Abolish stirng string 
+
 Abolish functoin{ally,ed} function{}
 
 Abolish Tqbf        The quick, brown fox jumps over the lazy dog
