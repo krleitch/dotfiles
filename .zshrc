@@ -2,30 +2,24 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Alias commands
-alias q='exit'
-alias c='clear'
-alias nv='nvim'
+alias q="exit"
+alias c="clear"
+alias nv="nvim"
 
 # Alias Directories
-alias home='cd ~'
-alias root='cd /'
-alias repos='cd ~/Documents/repos'
-alias dot='cd ~/dotfiles'
+alias home="cd ~"
+alias root="cd /"
+alias repos="cd ~/Documents/repos"
+alias dot="cd ~/dotfiles"
 
 # Alias Current project
-alias spot='cd ~/Documents/repos/spot'
-alias sweb='cd ~/Documents/repos/spot/spot-web'
-alias sapi='cd ~/Documents/repos/spot/spot-server'
-alias scom='cd ~/Documents/repos/spot/spot-commons'
-alias smob='cd ~/Documents/repos/spot-mobile'
-alias scha='cd ~/Documents/repos/spot-chat'
-alias slam='cd ~/Documents/repos/spot-lambda'
-
-# Alias git
-alias gs='git status'
-alias ga='git add -A'
-alias gc='git commit -m'
-alias gp='git push'
+alias spot="cd ~/Documents/repos/spot"
+alias sweb="cd ~/Documents/repos/spot/spot-web"
+alias sapi="cd ~/Documents/repos/spot/spot-server"
+alias scom="cd ~/Documents/repos/spot/spot-commons"
+alias smob="cd ~/Documents/repos/spot-mobile"
+alias scha="cd ~/Documents/repos/spot-chat"
+alias slam="cd ~/Documents/repos/spot-lambda"
 
 # PATH
 export PATH=~/Documents/dev/sqlite:$PATH
