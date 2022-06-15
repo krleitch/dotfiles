@@ -61,14 +61,18 @@ syntax enable
 filetype plugin indent on
 set t_Co=256
 set termguicolors
-set winblend=0
-set wildoptions=pum
-set pumblend=5
 set background=dark
 
 " Change the colorscheme. Colors are stored in ~/.vim/color
 if !has('nvim')
   colorscheme monokai
+endif
+
+" nvim only
+if has('nvim')
+  set winblend=0
+  set wildoptions=pum
+  set pumblend=5
 endif
 
 " Sources
