@@ -4,7 +4,7 @@
     username = krleitch
 
 [core]
-	editor = neovim
+	editor = nvim
     excludesfile = ~/.gitignore
 
 [diff]
