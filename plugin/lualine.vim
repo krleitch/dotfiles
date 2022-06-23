@@ -41,7 +41,7 @@ require('lualine').setup {
     globalstatus = false,
   },
   sections = {
-    lualine_a = {'mode'},
+    lualine_a = {{ 'mode', fmt = function(str) return str:sub(1,1) end }},
     lualine_b = {'branch'},
     lualine_c = {{ 'filename', path = 0}, '%02n' },
 
