@@ -21,11 +21,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
-  " file tree, useful for learning structure and creating dirs
-  Plug 'preservim/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
   " Git
   Plug 'tpope/vim-fugitive'
   " Show git diff column
@@ -67,6 +62,9 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'nvim-lualine/lualine.nvim'
   " web-dev icons
   Plug 'kyazdani42/nvim-web-devicons'
+
+  "file tree, useful for learning structure and creating dirs
+  Plug 'kyazdani42/nvim-tree.lua'
 
   " Startup screen
   Plug 'goolord/alpha-nvim'
@@ -129,8 +127,4 @@ lua require('impatient')
 set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
-
-" show nerdtree hidden files
-let NERDTreeShowHidden=1
-nnoremap <leader>n :NERDTreeFind<cr>
 

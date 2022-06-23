@@ -36,7 +36,7 @@ require('lualine').setup {
     theme = 'lychee',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
-    disabled_filetypes = { 'alpha' },
+    disabled_filetypes = { 'alpha', 'NvimTree' },
     always_divide_middle = true,
     globalstatus = false,
   },

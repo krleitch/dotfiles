@@ -13,6 +13,24 @@ require("transparent").setup({
     "BufferLineBackground",
     "BufferLineSeparator",
     "BufferLineIndicatorSelected",
+    
+    -- nvim tree
+    "NvimTreeNormal",
+    "NvimTreeSeperator",
+    "NvimTreeEndOfBuffer",
+    "NvimTreeCursorLine",
+    "NvimTreeWinSeparator",
+    "NvimTreeStatusLine",
+    "NvimTreeStatusLineNC",
+    "NvimTreeSignColumn",
+    "NvimTreeNormalNC",
+    "NvimTreeVertSplit",
+    
+    -- git signs
+    "GitSignsAdd",
+    "GitSignsChange",
+    "GitSignsDelete",
+
   },
   exclude = {}, -- table: groups you don't want to clear
 })
