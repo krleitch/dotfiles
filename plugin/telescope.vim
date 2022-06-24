@@ -20,6 +20,7 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('aerial')
 EOF
 
+" if we are using fzf then dont override its keybindings
 if exists('g:loaded_fzf_vim') | finish | endif
 
 " show hidden files as well

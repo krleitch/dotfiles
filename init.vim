@@ -25,6 +25,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'tpope/vim-fugitive'
   " Show git diff column
   Plug 'lewis6991/gitsigns.nvim'
+  " Neogit magit clone
+  Plug 'TimUntersberger/neogit'
   " diff views
   Plug 'sindrets/diffview.nvim'
 
@@ -98,6 +100,13 @@ call plug#begin('~/.config/nvim/bundle')
   " get highlights out of the way after searching
   Plug 'rktjmp/highlight-current-n.nvim'
 
+  " Hydra for modes, requires plenary
+  Plug 'anuvyklack/hydra.nvim'
+  Plug 'anuvyklack/keymap-layer.nvim'
+  " shift windows with vim keys in any direction
+  Plug 'sindrets/winshift.nvim'
+  " simple buffer explorer, nice addon for hydra windows
+   Plug 'jlanzarotta/bufexplorer'
   " Vim sneak like motion with more brains
   Plug 'ggandor/lightspeed.nvim'
   " marks for core files
@@ -122,6 +131,10 @@ call plug#end()
 
 " Impatient needs to start near first
 lua require('impatient')
+
+" map leader to space
+nnoremap <SPACE> <Nop>
+let mapleader=" "
 
 " Import vim settings
 set runtimepath^=-/.vim runtimepath+=/.vim/after
