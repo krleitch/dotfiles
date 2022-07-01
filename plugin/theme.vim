@@ -157,9 +157,3 @@ lua << EOF
 require'colorizer'.setup()
 EOF
 
-" diagnostic  colours
-hi DiagnosticError guifg=#ff005f
-hi DiagnosticWarn guifg=#e0af68
-hi DiagnosticInfo guifg=#7aa2f7
-hi DiagnosticHint guifg=#ffafaf
-
