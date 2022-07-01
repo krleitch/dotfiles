@@ -1,15 +1,14 @@
 call plug#begin('~/.config/nvim/bundle')
 
   " Colorscheme
+  Plug 'krleitch/nvim-lychee'
   Plug 'catppuccin/nvim', {'as': 'catppuccin'}
   Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'krleitch/nvim-lychee'
   Plug 'norcalli/nvim-colorizer.lua'
 
   " notes inspired by emacs org mode, requires plenary 
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-neorg/neorg'
-  Plug 'max397574/neorg-kanban'
   " vim wiki
   Plug 'vimwiki/vimwiki'
   " floating term
@@ -27,13 +26,11 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'lewis6991/gitsigns.nvim'
   " Neogit magit clone
   Plug 'TimUntersberger/neogit'
-  " diff views
-  Plug 'sindrets/diffview.nvim'
 
   " Lsp defualt config
   Plug 'neovim/nvim-lspconfig'
   " Improve lsp ui
-  Plug 'tami5/lspsaga.nvim'
+  Plug 'glepnir/lspsaga.nvim'
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " interact with lsp for format/lint
@@ -123,6 +120,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'tpope/vim-abolish'
   " make async
   Plug 'tpope/vim-dispatch'
+  " nice for showing reg/marks/custom hard to remember maps
+  Plug 'folke/which-key.nvim'
 
   " Use emacs best feature
   Plug 'alec-gibson/nvim-tetris'
@@ -132,12 +131,61 @@ call plug#end()
 " Impatient needs to start near first
 lua require('impatient')
 
-" map leader to space
-nnoremap <SPACE> <Nop>
-let mapleader=" "
-
 " Import vim settings
 set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
+
+" Folds use tree sitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
+set foldlevel=99
+set fillchars=fold:\
+set foldtext=CustomFoldText()
+setlocal foldmethod=expr
+setlocal foldexpr=GetPotionFold(v:lnum)
+function! GetPotionFold(lnum)
+  if getline(a:lnum) =~? '\v^\s*$'
+    return '-1'
+  endif
+  let this_indent = IndentLevel(a:lnum)
+  let next_indent = IndentLevel(NextNonBlankLine(a:lnum))
+  if next_indent == this_indent
+    return this_indent
+  elseif next_indent < this_indent
+    return this_indent
+  elseif next_indent > this_indent
+    return '>' . next_indent
+  endif
+endfunction
+function! IndentLevel(lnum)
+    return indent(a:lnum) / &shiftwidth
+endfunction
+function! NextNonBlankLine(lnum)
+  let numlines = line('$')
+  let current = a:lnum + 1
+  while current <= numlines
+      if getline(current) =~? '\v\S'
+          return current
+      endif
+      let current += 1
+  endwhile
+  return -2
+endfunction
+function! CustomFoldText()
+  " get first non-blank line
+  let fs = v:foldstart
+  while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+  endwhile
+  else
+      let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+  endif
+  let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+  let foldSize = 1 + v:foldend - v:foldstart
+  let foldSizeStr = " " . foldSize . " lines "
+  let foldLevelStr = repeat("+--", v:foldlevel)
+  let expansionString = repeat(" ", w - strwidth(foldSizeStr.line.foldLevelStr))
+  return line . expansionString . foldSizeStr . foldLevelStr
+endfunction
 

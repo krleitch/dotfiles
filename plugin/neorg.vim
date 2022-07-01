@@ -23,18 +23,6 @@ require('neorg').setup {
               workspace = "gtd"
             }
           },
-        ["external.kanban"] = {
-          config = {
-              task_states = {
-                  "backlog",
-                  "blocked",
-                  "priority",
-                  "in_progress",
-                  "completed",
-                  "cancelled"
-                }
-            }
-        },
     }
 }
 EOF

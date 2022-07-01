@@ -24,7 +24,7 @@ alias slam="cd ~/Documents/repos/spot-lambda"
 # PATH
 export PATH=~/Documents/dev/sqlite:$PATH
 export PATH=/Library/Frameworks/Python.framework/Versions/3.9/bin:$PATH
-export PATH=~/Documents/dev/nvim-osx64/bin:$PATH
+export PATH=~/Documents/dev/nvim-macos/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -98,6 +98,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+# tweak the highlights for syntax-highlighting
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=217,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=217,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=217
 
 # User configuration
 

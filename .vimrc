@@ -1,3 +1,5 @@
+set nocompatible "nvim is always nocompatible
+
 " Display line numbers
 set number
 set relativenumber
@@ -8,7 +10,7 @@ runtime macros/matchit.vim
 
 " Fundamental settings
 set title "show the title at top
-set scrolloff=5 "scroll before at top or bottom
+set scrolloff=8 "scroll before at top or bottom
 set backspace=indent,eol,start "make backspace work like normal
 set ruler "show line position in bottom right
 set hidden "hide file buffers
@@ -22,7 +24,6 @@ augroup CursorLine
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
-set nocompatible "nvim is always nocompatible
 
 " searching
 set hlsearch "highlight search results

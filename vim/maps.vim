@@ -2,6 +2,7 @@
 
 inoremap jj <ESC>
 
+" multi line alts as default
 nnoremap j gj
 nnoremap k gk
 
@@ -41,5 +42,6 @@ nnoremap <silent> ]f :call
 \ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "w")<CR>
 
 " Allow saving of files as sudo when I forget to start vim using sudo
+" doesnt work in neovim
 cmap w!! w !sudo tee > /dev/null %
 

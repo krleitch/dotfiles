@@ -23,26 +23,13 @@ vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
   })
 end
 
--- filter lsp defualt formatting for null-ls
--- local lsp_formatting = function(bufnr)
---     vim.lsp.buf.format({
---         filter = function(clients)
---             -- filter out clients that you don't want to use
---             return vim.tbl_filter(function(client)
---                 return client.name ~= "tsserver"
---             end, clients)
---         end,
---         bufnr = bufnr,
---     })
--- end
--- format on save for null-ls
--- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
 -- Diagnostics maps
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>', opts)
+vim.api.nvim_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 
 -- Use an on_attach function to only map the following keys
@@ -67,28 +54,9 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-  -- null-ls auto format on save and clear native formatting
-  -- if client.supports_method("textDocument/formatting") then
-  --     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-  --     vim.api.nvim_create_autocmd("BufWritePre", {
-  --         group = augroup,
-  --         buffer = bufnr,
-  --         callback = function()
-  --             lsp_formatting(bufnr)
-  --         end,
-  --     })
-  -- end
-
   -- attach aerial with keymaps for symbol list  
   require("aerial").on_attach(client, bufnr)
-  -- Toggle the aerial window with <leader>a
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>a', '<cmd>AerialToggle!<CR>', {})
-  -- Jump forwards/backwards with '{' and '}'
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>{', '<cmd>AerialPrev<CR>', {})
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>}', '<cmd>AerialNext<CR>', {})
-  -- Jump up the tree with '[[' or ']]'
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '[[', '<cmd>AerialPrevUp<CR>', {})
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', ']]', '<cmd>AerialNextUp<CR>', {})
+  -- bindings are moved to hydra
 
 end
 
@@ -118,18 +86,6 @@ nvim_lsp.elixirls.setup({
     cmd = { "/Users/kevin/Documents/dev/elixir-ls/language_server.sh" };
 })
 
--- nullls prettier/eslint_d
--- local null_ls = require("null-ls")
--- null_ls.setup({
---     sources = {
---         null_ls.builtins.diagnostics.eslint_d,
---         null_ls.builtins.code_actions.eslint_d,
---         null_ls.builtins.formatting.prettier,
---         null_ls.builtins.diagnostics.tsc
---     },
---     on_attach = on_attach
--- })
-
 -- hide diagnostic virtual text, but show signs
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -150,22 +106,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
--- custom diagnostic icons
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics, {
---     underline = true,
---     -- This sets the spacing and the prefix, obviously.
---     virtual_text = {
---       spacing = 4,
---       prefix = ''
---     }
---   }
--- )
+
 -- custom diagnostic icons
 local signs = {
-    Error = " ",
-    Warning = " ",
-    Hint = " ",
+    Error = " ",
+    Warning = " ",
+    Hint = " ",
     Information = " "
 }
 for type, icon in pairs(signs) do
@@ -173,8 +119,23 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = hl})
 end
 
+-- border
+local border = {
+{"╭", "FloatBorder"},
+{"─", "FloatBorder"},
+{"╮", "FloatBorder"},
+{"│", "FloatBorder"},
+{"╯", "FloatBorder"},
+{"─", "FloatBorder"},
+{"╰", "FloatBorder"},
+{"│", "FloatBorder"},
+}
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
 EOF
 
-" show diagnostics on cursorhold of line
-" set refresh time faster
-" autocmd CursorHold * lua vim.lsp.diagnostic.open_float()

@@ -2,7 +2,7 @@
 
 nnoremap <F2> :buffers<Cr>:b<Space>
 " last used buffer
-nnoremap <Leader>g :e#<Cr>
+nnoremap ga :e#<Cr>
 
 " delete all buffers but current one
 command! Bonly execute '%bdelete|edit#|bdelete#|normal `"'
