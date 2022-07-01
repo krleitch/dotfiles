@@ -57,7 +57,7 @@ lspsaga.init_lsp_saga({
   rename_action_quit = "<C-c>",
   definition_preview_icon = "  ",
   -- show symbols in winbar must nightly
-  symbol_in_winbar = true,
+  symbol_in_winbar = false,
   winbar_separator = '>',
   winbar_show_file = true,
   -- function type  return file string,
@@ -69,20 +69,6 @@ lspsaga.init_lsp_saga({
   -- like server_filetype_map = { metals = { "sbt", "scala" } }
   server_filetype_map = {},
 })
+
 EOF
-
-" code action
-nnoremap <silent><leader>ca :Lspsaga code_action<CR>
-vnoremap <silent><leader>ca :<C-U>Lspsaga range_code_action<CR>
-
-" show hover doc
-nnoremap <silent>K :Lspsaga hover_doc<CR>
-" signature help
-nnoremap <silent> gs :Lspsaga signature_help<CR>
-" find the cursor word definition and reference
-nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
-" keymaps for jump diagnostic
-nnoremap <silent> <C-j> :Lspsaga diagnostic_jump_next<CR>
-" rename
-nnoremap <silent>gr :Lspsaga rename<CR>
 

@@ -120,8 +120,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'tpope/vim-abolish'
   " make async
   Plug 'tpope/vim-dispatch'
-  " nice for showing reg/marks/custom hard to remember maps
-  Plug 'folke/which-key.nvim'
 
   " Use emacs best feature
   Plug 'alec-gibson/nvim-tetris'
