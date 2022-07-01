@@ -14,25 +14,25 @@
   tool = vimdiff
 
 [alias]
-    graph = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    graph = !git log --graph --pretty=format:'%C(161)%h%Creset -%C(yellow)%d%Creset %s %C(155)(%cr) %C(bold 152)<%an>%Creset' --abbrev-commit --date=relative
 
 [color]
 	ui = auto
 
 [color "branch"]
-	current = yellow bold
-	local = green bold
-	remote = cyan bold
+	current = 208 bold
+	local = 155 bold
+	remote = 152 bold
 
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+	meta = 208 bold
+	frag = 174 bold
+	old = 161 bold
+	new = 155 bold
+	whitespace = 161 reverse
 
 [color "status"]
-	added = green bold
-	changed = yellow bold
-	untracked = red bold
+	added = 155 bold
+	changed = 208 bold
+	untracked = 174 bold
 
