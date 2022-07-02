@@ -41,7 +41,12 @@ set autoindent "let vim auto indent new lines
 " swp/undotree
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
+if !has('nvim')
+  set undodir=~/.vim/undodir
+endif
+if has('nvim')
+  set undodir=~/.config/nvim/undodir
+endif
 set undofile
 
 " Statusline
