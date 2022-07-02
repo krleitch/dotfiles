@@ -100,9 +100,28 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # tweak the highlights for syntax-highlighting
-ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=217,underline
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=217,underline
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=217
+# its too colorful
+ZSH_HIGHLIGHT_STYLES[default]=none
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=161,bold #red
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=155 #green
+ZSH_HIGHLIGHT_STYLES[alias]=none
+ZSH_HIGHLIGHT_STYLES[builtin]=none
+ZSH_HIGHLIGHT_STYLES[function]=none
+ZSH_HIGHLIGHT_STYLES[command]=none
+ZSH_HIGHLIGHT_STYLES[precommand]=none
+ZSH_HIGHLIGHT_STYLES[commandseparator]=none
+ZSH_HIGHLIGHT_STYLES[hashed-command]=none
+ZSH_HIGHLIGHT_STYLES[path]=none
+ZSH_HIGHLIGHT_STYLES[globbing]=none
+ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=152 #cyan
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=none
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=none
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=208 #orange
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]=fg=208 #orange
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=152 #cyan
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=152 #cyan
+ZSH_HIGHLIGHT_STYLES[assign]=none
 
 # User configuration
 
