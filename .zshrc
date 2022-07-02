@@ -25,6 +25,7 @@ alias slam="cd ~/Documents/repos/spot-lambda"
 export PATH=~/Documents/dev/sqlite:$PATH
 export PATH=/Library/Frameworks/Python.framework/Versions/3.9/bin:$PATH
 export PATH=~/Documents/dev/nvim-macos/bin:$PATH
+export PATH=~/Documents/dev/logo-ls:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -154,6 +155,9 @@ bindkey '^ ' autosuggest-accept
 
 # show images in kitty
 alias icat="kitty +kitten icat"
+
+# use logo-ls
+alias ls="logo-ls"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
