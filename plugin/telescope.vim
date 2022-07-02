@@ -24,18 +24,18 @@ EOF
 if exists('g:loaded_fzf_vim') | finish | endif
 
 " show hidden files as well
-nnoremap <C-p> :lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>", {noremap = true, silent = true})
+nnoremap <silent>ff :lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>", {noremap = true, silent = true})
 " find only files in same directory as current buffer
-nnoremap <silent> <leader>ff :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
+nnoremap <silent> fd :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
 " show git files that edited
-nnoremap <silent> <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <silent> fg <cmd>Telescope live_grep<CR>
 " show open buffers
-nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <silent> fb <cmd>Telescope buffers<CR>
 " show help tags
-nnoremap <silent> <leader>fh <cmd>Telescope help_tags<CR>
+nnoremap <silent> fh <cmd>Telescope help_tags<CR>
 " git status
-nnoremap <silent> <leader>fs <cmd>Telescope git_status<CR>
+nnoremap <silent> fs <cmd>Telescope git_status<CR>
 " current bufferr fuzzy find
-nnoremap <silent> <leader>fc <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <silent> fc <cmd>Telescope current_buffer_fuzzy_find<CR>
 " search aerial
-nnoremap <silent> <leader>fa <cmd>Telescope aerial<CR>
+nnoremap <silent> fa <cmd>Telescope aerial<CR>

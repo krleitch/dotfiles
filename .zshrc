@@ -125,6 +125,9 @@ ZSH_HIGHLIGHT_STYLES[assign]=none
 
 # User configuration
 
+# accept auto suggestion with ctrl + space
+bindkey '^ ' autosuggest-accept
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -148,6 +151,9 @@ ZSH_HIGHLIGHT_STYLES[assign]=none
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# show images in kitty
+alias icat="kitty +kitten icat"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
