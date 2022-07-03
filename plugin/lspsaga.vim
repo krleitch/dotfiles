@@ -21,7 +21,7 @@ lspsaga.init_lsp_saga({
   -- is function type it will have a param `entry`
   -- entry is a table type has these filed
   -- { bufnr, code, col, end_col, end_lnum, lnum, message, severity, source }
-  diagnostic_header = { " ", " ", " ", " " },
+  diagnostic_header = { " ", " ", " ", " " },
   -- show diagnostic source
   show_diagnostic_source = true,
   -- add bracket or something with diagnostic source, just have 2 elements
@@ -69,6 +69,5 @@ lspsaga.init_lsp_saga({
   -- like server_filetype_map = { metals = { "sbt", "scala" } }
   server_filetype_map = {},
 })
-
 EOF
 

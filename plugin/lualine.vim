@@ -46,7 +46,7 @@ require('lualine').setup {
     lualine_c = {{ 'filename', path = 0}, '%02n' },
 
     lualine_x = {
-      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
       custom_components.encoding,
       'filetype'
     },
