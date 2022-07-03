@@ -57,36 +57,6 @@ alpha.setup({
   opts = { margin = 5 },
 })
 
--- Hide all the unnecessary visual elements while on the dashboard, and add
--- them back when leaving the dashboard.
-local group = vim.api.nvim_create_augroup("CleanDashboard", {})
-
-vim.api.nvim_create_autocmd("User", {
-  group = group,
-  pattern = "AlphaReady",
-  callback = function()
-    vim.opt.showtabline = 0
-    vim.opt.showmode = false
-    vim.opt.laststatus = 0
-    vim.opt.showcmd = false
-    vim.opt.ruler = false
-    vim.opt.cursorline = false
-  end,
-})
-
-vim.api.nvim_create_autocmd("BufUnload", {
-  group = group,
-  pattern = "<buffer>",
-  callback = function()
-    vim.opt.showtabline = 2
-    vim.opt.showmode = true
-    vim.opt.laststatus = 3
-    vim.opt.showcmd = true
-    vim.opt.ruler = true
-    vim.opt.cursorline = true
-  end,
-})
-
 EOF
 
 

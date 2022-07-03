@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+neofetch --ascii ~/dotfiles/ascii.txt
 
 # Alias commands
 alias q="exit"
