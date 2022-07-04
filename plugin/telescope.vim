@@ -24,7 +24,7 @@ EOF
 if exists('g:loaded_fzf_vim') | finish | endif
 
 " show hidden files as well
-nnoremap <silent>ff :lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>", {noremap = true, silent = true})
+nnoremap <silent>ff <cmd>Telescope git_files<CR>
 " find only files in same directory as current buffer
 nnoremap <silent> fd :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
 " show git files that edited

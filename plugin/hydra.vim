@@ -19,7 +19,7 @@ Hydra({
       }
    },
    mode = 'n',
-   body = '<C-w>',
+   body = '<leader><C-w>',
    heads = {
       -- Move focus
       { 'h', '<C-w>h' },

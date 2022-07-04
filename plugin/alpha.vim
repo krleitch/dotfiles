@@ -38,8 +38,9 @@ end
 -- Set menu
 dashboard.section.buttons.val = {
     dashboard.button( "r", " Recent"   , ":Telescope oldfiles<CR>"),
-    dashboard.button( "f", " Find git file", ":GFiles<CR>"),
-    dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
+    dashboard.button( "f", " Find file", ":Telescope git_files<CR>"),
+    dashboard.button( "g", " Git file", ":Telescope git_files<CR>"),
+    dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
     dashboard.button( "q", " Quit", ":qa<CR>"),
 }
 

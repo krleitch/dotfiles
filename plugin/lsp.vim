@@ -60,11 +60,11 @@ local on_attach = function(client, bufnr)
 
   local action = require("lspsaga.action")
   -- scroll down hover doc or scroll in definition preview
-  vim.keymap.set("n", "<C-f>", function()
+  vim.keymap.set("n", "<C-j>", function()
       action.smart_scroll_with_saga(1)
   end, { silent = true })
   -- scroll up hover doc
-  vim.keymap.set("n", "<C-b>", function()
+  vim.keymap.set("n", "<C-k>", function()
       action.smart_scroll_with_saga(-1)
   end, { silent = true })
 
