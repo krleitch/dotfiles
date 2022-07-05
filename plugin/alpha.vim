@@ -37,11 +37,12 @@ end
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button( "r", " Recent"   , ":Telescope oldfiles<CR>"),
-    dashboard.button( "f", " Find file", ":Telescope git_files<CR>"),
-    dashboard.button( "g", " Git file", ":Telescope git_files<CR>"),
-    dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
-    dashboard.button( "q", " Quit", ":qa<CR>"),
+    dashboard.button( "s", " Restore session"   , ":RestoreSession <CR><CR>"),
+    dashboard.button( "r", " Recent"   , ":Telescope oldfiles<CR>"),
+    dashboard.button( "f", " Find file", ":Telescope git_files<CR>"),
+    dashboard.button( "g", " Git file", ":Telescope git_files<CR>"),
+    dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
+    dashboard.button( "q", " Quit", ":qa<CR>"),
 }
 
 local fortune = require("alpha.fortune") 

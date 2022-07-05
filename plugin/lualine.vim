@@ -42,11 +42,15 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {{ 'mode', fmt = function(str) return str:sub(1,1) end }},
-    lualine_b = {'branch'},
-    lualine_c = {{ 'filename', path = 0}, '%02n' },
+    lualine_b = {{'branch', icon = ' '}},
+    lualine_c = {{ 'filename', path = 0, symbols = {
+        modified = '  ',      -- Text to show when the file is modified.
+        readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
+        unnamed = '[No Name]', -- Text to show for unnamed buffers.
+      }} },
 
     lualine_x = {
-      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
       custom_components.encoding,
       'filetype'
     },
@@ -65,3 +69,4 @@ require('lualine').setup {
   extensions = {}
 }
 EOF
+

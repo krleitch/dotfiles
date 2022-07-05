@@ -6,6 +6,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'norcalli/nvim-colorizer.lua'
 
+
   " notes inspired by emacs org mode, requires plenary 
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-neorg/neorg'
@@ -33,8 +34,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'glepnir/lspsaga.nvim'
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  " interact with lsp for format/lint
-  " Plug 'jose-elias-alvarez/null-ls.nvim'
 
   " Formatter
   Plug 'sbdchd/neoformat'
@@ -59,6 +58,8 @@ call plug#begin('~/.config/nvim/bundle')
 
   " status line
   Plug 'nvim-lualine/lualine.nvim'
+  " use nonicons where you can, requires kitty setup
+  Plug 'yamatsum/nvim-nonicons'
   " web-dev icons
   Plug 'kyazdani42/nvim-web-devicons'
 
@@ -97,6 +98,8 @@ call plug#begin('~/.config/nvim/bundle')
   " get highlights out of the way after searching
   Plug 'rktjmp/highlight-current-n.nvim'
 
+  " auto sessions based on cwd
+  Plug 'rmagatti/auto-session'
   " Hydra for modes, requires plenary
   Plug 'anuvyklack/hydra.nvim'
   Plug 'anuvyklack/keymap-layer.nvim'
