@@ -1,6 +1,6 @@
 # dotfiles
 
-## create soft links
+## Create soft links
 
 - ln -s ~/dotfiles/.vimrc ~/.vimrc
 - ln -s ~/dotfiles/init.vim ~/.config/nvim
@@ -13,7 +13,6 @@ vim - https://github.com/Reewr/vim-monokai-phoenix
 neovim - https://github.com/krleitch/nvim-lychee
 
 add to .vim/colors
-add to .config/nvim/colors
 
 ## source .bashrc from .bash_profile
 
@@ -39,8 +38,13 @@ http://bashrcgenerator.com/
 
 ### Fonts
 
-- https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack
-- https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/RobotoMono
+- Hack: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack
+- RobotoMono: https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/RobotoMono
+- Kitty
+  - Don't use a patched font, use symbol_map with the following fonts installed
+  - Nonicons: https://github.com/yamatsum/nonicons
+  - Symbols Nerd Font: https://github.com/ryanoasis/nerd-fonts/releases 
+
 
 ### nvim-lspconfig
 
