@@ -27,6 +27,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'lewis6991/gitsigns.nvim'
   " Neogit magit clone
   Plug 'TimUntersberger/neogit'
+  " diffview
+  Plug 'sindrets/diffview.nvim'
 
   " Lsp defualt config
   Plug 'neovim/nvim-lspconfig'
@@ -34,6 +36,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'glepnir/lspsaga.nvim'
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  " view lsp status on startup
+  Plug 'j-hui/fidget.nvim'
 
   " Formatter
   Plug 'sbdchd/neoformat'

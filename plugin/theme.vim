@@ -8,7 +8,7 @@ if g:use_colorscheme == 'lychee'
 lua << EOF
 local lychee = require("lychee")
 lychee.setup({
-  transparent_background = false,
+  transparent_background = true,
   term_colors = false,
   styles = {
     comments = "italic",
@@ -34,6 +34,7 @@ lychee.setup({
         information = "underline",
       },
     },
+    alpha = true,
     lsp_trouble = true,
     cmp = true,
     lsp_saga = true,
@@ -43,20 +44,20 @@ lychee.setup({
     nvimtree = {
       enabled = true,
       show_root = false,
-      transparent_panel = false,
+      transparent_panel = true,
     },
     neotree = {
       enabled = false,
       show_root = false,
-      transparent_panel = false,
+      transparent_panel = true,
     },
     which_key = false,
     indent_blankline = {
       enabled = true,
       colored_indent_levels = false,
     },
-    dashboard = true,
-    neogit = false,
+    dashboard = false,
+    neogit = true,
     vim_sneak = false,
     fern = false,
     barbar = false,
@@ -66,7 +67,7 @@ lychee.setup({
     ts_rainbow = false,
     hop = false,
     notify = true,
-    telekasten = true,
+    telekasten = false,
     symbols_outline = true,
   }
 })
