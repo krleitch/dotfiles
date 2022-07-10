@@ -31,8 +31,6 @@ nnoremap <silent> fd :lua require('telescope.builtin').find_files( { cwd = vim.f
 nnoremap <silent> fg <cmd>Telescope live_grep<CR>
 " show open buffers
 nnoremap <silent> fb <cmd>Telescope buffers<CR>
-" show help tags
-nnoremap <silent> fh <cmd>Telescope help_tags<CR>
 " git status
 nnoremap <silent> fs <cmd>Telescope git_status<CR>
 " current bufferr fuzzy find

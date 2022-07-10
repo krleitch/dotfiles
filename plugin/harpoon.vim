@@ -7,11 +7,10 @@ require("harpoon").setup({
 EOF
 
 " maps
-nnoremap <silent>gq :lua require("harpoon.mark").add_file()<CR>
+nnoremap <silent>fh :lua require("harpoon.mark").add_file()<CR>
 nnoremap <silent><C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
-" mapping nums may not be portable
-nnoremap <silent>g1 :lua require("harpoon.ui").nav_file(1)<CR>
-nnoremap <silent>g2 :lua require("harpoon.ui").nav_file(2)<CR>
-nnoremap <silent>g3 :lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <silent>g4 :lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <silent>fq :lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent>fw :lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <silent>fe :lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent>fr :lua require("harpoon.ui").nav_file(4)<CR>

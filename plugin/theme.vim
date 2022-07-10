@@ -35,6 +35,7 @@ lychee.setup({
       },
     },
     alpha = true,
+    leap = true,
     lsp_trouble = true,
     cmp = true,
     lsp_saga = true,
@@ -63,12 +64,12 @@ lychee.setup({
     barbar = false,
     bufferline = false,
     markdown = true,
-    lightspeed = true,
+    lightspeed = false,
     ts_rainbow = false,
     hop = false,
     notify = true,
     telekasten = false,
-    symbols_outline = true,
+    symbols_outline = false,
   }
 })
 EOF

@@ -46,6 +46,13 @@ call plug#begin('~/.config/nvim/bundle')
   " Show symbols list
   Plug 'stevearc/aerial.nvim'
 
+  " Testing
+  Plug 'vim-test/vim-test'
+  Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+
+  " javascript
+  Plug 'haydenmeade/neotest-jest'
+
   " auto completion
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
@@ -112,11 +119,12 @@ call plug#begin('~/.config/nvim/bundle')
   " simple buffer explorer, nice addon for hydra windows
    Plug 'jlanzarotta/bufexplorer'
   " Vim sneak like motion with more brains
-  Plug 'ggandor/lightspeed.nvim'
+  Plug 'ggandor/leap.nvim'
   " marks for core files
   Plug 'ThePrimeagen/harpoon'
   " undo tree, prefer this over using swp files
   Plug 'mbbill/undotree'
+
   " more repeat motions with .
   Plug 'tpope/vim-repeat'
   " Surround operations
@@ -193,4 +201,7 @@ function! CustomFoldText()
   let expansionString = repeat(" ", w - strwidth(foldSizeStr.line.foldLevelStr))
   return line . expansionString . foldSizeStr . foldLevelStr
 endfunction
+
+" use neotest when more complete
+let g:ultest_deprecation_notice = 0
 

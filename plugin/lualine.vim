@@ -30,40 +30,100 @@ local custom_components = {
   end
 }
 
+local function diff_source()
+  local gitsigns = vim.b.gitsigns_status_dict
+  if gitsigns then
+    return {
+      added = gitsigns.added,
+      modified = gitsigns.changed,
+      removed = gitsigns.removed
+    }
+  end
+end
+
+local function test()
+  local status = vim.api.nvim_eval('ultest#status()')
+
+  local sections = {
+      {
+          sign = ' ',
+          count = status.running,
+          base = 'StatusLineRun',
+          tag = 'test_running',
+      },
+      {
+          sign = ' ',
+          count = status.passed,
+          base = 'StatusLinePass',
+          tag = 'test_pass',
+      },
+      {
+          sign = ' ',
+          count = status.failed,
+          base = 'StatusLineFail',
+          tag = 'test_fail',
+      }
+  }
+
+  local result = {}
+  for _, section in ipairs(sections) do
+      table.insert(
+          result,
+          '%#'
+              .. section.base
+              .. '#'
+              .. section.sign
+              .. section.count
+      )
+  end
+
+  return table.concat(result, ' ')
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'lychee',
     component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
     disabled_filetypes = { 'alpha', 'NvimTree' },
     always_divide_middle = true,
     globalstatus = false,
   },
   sections = {
     lualine_a = {{ 'mode', fmt = function(str) return str:sub(1,1) end }},
-    lualine_b = {{'branch', icon = ' '}},
+    lualine_b = {{'branch', icon = '', fmt = function(str) return ' ' .. str end}},
     lualine_c = {{ 'filename', path = 0, symbols = {
-        modified = '  ',      -- Text to show when the file is modified.
-        readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
+        modified = '',      -- Text to show when the file is modified.
+        readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
         unnamed = '[No Name]', -- Text to show for unnamed buffers.
-      }} },
+        }}, {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}} },
 
     lualine_x = {
       { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
-      custom_components.encoding,
-      'filetype'
-    },
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+      custom_components.encoding(),{'location', padding = 0}},
+    lualine_y = {{'progress', padding = { left = 0, right = 2}}},
+    lualine_z = {{'filetype', padding = { left = 0, right = 1}},
+                 { test(), cond = function()
+                    local status_ok, is_test = pcall(
+                      vim.api.nvim_eval,
+                      'ultest#is_test_file()'
+                    )
+                    return status_ok and is_test == 1
+                    end }
+                 }
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = {{ 'filename', path = 0, symbols = {
+        modified = '',      -- Text to show when the file is modified.
+        readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
+        unnamed = '[No Name]', -- Text to show for unnamed buffers.
+        }}, {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}}},
+    lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {'location'}
   },
   tabline = {},
   extensions = {}

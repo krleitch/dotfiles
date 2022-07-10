@@ -28,6 +28,9 @@ export PATH=/Library/Frameworks/Python.framework/Versions/3.9/bin:$PATH
 export PATH=~/Documents/dev/nvim-macos/bin:$PATH
 export PATH=~/Documents/dev/logo-ls:$PATH
 
+# spot
+export API_DATABASE_URL="postgresql://postgres:root@localhost:5432/spot"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 

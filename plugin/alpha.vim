@@ -40,7 +40,8 @@ dashboard.section.buttons.val = {
     dashboard.button( "s", " Restore session"   , ":RestoreSession <CR><CR>"),
     dashboard.button( "r", " Recent"   , ":Telescope oldfiles<CR>"),
     dashboard.button( "f", " Find file", ":Telescope git_files<CR>"),
-    dashboard.button( "g", " Git file", ":Telescope git_files<CR>"),
+    dashboard.button( "w", " Find word", ":Telescope live_grep<CR>"),
+    dashboard.button( "g", " Git status", ":Telescope git_status<CR>"),
     dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
     dashboard.button( "q", " Quit", ":qa<CR>"),
 }
