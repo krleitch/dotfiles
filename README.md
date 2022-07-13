@@ -16,7 +16,7 @@ add to .vim/colors
 
 ## source .bashrc from .bash_profile
 
-```
+```bash
 if [ -r ~/.bashrc ]; then
   source ~/.bashrc
 fi
@@ -69,3 +69,7 @@ Angular Notes:
 - :TSInstall javascript
 - :TSInstallInfo
 - Install any other languages you want syntax for
+
+### Debugging
+
+- setup dap

@@ -49,3 +49,4 @@ parse_git_branch() {
 # PS1
 export PS1="\[\033[38;5;197m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;243m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \\$\[$(tput sgr0)\]\[\033[38;5;38m\]\$(parse_git_branch)\[\033[00m\] "
 
+. "$HOME/.cargo/env"

@@ -80,6 +80,29 @@ local function test()
   return table.concat(result, ' ')
 end
 
+local custom_fname = require('lualine.components.filename'):extend()
+local highlight = require'lualine.highlight'
+local default_status_colors = { saved = '#A9FF68', modified = '#d7005f' }
+
+function custom_fname:init(options)
+  custom_fname.super.init(self, options)
+  self.status_colors = {
+    saved = highlight.create_component_highlight_group(
+      {fg = default_status_colors.saved}, 'filename_status_saved', self.options),
+    modified = highlight.create_component_highlight_group(
+      {fg = default_status_colors.modified}, 'filename_status_modified', self.options),
+  }
+  if self.options.color == nil then self.options.color = '' end
+end
+
+function custom_fname:update_status()
+  local data = custom_fname.super.update_status(self)
+  data = highlight.component_format_highlight(vim.bo.modified
+                                              and self.status_colors.modified
+                                              or self.status_colors.saved) .. data
+  return data
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -93,7 +116,7 @@ require('lualine').setup {
   sections = {
     lualine_a = {{ 'mode', fmt = function(str) return str:sub(1,1) end }},
     lualine_b = {{'branch', icon = '', fmt = function(str) return ' ' .. str end}},
-    lualine_c = {{ 'filename', path = 0, symbols = {
+    lualine_c = {{ custom_fname, path = 0, symbols = {
         modified = '',      -- Text to show when the file is modified.
         readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
         unnamed = '[No Name]', -- Text to show for unnamed buffers.
@@ -101,9 +124,9 @@ require('lualine').setup {
 
     lualine_x = {
       { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
-      custom_components.encoding(),{'location', padding = 0}},
-    lualine_y = {{'progress', padding = { left = 0, right = 2}}},
-    lualine_z = {{'filetype', padding = { left = 0, right = 1}},
+      custom_components.encoding(),{'location'}},
+    lualine_y = {{'progress', fmt = function(str) return '%P' end }},
+    lualine_z = {{'filetype', padding = { left = 2, right = 1}},
                  { test(), cond = function()
                     local status_ok, is_test = pcall(
                       vim.api.nvim_eval,
@@ -116,7 +139,7 @@ require('lualine').setup {
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {{ 'filename', path = 0, symbols = {
+    lualine_c = {{ custom_fname, path = 0, symbols = {
         modified = '',      -- Text to show when the file is modified.
         readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
         unnamed = '[No Name]', -- Text to show for unnamed buffers.

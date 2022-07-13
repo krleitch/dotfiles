@@ -18,6 +18,7 @@ call plug#begin('~/.config/nvim/bundle')
   " fuzzy finder
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'nvim-telescope/telescope-ui-select.nvim'
   " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   " Plug 'junegunn/fzf.vim'
 
@@ -38,6 +39,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " view lsp status on startup
   Plug 'j-hui/fidget.nvim'
+  " Rust
+  Plug 'simrat39/rust-tools.nvim'
 
   " Formatter
   Plug 'sbdchd/neoformat'
@@ -49,6 +52,10 @@ call plug#begin('~/.config/nvim/bundle')
   " Testing
   Plug 'vim-test/vim-test'
   Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+
+  " Debugging
+  Plug 'mfussenegger/nvim-dap'
+  Plug 'rcarriga/nvim-dap-ui'
 
   " javascript
   Plug 'haydenmeade/neotest-jest'

@@ -3,7 +3,7 @@ nmap [u <Plug>(ultest-prev-fail)
 
 let test#javascript#jest#options = "--color=always"
 
-:hi StatusLineFail guifg=#e57373 guibg=#1A1826
-:hi StatusLineRun guifg=#b2dfdb guibg=#1A1826
-:hi StatusLinePass guifg=#c5e1a5 guibg=#1A1826
+:hi StatusLineFail guifg=#d7005f guibg=#161320
+:hi StatusLineRun guifg=#89dceb guibg=#161320
+:hi StatusLinePass guifg=#a9ff68 guibg=#161320
 

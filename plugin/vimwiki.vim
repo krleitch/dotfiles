@@ -11,3 +11,4 @@ nnoremap <leader>ws <cmd>FloatermNew --height=0.75 --width=0.85 --cwd=~/vimwiki 
 :hi VimwikiHeader5 guifg=#ce9178
 :hi VimwikiHeader6 guifg=#d6b9a8
 
+let g:vimwiki_global_ext = 0
