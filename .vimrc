@@ -78,7 +78,7 @@ endif
 if has('nvim')
   set winblend=0
   set wildoptions=pum
-  set pumblend=5
+  set pumblend=0
 endif
 
 " Sources

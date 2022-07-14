@@ -1,9 +1,6 @@
-" lualine doesnt set loaded...
-" if !exists('g:loaded_lualine') | finish | endif
-
-" setup lualine
 lua << EOF
 
+-- trunacete long text
 local function truncate(trunc_width, trunc_len, hide_width, no_ellipsis)
   return function(str)
     local win_width = vim.fn.winwidth(0)
@@ -18,18 +15,13 @@ local function min_window_width(width)
   return function() return vim.fn.winwidth(0) > width end
 end
 
-local custom_components = {
-  -- Override 'encoding': Don't display if encoding is UTF-8.
-  encoding = function()
+-- dont show utf-8
+local function encoding()
     local ret, _ = (vim.bo.fenc or vim.go.enc):gsub("^utf%-8$", "")  -- Note: '-' is a magic character
     return ret
-  end,
-  -- LSP status, with some trim
-  lsp_status = function()
-    return LspStatus()
-  end
-}
+end
 
+-- source gitsigns
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
   if gitsigns then
@@ -41,6 +33,7 @@ local function diff_source()
   end
 end
 
+-- show running, passing, failing test counts
 local function test()
   local status = vim.api.nvim_eval('ultest#status()')
 
@@ -80,28 +73,35 @@ local function test()
   return table.concat(result, ' ')
 end
 
-local custom_fname = require('lualine.components.filename'):extend()
+-- Show a save or modified icon with a highlight
+local save_icon = require('lualine.components.filename'):extend()
 local highlight = require'lualine.highlight'
 local default_status_colors = { saved = '#A9FF68', modified = '#d7005f' }
 
-function custom_fname:init(options)
-  custom_fname.super.init(self, options)
+function save_icon:init(options)
+  save_icon.super.init(self, options)
   self.status_colors = {
     saved = highlight.create_component_highlight_group(
-      {fg = default_status_colors.saved}, 'filename_status_saved', self.options),
+    {fg = default_status_colors.saved}, 'filename_status_saved', self.options),
     modified = highlight.create_component_highlight_group(
-      {fg = default_status_colors.modified}, 'filename_status_modified', self.options),
+    {fg = default_status_colors.modified}, 'filename_status_modified', self.options),
   }
   if self.options.color == nil then self.options.color = '' end
-end
-
-function custom_fname:update_status()
-  local data = custom_fname.super.update_status(self)
+  icon = vim.bo.modified and ' ' or ' '
   data = highlight.component_format_highlight(vim.bo.modified
                                               and self.status_colors.modified
-                                              or self.status_colors.saved) .. data
+                                              or self.status_colors.saved) .. icon
   return data
 end
+function save_icon:update_status()
+  save_icon.super.update_status(self)
+  icon = vim.bo.modified and ' ' or ' '
+  data = highlight.component_format_highlight(vim.bo.modified
+                                              and self.status_colors.modified
+                                              or self.status_colors.saved) .. icon
+  return data
+end
+
 
 require('lualine').setup {
   options = {
@@ -116,15 +116,18 @@ require('lualine').setup {
   sections = {
     lualine_a = {{ 'mode', fmt = function(str) return str:sub(1,1) end }},
     lualine_b = {{'branch', icon = '', fmt = function(str) return ' ' .. str end}},
-    lualine_c = {{ custom_fname, path = 0, symbols = {
-        modified = '',      -- Text to show when the file is modified.
-        readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
-        unnamed = '[No Name]', -- Text to show for unnamed buffers.
-        }}, {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}} },
+    lualine_c = {{ 'filename', path = 0, symbols = {
+          modified = '',      -- Text to show when the file is modified.
+          readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
+          unnamed = '[No Name]', -- Text to show for unnamed buffers.
+        }},
+      { save_icon, padding = { left = 0, right = 0 } }, 
+      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}} },
 
     lualine_x = {
       { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
-      custom_components.encoding(),{'location'}},
+      encoding(), 
+      {'location'}},
     lualine_y = {{'progress', fmt = function(str) return '%P' end }},
     lualine_z = {{'filetype', padding = { left = 2, right = 1}},
                  { test(), cond = function()
@@ -139,11 +142,13 @@ require('lualine').setup {
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {{ custom_fname, path = 0, symbols = {
-        modified = '',      -- Text to show when the file is modified.
-        readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
-        unnamed = '[No Name]', -- Text to show for unnamed buffers.
-        }}, {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}}},
+    lualine_c = {{ 'filename', path = 0, symbols = {
+          modified = '',      -- Text to show when the file is modified.
+          readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
+          unnamed = '[No Name]', -- Text to show for unnamed buffers.
+        }},
+      { save_icon, padding = { left = 0, right = 0 } }, 
+      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}}},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {'location'}

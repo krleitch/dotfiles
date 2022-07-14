@@ -6,7 +6,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'norcalli/nvim-colorizer.lua'
 
-
   " notes inspired by emacs org mode, requires plenary 
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-neorg/neorg'
@@ -19,8 +18,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'nvim-telescope/telescope-ui-select.nvim'
-  " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  " Plug 'junegunn/fzf.vim'
+  Plug 'nvim-telescope/telescope-dap.nvim'
 
   " Git
   Plug 'tpope/vim-fugitive'
@@ -33,8 +31,6 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Lsp defualt config
   Plug 'neovim/nvim-lspconfig'
-  " Improve lsp ui
-  Plug 'glepnir/lspsaga.nvim'
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   " view lsp status on startup
@@ -56,9 +52,6 @@ call plug#begin('~/.config/nvim/bundle')
   " Debugging
   Plug 'mfussenegger/nvim-dap'
   Plug 'rcarriga/nvim-dap-ui'
-
-  " javascript
-  Plug 'haydenmeade/neotest-jest'
 
   " auto completion
   Plug 'hrsh7th/cmp-nvim-lsp'
@@ -131,6 +124,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'ThePrimeagen/harpoon'
   " undo tree, prefer this over using swp files
   Plug 'mbbill/undotree'
+  " easy join and split lines
+  Plug 'AndrewRadev/splitjoin.vim'
 
   " more repeat motions with .
   Plug 'tpope/vim-repeat'
@@ -209,6 +204,6 @@ function! CustomFoldText()
   return line . expansionString . foldSizeStr . foldLevelStr
 endfunction
 
-" use neotest when more complete
+" investigate neotest
 let g:ultest_deprecation_notice = 0
 

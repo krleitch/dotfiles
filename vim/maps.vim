@@ -6,13 +6,9 @@ inoremap jj <ESC>
 nnoremap j gj
 nnoremap k gk
 
-" Cursor movement while in insert mode
+" Insert mode go to end and start
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>^
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
 
 " Make Y work like D and C instead of just being yy
 map Y y$
@@ -45,7 +41,3 @@ nnoremap <silent> ]f :call
 " doesnt work in neovim
 cmap w!! w !sudo tee > /dev/null %
 
-" get highlight groups under cursor for easier color scheme work
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>

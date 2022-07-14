@@ -38,22 +38,20 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('aerial')
 require("telescope").load_extension("ui-select")
+require('telescope').load_extension('dap')
 EOF
 
-" if we are using fzf then dont override its keybindings
-if exists('g:loaded_fzf_vim') | finish | endif
-
 " show hidden files as well
-nnoremap <silent>ff <cmd>Telescope git_files<CR>
+nnoremap <silent> <leader>ff <cmd>Telescope git_files<CR>
 " find only files in same directory as current buffer
-nnoremap <silent> fd :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
+nnoremap <silent> <leader>fd :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
 " show git files that edited
-nnoremap <silent> fg <cmd>Telescope live_grep<CR>
+nnoremap <silent> <leader>fg <cmd>Telescope live_grep<CR>
 " show open buffers
-nnoremap <silent> fb <cmd>Telescope buffers<CR>
+nnoremap <silent> <leader>fb <cmd>Telescope buffers<CR>
 " git status
-nnoremap <silent> fs <cmd>Telescope git_status<CR>
+nnoremap <silent> <leader>fs <cmd>Telescope git_status<CR>
 " current bufferr fuzzy find
-nnoremap <silent> fc <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <silent> <leader>fc <cmd>Telescope current_buffer_fuzzy_find<CR>
 " search aerial
-nnoremap <silent> fa <cmd>Telescope aerial<CR>
+nnoremap <silent> <leader>fa <cmd>Telescope aerial<CR>

@@ -5,16 +5,14 @@
 - ln -s ~/dotfiles/.vimrc ~/.vimrc
 - ln -s ~/dotfiles/init.vim ~/.config/nvim
 - ln -s ~/dotfiles/plugin/ ~/.config/nvim/after/
-- any other configs you have
-
-## Colors
-
-vim - https://github.com/Reewr/vim-monokai-phoenix
-neovim - https://github.com/krleitch/nvim-lychee
-
-add to .vim/colors
-
-## source .bashrc from .bash_profile
+- ln -s ~/dotfiles/.zshrc ~/.zshrc
+- ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
+- ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+- ln -s ~/dotfiles/.bashrc ~/.bashrc
+- ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+- ln -s ~/dotfiles/.kitty.conf ~/.kitty.conf
+- 
+### source .bashrc from .bash_profile
 
 ```bash
 if [ -r ~/.bashrc ]; then
@@ -22,9 +20,14 @@ if [ -r ~/.bashrc ]; then
 fi
 ```
 
-## PS1 Generator
+PS1 - http://bashrcgenerator.com/
 
-http://bashrcgenerator.com/
+## Colors
+
+vim - https://github.com/Reewr/vim-monokai-phoenix
+neovim - https://github.com/krleitch/nvim-lychee
+
+add to .vim/colors
 
 ## Tmux
 
@@ -45,13 +48,11 @@ http://bashrcgenerator.com/
   - Nonicons: https://github.com/yamatsum/nonicons
   - Symbols Nerd Font: https://github.com/ryanoasis/nerd-fonts/releases 
 
-
-### nvim-lspconfig
+### LSP
 
 - https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-- call setup on each lsp config
 - install the lsp for everything you setup
-- ex. npm install -g typescript typescript-language-server
+- call setup on each lsp config
 
 Angular Notes:
 
@@ -66,10 +67,9 @@ Angular Notes:
 
 - https://github.com/nvim-treesitter/nvim-treesitter
 - npm install -g tree-sitter-cli
-- :TSInstall javascript
 - :TSInstallInfo
-- Install any other languages you want syntax for
+- :TSInstall ... 
 
-### Debugging
+### DAP
 
-- setup dap
+- Install debuggers

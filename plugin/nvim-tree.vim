@@ -19,6 +19,7 @@ require("nvim-tree").setup({
 })
 EOF
 
-" show tree hidden files
-nnoremap <leader>n :NvimTreeFindFile<cr>
+nnoremap <leader>tt :NvimTreeToggle<CR>
+nnoremap <leader>tn :NvimTreeFindFile<CR>
+nnoremap <leader>tr :NvimTreeRefresh<CR>
 

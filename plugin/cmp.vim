@@ -12,8 +12,8 @@ lua <<EOF
   -- cmp_autopairs.lisp[#cmp_autopairs.lisp+1] = "racket"
 
   local lsp_symbols = {
-      Text = "   (Text) ",
-      Method = "   (Method)",
+      Text = "   (Text) ",
+      Method = "   (Method)",
       Function = "   (Function)",
       Constructor = "   (Constructor)",
       Field = " ﴲ  (Field)",
@@ -65,11 +65,11 @@ lua <<EOF
       -- documentation = cmp.config.window.bordered(),
       completion = {
           border = 'rounded',
-          winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None',
+          winhighlight = 'Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None',
       },
       documentation = {
           border = 'rounded',
-          winhighlight = 'Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None',
+          winhighlight = 'Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None',
       },
     },
     mapping = cmp.mapping.preset.insert({

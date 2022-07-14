@@ -103,7 +103,6 @@ Hydra({
 })
 
 -- Aerial
-local gitsigns = require('gitsigns')
 Hydra({
    hint = [[
  _o_: open cur      _}_: next f()      _[_: Up level         _t_: toggle
@@ -143,9 +142,10 @@ Hydra({
 })
 
 -- Trouble
-local gitsigns = require('gitsigns')
 Hydra({
    hint = [[
+  DIAGNOSTICS
+ ---------------^ ^
  _x_: toggle
  _w_: workspace
  _d_: diagnostics
@@ -180,6 +180,55 @@ Hydra({
       { '}', '<cmd>lua vim.diagnostic.goto_next()<CR>', { silent = true } },
       { '[', '<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>', { silent = true } },
       { ']', '<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>', { silent = true } },
+      { 'q', nil, { exit = true, nowait = true } },
+   }
+})
+
+-- DAP
+Hydra({
+   hint = [[
+  DEBUG 
+ ----------------^ ^
+ _c_: continue
+ _v_: step over
+ _i_: step into
+ _o_: step out
+ ^ ^
+ _b_: toggle break
+ _B_: set break
+ _p_: set log break
+ ^ ^
+ _u_: toggle ui
+ _h_: visual hover
+ _l_: run last
+ ^ ^
+ _q_: exit
+]],
+   config = {
+      color = 'pink',
+      invoke_on_body = true,
+      hint = {
+         position = 'middle-right',
+         border = 'rounded'
+      },
+      on_exit = function()
+         vim.cmd 'lua require(\'dapui\').close()' -- clear the echo area
+         vim.cmd 'echo' -- clear the echo area
+      end
+   },
+   mode = {'n','x'},
+   body = '<leader>d',
+   heads = {
+      { 'c', ':lua require\'dap\'.continue()<CR>', { silent = true } },
+      { 'v', ':lua require\'dap\'.step_over()<CR>', { silent = true } },
+      { 'i', ':lua require\'dap\'.step_into()<CR>', { silent = true } },
+      { 'o', ':lua require\'dap\'.step_out()<CR>', { silent = true } },
+      { 'b', ':lua require\'dap\'.toggle_breakpoint()<CR>', { silent = true } },
+      { 'B', ':lua require\'dap\'.set_breakpoint(vim.fn.input(\'Breakpoint condition: \'))<CR>', { silent = true } },
+      { 'p', ':lua require\'dap\'.set_breakpoint(nil, nil, vim.fn.input(\'Log point message: \'))<CR>', { silent = true } },
+      { 'u', ':lua require\'dapui\'.toggle()<CR>', { silent = true } },
+      { 'h', ':lua require\'dap.ui.variables\'.visual_hover()<CR>', { silent = true } },
+      { 'l', ':lua require\'dap\'.repl.run_last()<CR>', { silent = true } },
       { 'q', nil, { exit = true, nowait = true } },
    }
 })
