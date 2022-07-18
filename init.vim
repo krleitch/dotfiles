@@ -13,6 +13,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vimwiki/vimwiki'
   " floating term
   Plug 'voldikss/vim-floaterm'
+  Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 
   " fuzzy finder
   Plug 'nvim-telescope/telescope.nvim'
@@ -126,6 +127,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'mbbill/undotree'
   " easy join and split lines
   Plug 'AndrewRadev/splitjoin.vim'
+  " better folds
+  Plug 'kevinhwang91/nvim-ufo'
 
   " more repeat motions with .
   Plug 'tpope/vim-repeat'

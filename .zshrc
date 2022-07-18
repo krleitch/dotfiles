@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-neofetch --ascii ~/dotfiles/ascii.txt
+# neofetch --ascii ~/dotfiles/ascii.txt
 
 # Alias commands
 alias q="exit"
@@ -11,6 +11,7 @@ alias nv="nvim"
 alias home="cd ~"
 alias root="cd /"
 alias repos="cd ~/Documents/repos"
+alias dev="cd ~/Documents/dev"
 alias dot="cd ~/dotfiles"
 
 # Alias Current project
