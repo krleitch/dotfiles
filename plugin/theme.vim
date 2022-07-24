@@ -153,9 +153,3 @@ let g:palenight_terminal_italics=1
 else
 
 endif
-
-" colorizer
-lua << EOF
-require'colorizer'.setup()
-EOF
-

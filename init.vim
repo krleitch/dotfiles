@@ -4,7 +4,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'krleitch/nvim-lychee'
   Plug 'catppuccin/nvim', {'as': 'catppuccin'}
   Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
   " notes inspired by emacs org mode, requires plenary 
   Plug 'nvim-lua/plenary.nvim'
@@ -56,6 +56,7 @@ call plug#begin('~/.config/nvim/bundle')
 
   " auto completion
   Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
   Plug 'hrsh7th/cmp-buffer'
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-cmdline'

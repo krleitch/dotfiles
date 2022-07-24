@@ -54,7 +54,7 @@ end
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- generics lsp setup for list of servers
-local servers = { 'tsserver', 'angularls', 'rust_analyzer', 'gopls', 'pyright' }
+local servers = { 'tsserver', 'angularls', 'gopls', 'pyright' }
 for _, lsp in pairs(servers) do
   nvim_lsp[lsp].setup({
     capabilities = capabilities,
@@ -66,6 +66,20 @@ for _, lsp in pairs(servers) do
   })
 end
 
+local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.0/'
+local codelldb_path = extension_path .. 'adapter/codelldb'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+-- Setup rust_analyzer via rust-tools.nvim
+require("rust-tools").setup({
+	server = {
+		capabilities = capabilities,
+		on_attach = on_attach,
+	},
+  dap = {
+    adapter = require('rust-tools.dap').get_codelldb_adapter(codelldb_path, liblldb_path)
+  }
+})
+ 
 -- elixirls required cmd to with ls path
 nvim_lsp.elixirls.setup({
     capabilities = capabilities,
