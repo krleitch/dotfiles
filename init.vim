@@ -2,8 +2,6 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Colorscheme
   Plug 'krleitch/nvim-lychee'
-  Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-  Plug 'drewtempelmeyer/palenight.vim'
   Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
   " notes inspired by emacs org mode, requires plenary 
@@ -11,8 +9,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'nvim-neorg/neorg'
   " vim wiki
   Plug 'vimwiki/vimwiki'
-  " floating term
-  Plug 'voldikss/vim-floaterm'
+  " terminal
   Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 
   " fuzzy finder
@@ -34,11 +31,12 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'neovim/nvim-lspconfig'
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  " LSP ui
+  Plug 'glepnir/lspsaga.nvim'
   " view lsp status on startup
   Plug 'j-hui/fidget.nvim'
   " Rust
   Plug 'simrat39/rust-tools.nvim'
-
   " Formatter
   Plug 'sbdchd/neoformat'
   " Trouble for viewing diagnostics better
@@ -64,6 +62,10 @@ call plug#begin('~/.config/nvim/bundle')
   " For vsnip users.
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'  
+  " luasnip
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'saadparwaiz1/cmp_luasnip'
+  Plug 'molleweide/LuaSnip-snippets.nvim'
 
   " auto pairs and auto tags
   Plug 'windwp/nvim-autopairs'
@@ -75,12 +77,13 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'yamatsum/nvim-nonicons'
   " web-dev icons
   Plug 'kyazdani42/nvim-web-devicons'
-
   "file tree, useful for learning structure and creating dirs
   Plug 'kyazdani42/nvim-tree.lua'
 
   " Startup screen
   Plug 'goolord/alpha-nvim'
+  " auto sessions based on cwd
+  Plug 'rmagatti/auto-session'
   " Faster Startup
   Plug 'lewis6991/impatient.nvim'
   " notifs
@@ -93,7 +96,7 @@ call plug#begin('~/.config/nvim/bundle')
   " Latex preview
   Plug 'lervag/vimtex'
   " Zen mode
-  Plug 'Pocco81/TrueZen.nvim'
+  Plug 'Pocco81/true-zen.nvim'
 
   " Comments
   Plug 'tpope/vim-commentary'
@@ -111,25 +114,23 @@ call plug#begin('~/.config/nvim/bundle')
   " get highlights out of the way after searching
   Plug 'rktjmp/highlight-current-n.nvim'
 
-  " auto sessions based on cwd
-  Plug 'rmagatti/auto-session'
   " Hydra for modes, requires plenary
   Plug 'anuvyklack/hydra.nvim'
   Plug 'anuvyklack/keymap-layer.nvim'
+  " undo tree, prefer this over using swp files
+  Plug 'mbbill/undotree'
   " shift windows with vim keys in any direction
   Plug 'sindrets/winshift.nvim'
   " simple buffer explorer, nice addon for hydra windows
-   Plug 'jlanzarotta/bufexplorer'
+  Plug 'jlanzarotta/bufexplorer'
   " Vim sneak like motion with more brains
   Plug 'ggandor/leap.nvim'
   " marks for core files
   Plug 'ThePrimeagen/harpoon'
-  " undo tree, prefer this over using swp files
-  Plug 'mbbill/undotree'
   " easy join and split lines
   Plug 'AndrewRadev/splitjoin.vim'
-  " better folds
-  Plug 'kevinhwang91/nvim-ufo'
+  " view marks in sign column
+  Plug 'chentoast/marks.nvim'
 
   " more repeat motions with .
   Plug 'tpope/vim-repeat'
@@ -139,7 +140,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'tpope/vim-unimpaired'
   " abbreviation / searching / switch cases
   Plug 'tpope/vim-abolish'
-  " make async
+  " run make async
   Plug 'tpope/vim-dispatch'
 
   " Use emacs best feature
@@ -155,59 +156,11 @@ set runtimepath^=-/.vim runtimepath+=/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
-" Folds use tree sitter
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set nofoldenable
-set foldlevel=99
-set fillchars=fold:\
-set foldtext=CustomFoldText()
-setlocal foldmethod=expr
-setlocal foldexpr=GetPotionFold(v:lnum)
-function! GetPotionFold(lnum)
-  if getline(a:lnum) =~? '\v^\s*$'
-    return '-1'
-  endif
-  let this_indent = IndentLevel(a:lnum)
-  let next_indent = IndentLevel(NextNonBlankLine(a:lnum))
-  if next_indent == this_indent
-    return this_indent
-  elseif next_indent < this_indent
-    return this_indent
-  elseif next_indent > this_indent
-    return '>' . next_indent
-  endif
-endfunction
-function! IndentLevel(lnum)
-    return indent(a:lnum) / &shiftwidth
-endfunction
-function! NextNonBlankLine(lnum)
-  let numlines = line('$')
-  let current = a:lnum + 1
-  while current <= numlines
-      if getline(current) =~? '\v\S'
-          return current
-      endif
-      let current += 1
-  endwhile
-  return -2
-endfunction
-function! CustomFoldText()
-  " get first non-blank line
-  let fs = v:foldstart
-  while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
-  endwhile
-  else
-      let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-  endif
-  let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-  let foldSize = 1 + v:foldend - v:foldstart
-  let foldSizeStr = " " . foldSize . " lines "
-  let foldLevelStr = repeat("+--", v:foldlevel)
-  let expansionString = repeat(" ", w - strwidth(foldSizeStr.line.foldLevelStr))
-  return line . expansionString . foldSizeStr . foldLevelStr
-endfunction
-
 " investigate neotest
 let g:ultest_deprecation_notice = 0
 
+" lualine for statusline
+set statusline=
+
+" dont treat md files outside vimwiki as wiki files
+let g:vimwiki_global_ext = 0

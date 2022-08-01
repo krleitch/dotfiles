@@ -39,19 +39,19 @@ local function test()
 
   local sections = {
       {
-          sign = ' ',
+          sign = ' ',
           count = status.running,
           base = 'StatusLineRun',
           tag = 'test_running',
       },
       {
-          sign = ' ',
+          sign = ' ',
           count = status.passed,
           base = 'StatusLinePass',
           tag = 'test_pass',
       },
       {
-          sign = ' ',
+          sign = ' ',
           count = status.failed,
           base = 'StatusLineFail',
           tag = 'test_fail',
@@ -87,7 +87,7 @@ function save_icon:init(options)
     {fg = default_status_colors.modified}, 'filename_status_modified', self.options),
   }
   if self.options.color == nil then self.options.color = '' end
-  icon = vim.bo.modified and ' ' or ' '
+  icon = vim.bo.modified and ' ' or ' '
   data = highlight.component_format_highlight(vim.bo.modified
                                               and self.status_colors.modified
                                               or self.status_colors.saved) .. icon
@@ -95,7 +95,7 @@ function save_icon:init(options)
 end
 function save_icon:update_status()
   save_icon.super.update_status(self)
-  icon = vim.bo.modified and ' ' or ' '
+  icon = vim.bo.modified and ' ' or ' '
   data = highlight.component_format_highlight(vim.bo.modified
                                               and self.status_colors.modified
                                               or self.status_colors.saved) .. icon
@@ -116,13 +116,14 @@ require('lualine').setup {
   sections = {
     lualine_a = {{ 'mode', fmt = function(str) return str:sub(1,1) end }},
     lualine_b = {{'branch', icon = '', fmt = function(str) return ' ' .. str end}},
-    lualine_c = {{ 'filename', path = 0, symbols = {
+    lualine_c = {
+      { save_icon, padding = { left = 1, right = 0 } }, 
+      { 'filename', path = 0, symbols = {
           modified = '',      -- Text to show when the file is modified.
           readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
           unnamed = '[No Name]', -- Text to show for unnamed buffers.
         }},
-      { save_icon, padding = { left = 0, right = 0 } }, 
-      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}} },
+      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}} },
 
     lualine_x = {
       { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
@@ -148,7 +149,7 @@ require('lualine').setup {
           unnamed = '[No Name]', -- Text to show for unnamed buffers.
         }},
       { save_icon, padding = { left = 0, right = 0 } }, 
-      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}}},
+      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}}},
     lualine_x = {},
     lualine_y = {},
     lualine_z = {'location'}

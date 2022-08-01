@@ -42,16 +42,16 @@ require('telescope').load_extension('dap')
 EOF
 
 " show hidden files as well
-nnoremap <silent> <C-f>f <cmd>Telescope git_files<CR>
+nnoremap <silent> <C-e>e <cmd>Telescope git_files<CR>
 " find only files in same directory as current buffer
-nnoremap <silent> <C-f>d :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
+nnoremap <silent> <C-e>d :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
 " show git files that edited
-nnoremap <silent> <C-f>g <cmd>Telescope live_grep<CR>
+nnoremap <silent> <C-e>g <cmd>Telescope live_grep<CR>
 " show open buffers
-nnoremap <silent> <C-f>b <cmd>Telescope buffers<CR>
+nnoremap <silent> <C-e>b <cmd>Telescope buffers<CR>
 " git status
-nnoremap <silent> <C-f>s <cmd>Telescope git_status<CR>
+nnoremap <silent> <C-e>s <cmd>Telescope git_status<CR>
 " current bufferr fuzzy find
-nnoremap <silent> <C-f>c <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <silent> <C-e>/ <cmd>Telescope current_buffer_fuzzy_find<CR>
 " search aerial
-nnoremap <silent> <C-f>a <cmd>Telescope aerial<CR>
+nnoremap <silent> <C-e>a <cmd>Telescope aerial<CR>

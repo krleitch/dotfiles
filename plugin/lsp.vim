@@ -44,6 +44,7 @@ local on_attach = function(client, bufnr)
   -- Use Neoformat for formatting
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format({async = true})<CR>', opts)
 
+
   -- attach aerial with keymaps for symbol list  
   require("aerial").on_attach(client, bufnr)
   -- bindings are moved to hydra

@@ -4,14 +4,16 @@
 
 - ln -s ~/dotfiles/.vimrc ~/.vimrc
 - ln -s ~/dotfiles/init.vim ~/.config/nvim
-- ln -s ~/dotfiles/plugin/ ~/.config/nvim/after/
+- ln -s ~/dotfiles/plugin ~/.config/nvim/after
+- ln -s ~/dotfiles/snippets ~/.config/nvim/lua
+- ln -s ~/dotfiles/lua ~/.config/nvim/lua 
 - ln -s ~/dotfiles/.zshrc ~/.zshrc
 - ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
 - ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 - ln -s ~/dotfiles/.bashrc ~/.bashrc
 - ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 - ln -s ~/dotfiles/.kitty.conf ~/.kitty.conf
-- 
+
 ### source .bashrc from .bash_profile
 
 ```bash

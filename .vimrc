@@ -87,4 +87,5 @@ source ~/dotfiles/vim/languages.vim
 source ~/dotfiles/vim/buffers.vim
 source ~/dotfiles/vim/tabs.vim
 source ~/dotfiles/vim/windows.vim
+source ~/dotfiles/vim/folds.vim
 

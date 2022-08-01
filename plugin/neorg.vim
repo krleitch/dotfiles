@@ -5,9 +5,9 @@ require('neorg').setup {
         ["core.norg.dirman"] = {
             config = {
                 workspaces = {
-                    work = "~/notes/work",
-                    home = "~/notes/home",
-                    gtd  = "~/notes/gtd",
+                    work = "~/Documents/notes/work",
+                    home = "~/Documents/notes/home",
+                    gtd  = "~/Documents/notes/gtd",
                 }
             }
         },

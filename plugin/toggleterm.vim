@@ -14,6 +14,16 @@ end
 -- only use these key maps in terminal mode
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
+-- lazygit
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", size = 40, hidden = true })
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+
 EOF
 
 " nnoremap   <silent>   <F7>    :FloatermNew<CR>

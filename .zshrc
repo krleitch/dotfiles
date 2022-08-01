@@ -7,12 +7,16 @@ alias q="exit"
 alias c="clear"
 alias nv="nvim"
 
+# Only alias things that you know wont be overwritten by plugins here
+
 # Alias Directories
 alias home="cd ~"
 alias root="cd /"
 alias repos="cd ~/Documents/repos"
 alias dev="cd ~/Documents/dev"
+alias down="cd ~/Downloads"
 alias dot="cd ~/dotfiles"
+alias notes="cd ~/Documents/notes"
 
 # Alias Current project
 alias spot="cd ~/Documents/repos/spot"

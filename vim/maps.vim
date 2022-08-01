@@ -37,7 +37,20 @@ nnoremap <silent> [f :call
 nnoremap <silent> ]f :call
 \ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "w")<CR>
 
+" clear highlighting
+nnoremap <space><space> :noh<CR>
+
 " Allow saving of files as sudo when I forget to start vim using sudo
 " doesnt work in neovim
 cmap w!! w !sudo tee > /dev/null %
 
+" macro over visual range
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+" quick norm modes
+vnoremap <space>n :'<,'>norm
