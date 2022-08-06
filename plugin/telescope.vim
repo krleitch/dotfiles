@@ -1,9 +1,31 @@
 if !exists('g:loaded_telescope') | finish | endif
 
 lua << EOF
--- You dont need to set any of these options. These are the default ones. Only
--- the loading is important
 require('telescope').setup {
+  defaults = {
+    prompt_prefix = "   ",
+    selection_caret = "  ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    path_display = { "truncate" },
+     layout_config = {
+      horizontal = {
+        prompt_position = "bottom",
+        preview_width = 0.55,
+        results_width = 0.8,
+      },
+      vertical = {
+        mirror = false,
+      },
+      width = 0.87,
+      height = 0.80,
+      preview_cutoff = 120,
+    },
+    mappings = {
+      n = { ["q"] = require("telescope.actions").close },
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
@@ -13,28 +35,11 @@ require('telescope').setup {
                                        -- the default case_mode is "smart_case"
     },
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        -- even more opts
-      }
-
-      -- pseudo code / specification for writing custom displays, like the one
-      -- for "codeactions"
-      -- specific_opts = {
-      --   [kind] = {
-      --     make_indexed = function(items) -> indexed_items, width,
-      --     make_displayer = function(widths) -> displayer
-      --     make_display = function(displayer) -> function(e)
-      --     make_ordinal = function(e) -> string
-      --   },
-      --   -- for example to disable the custom builtin "codeactions" display
-      --      do the following
-      --   codeactions = false,
-      -- }
+      require("telescope.themes").get_dropdown {}
     }
-  }
+  },
+  extensions_list = { "themes", "terms" },
 }
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('aerial')
 require("telescope").load_extension("ui-select")
@@ -42,7 +47,7 @@ require('telescope').load_extension('dap')
 EOF
 
 " show hidden files as well
-nnoremap <silent> <C-e>e <cmd>Telescope git_files<CR>
+nnoremap <silent> <C-e>e <CMD>lua require'telescope-config'.project_files()<CR>
 " find only files in same directory as current buffer
 nnoremap <silent> <C-e>d :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
 " show git files that edited
@@ -55,3 +60,8 @@ nnoremap <silent> <C-e>s <cmd>Telescope git_status<CR>
 nnoremap <silent> <C-e>/ <cmd>Telescope current_buffer_fuzzy_find<CR>
 " search aerial
 nnoremap <silent> <C-e>a <cmd>Telescope aerial<CR>
+
+augroup TelescopeCursorLine
+  autocmd!
+  autocmd FileType TelescopePrompt setlocal nocursorline			
+augroup END

@@ -79,6 +79,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'kyazdani42/nvim-web-devicons'
   "file tree, useful for learning structure and creating dirs
   Plug 'kyazdani42/nvim-tree.lua'
+  " bufferline to show native tabs nice
+  Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
   " Startup screen
   Plug 'goolord/alpha-nvim'
@@ -164,3 +166,10 @@ set statusline=
 
 " dont treat md files outside vimwiki as wiki files
 let g:vimwiki_global_ext = 0
+
+" quit these files fast
+augroup QuitFast
+  autocmd!
+  autocmd FileType Help nnoremap <C-c> :q!<CR>
+  autocmd FileType harpoon nnoremap <C-c> :q!<CR>
+augroup END

@@ -233,4 +233,39 @@ Hydra({
    }
 })
 
+
+-- NORG
+Hydra({
+   hint = [[
+  NORG 
+ -----------------------------------------^ ^
+ _o_: Open Tab    _h_: Home    _t_: Today
+ _g_: GTD         _w_: Work    _q_: Exit
+]],
+   config = {
+      color = 'pink',
+      invoke_on_body = true,
+      hint = {
+         position = 'bottom-middle',
+         border = 'rounded'
+      },
+      on_enter = function()
+        vim.cmd 'silent! NeorgStart'
+      end,
+      on_exit = function()
+         vim.cmd 'echo' -- clear the echo area
+      end
+   },
+   mode = {'n','x'},
+   body = '<leader>n',
+   heads = {
+      { 'o', ':tabedit %<CR>', { silent = true } },
+      { 'h', ':Neorg workspace home<CR>', { silent = true, exit = true, nowait = true } },
+      { 'w', ':Neorg workspace work<CR>', { silent = true, exit = true, nowait = true } },
+      { 'g', ':Neorg workspace gtd<CR>', { silent = true, exit = true, nowait = true } },
+      { 't', ':Neorg journal today<CR>', { silent = true, exit = true, nowait = true } },
+      { 'q', nil, { exit = true, nowait = true } },
+   }
+})
+
 EOF

@@ -80,7 +80,7 @@ function! MyTabLine()
     endwhile
 
     let s .= '%T%#TabLineFill#%='
-    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+    " let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
     return s
 
 endfunction

@@ -8,21 +8,36 @@ require('neorg').setup {
                     work = "~/Documents/notes/work",
                     home = "~/Documents/notes/home",
                     gtd  = "~/Documents/notes/gtd",
-                }
+                },
+                autochdir = false,
+                open_last_workspace = false
             }
         },
-        ["core.integrations.nvim-cmp"] = {},
-        ["core.norg.concealer"] = {},
+        ["core.norg.concealer"] = {
+          config = {
+            icon_preset = "diamond"
+          }
+        },
+        ["core.norg.completion"] = {
+          config = {
+            engine = "nvim-cmp"
+          }            },
         ["core.presenter"] = {
           config = {
-              zen_mode = "truezen"
-            }
+            zen_mode = "truezen"
+          }
         },
         ["core.gtd.base"] = {
           config = {
-              workspace = "gtd"
-            }
-          },
+            workspace = "gtd"
+          }
+        },
+        ["core.norg.journal"] = {
+          config = {
+            workspace = "home"
+          }
+        },
     }
 }
 EOF
+

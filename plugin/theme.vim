@@ -55,7 +55,7 @@ lychee.setup({
     vim_sneak = false,
     fern = false,
     barbar = false,
-    bufferline = false,
+    bufferline = true,
     markdown = true,
     lightspeed = false,
     ts_rainbow = false,
@@ -67,3 +67,6 @@ lychee.setup({
 })
 EOF
 colorscheme lychee
+
+hi NeorgCodeBlock guibg=#161320 
+
