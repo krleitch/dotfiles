@@ -33,6 +33,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'neovim/nvim-lspconfig'
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   " LSP ui
   Plug 'glepnir/lspsaga.nvim'
   " view lsp status on startup
@@ -75,6 +76,8 @@ call plug#begin('~/.config/nvim/bundle')
   " auto pairs and auto tags
   Plug 'windwp/nvim-autopairs'
   Plug 'windwp/nvim-ts-autotag'
+  " webdev
+  Plug 'mattn/emmet-vim'
 
   " status line
   Plug 'nvim-lualine/lualine.nvim'
@@ -176,4 +179,5 @@ augroup QuitFast
   autocmd FileType Help nnoremap <C-c> :q!<CR>
   autocmd FileType harpoon nnoremap <C-c> :q!<CR>
   autocmd FileType NvimTree nnoremap <C-c> :q!<CR>
+  autocmd FileType TelescopePrompt nnoremap <C-c> :q!<CR>
 augroup END
