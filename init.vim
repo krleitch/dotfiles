@@ -34,8 +34,6 @@ call plug#begin('~/.config/nvim/bundle')
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-  " LSP ui
-  Plug 'glepnir/lspsaga.nvim'
   " view lsp status on startup
   Plug 'j-hui/fidget.nvim'
   " Rust
@@ -180,4 +178,5 @@ augroup QuitFast
   autocmd FileType harpoon nnoremap <C-c> :q!<CR>
   autocmd FileType NvimTree nnoremap <C-c> :q!<CR>
   autocmd FileType TelescopePrompt nnoremap <C-c> :q!<CR>
+  autocmd FileType vim-plug nnoremap <C-c> :q!<CR>
 augroup END

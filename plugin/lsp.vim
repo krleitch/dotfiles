@@ -20,8 +20,7 @@ local on_attach = function(client, bufnr)
   local lsp = vim.lsp
   local handlers = lsp.handlers
   -- Hover doc popup
-  local pop_opts = { border = "rounded", max_width = 80 }
-  handlers["textDocument/hover"] = lsp.with(handlers.hover, pop_opts)
+  local pop_opts = { border = "rounded", max_width = 80 } handlers["textDocument/hover"] = lsp.with(handlers.hover, pop_opts)
   handlers["textDocument/signatureHelp"] = lsp.with(handlers.signature_help, pop_opts)
 
   -- Enable completion triggered by <c-x><c-o>
@@ -43,7 +42,6 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   -- Use Neoformat for formatting
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format({async = true})<CR>', opts)
-
 
   -- attach aerial with keymaps for symbol list  
   require("aerial").on_attach(client, bufnr)
@@ -132,6 +130,8 @@ require('ufo').setup({
 local bufnr = vim.api.nvim_get_current_buf()
 require('ufo').setFoldVirtTextHandler(bufnr, handler)
 
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
 
 -- hide diagnostic virtual text, but show signs
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -185,7 +185,3 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 EOF
-
-" change the fold column chars
-set fillchars=fold:\ ,foldopen:ﰬ,foldclose:ﰲ,foldsep:\ 
-
