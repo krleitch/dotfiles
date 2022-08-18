@@ -51,7 +51,7 @@ nnoremap <silent> <C-e>e <CMD>lua require'telescope-config'.project_files()<CR>
 " find only files in same directory as current buffer
 nnoremap <silent> <C-e>d :lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<CR>
 " show git files that edited
-nnoremap <silent> <C-e>g <cmd>Telescope live_grep<CR>
+nnoremap <silent> <C-e>w <cmd>Telescope live_grep<CR>
 " show open buffers
 nnoremap <silent> <C-e>b <cmd>Telescope buffers<CR>
 " git status
@@ -64,4 +64,5 @@ nnoremap <silent> <C-e>a <cmd>Telescope aerial<CR>
 augroup TelescopeCursorLine
   autocmd!
   autocmd FileType TelescopePrompt setlocal nocursorline			
+  autocmd FileType alpha setlocal nocursorline			
 augroup END

@@ -23,6 +23,9 @@ require("transparent").setup({
     "GitSignsChange",
     "GitSignsDelete",
 
+    -- ufo
+    "SignColumn",
+
   },
   exclude = {
 

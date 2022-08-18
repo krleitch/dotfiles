@@ -24,3 +24,11 @@ ls.add_snippets("all", {
     t(");"),
 	})
 })
+
+ls.add_snippets("all", {
+	s("tsl", {
+    t("{$t('"),
+    i(1, ""),
+    t("')}"),
+	})
+})

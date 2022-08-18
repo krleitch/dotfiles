@@ -53,9 +53,14 @@ end
 
 -- Setup lspconfig for cmp
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- ufo capabilities
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
 
 -- generics lsp setup for list of servers
-local servers = { 'tsserver', 'angularls', 'gopls', 'pyright' }
+local servers = { 'tsserver', 'angularls', 'gopls', 'pyright', 'svelte', 'tailwindcss' }
 for _, lsp in pairs(servers) do
   nvim_lsp[lsp].setup({
     capabilities = capabilities,
@@ -90,6 +95,43 @@ nvim_lsp.elixirls.setup({
     },
     cmd = { "/Users/kevin/Documents/dev/elixir-ls/language_server.sh" };
 })
+
+local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = ('  %d '):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+        else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, {chunkText, hlGroup})
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+        end
+        curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, {suffix, 'MoreMsg'})
+    return newVirtText
+end
+require('ufo').setup({
+    open_fold_hl_timeout = 0,
+    fold_virt_text_handler = handler
+})
+-- buffer scope handler
+-- will override global handler if it is existed
+local bufnr = vim.api.nvim_get_current_buf()
+require('ufo').setFoldVirtTextHandler(bufnr, handler)
+
 
 -- hide diagnostic virtual text, but show signs
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -143,4 +185,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 
 EOF
+
+" change the fold column chars
+set fillchars=fold:\ ,foldopen:ﰬ,foldclose:ﰲ,foldsep:\ 
 

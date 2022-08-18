@@ -11,6 +11,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vimwiki/vimwiki'
   " terminal
   Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
+  " draw diagrams
+  Plug 'jbyuki/venn.nvim'
 
   " fuzzy finder
   Plug 'nvim-telescope/telescope.nvim'
@@ -43,6 +45,9 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'folke/trouble.nvim'
   " Show symbols list
   Plug 'stevearc/aerial.nvim'
+  " better folds
+  Plug 'kevinhwang91/promise-async'
+  Plug 'kevinhwang91/nvim-ufo'
 
   " Testing
   Plug 'vim-test/vim-test'
@@ -79,8 +84,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'kyazdani42/nvim-web-devicons'
   "file tree, useful for learning structure and creating dirs
   Plug 'kyazdani42/nvim-tree.lua'
-  " bufferline to show native tabs nice
-  Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
   " Startup screen
   Plug 'goolord/alpha-nvim'
@@ -172,4 +175,5 @@ augroup QuitFast
   autocmd!
   autocmd FileType Help nnoremap <C-c> :q!<CR>
   autocmd FileType harpoon nnoremap <C-c> :q!<CR>
+  autocmd FileType NvimTree nnoremap <C-c> :q!<CR>
 augroup END

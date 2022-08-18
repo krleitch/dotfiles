@@ -69,4 +69,3 @@ EOF
 colorscheme lychee
 
 hi NeorgCodeBlock guibg=#161320 
-

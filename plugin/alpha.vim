@@ -37,14 +37,14 @@ end
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button( "s", " Restore session"   , ":RestoreSession <CR><CR>"),
-    dashboard.button( "r", " Recent"   , ":Telescope oldfiles<CR>"),
-    dashboard.button( "f", " Find file", "<CMD>lua require'telescope-config'.project_files()<CR>"),
-    dashboard.button( "w", " Find word", ":Telescope live_grep<CR>"),
-    dashboard.button( "g", " Git status", ":Telescope git_status<CR>"),
-    dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
-    dashboard.button( "c", " Config" , ":e $HOME/dotfiles/init.vim | :cd %:p:h | pwd<CR>"),
-    dashboard.button( "q", " Quit", ":qa<CR>"),
+    dashboard.button( "s", "  Restore session"   , ":RestoreSession <CR><CR>"),
+    dashboard.button( "r", "  Recent"   , ":Telescope oldfiles<CR>"),
+    dashboard.button( "f", "  Find file", "<CMD>lua require'telescope-config'.project_files()<CR>"),
+    dashboard.button( "w", "  Find word", ":Telescope live_grep<CR>"),
+    dashboard.button( "g", "  Git status", ":Telescope git_status<CR>"),
+    dashboard.button( "e", "  New file" , ":ene <BAR> startinsert <CR>"),
+    dashboard.button( "c", "  Config" , ":e $HOME/dotfiles/init.vim | :cd %:p:h | pwd<CR>"),
+    dashboard.button( "q", "  Quit", ":qa<CR>"),
 }
 
 local fortune = require("alpha.fortune") 

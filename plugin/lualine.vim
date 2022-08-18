@@ -33,6 +33,51 @@ local function diff_source()
   end
 end
 
+local hydra = require('hydra.statusline') 
+local hydra_status = require('lualine.components.filename'):extend()
+local highlight = require'lualine.highlight'
+local default_status_colors = { name = '#89dceb', hint = '#f28fad' }
+
+function hydra_status:init(options)
+  hydra_status.super.init(self, options)
+  self.status_colors = {
+    name = highlight.create_component_highlight_group(
+    {fg = default_status_colors.name}, 'filename_status_saved', self.options),
+    hint = highlight.create_component_highlight_group(
+    {fg = default_status_colors.hint}, 'filename_status_modified', self.options),
+  }
+  if self.options.color == nil then self.options.color = '' end
+  icon = ' '
+  hydra_name = hydra.get_name() or 'Hydra'
+  hydra_hint = ''
+  if hydra_name == 'Norg' then
+    hydra_hint = '(o)pen tab, (h)ome, (w)ork, (g)td, (t)oday, (q)uit'
+  elseif hydra_name == 'Aerial' then
+    hydra_hint = '(t)oggle, {, }, [, ], (o|O)pen, (c|C)lose, (q)uit'
+  elseif hydra_name == 'Diag' then
+    hydra_hint = '(t)oggle w, d, {, }, [, ], q(f)ix, (l)oc, (q)uit'
+  end
+  data = highlight.component_format_highlight(self.status_colors.name) .. icon .. hydra_name .. ': ' ..
+         highlight.component_format_highlight(self.status_colors.hint) .. hydra_hint
+  return data
+end
+function hydra_status:update_status()
+  hydra_status.super.update_status(self)
+  icon = ' '
+  hydra_name = hydra.get_name() or 'Hydra'
+  hydra_hint = ''
+  if hydra_name == 'Norg' then
+    hydra_hint = '(o)pen tab, (h)ome, (w)ork, (g)td, (t)oday, (q)uit'
+  elseif hydra_name == 'Aerial' then
+    hydra_hint = '(t)oggle, {, }, [, ], (o|O)pen, (c|C)lose, (q)uit'
+  elseif hydra_name == 'Diag' then
+    hydra_hint = '(t)oggle w, d, {, }, [, ], q(f)ix, (l)oc, (q)uit'
+  end
+  data = highlight.component_format_highlight(self.status_colors.name) .. icon .. hydra_name .. ': '  ..
+         highlight.component_format_highlight(self.status_colors.hint) .. hydra_hint
+  return data
+end
+
 -- show running, passing, failing test counts
 local function test()
   local status = vim.api.nvim_eval('ultest#status()')
@@ -123,7 +168,13 @@ require('lualine').setup {
           readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
           unnamed = '[No Name]', -- Text to show for unnamed buffers.
         }},
-      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}} },
+      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}},
+      { hydra_status, cond = function()
+                    local active = hydra.is_active()
+                    return active
+                    end }
+      
+    },
 
     lualine_x = {
       { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },

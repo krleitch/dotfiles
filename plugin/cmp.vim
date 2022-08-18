@@ -20,7 +20,7 @@ lua <<EOF
     ext_opts = {
       [types.choiceNode] = {
         active = {
-          virt_text = { { "●", "Header" } },
+          virt_text = { { "●", "" } },
         },
       },
       -- [types.insertNode] = {

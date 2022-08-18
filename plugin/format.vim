@@ -1,7 +1,7 @@
 " For all formatting and linitng and quickfix
 
 " prettier
-nmap <space>f :Neoformat <CR>
+nmap <space>n :Neoformat <CR>
 
 " make (eslint, pylint)
 " :view $VIMRUNTIME/compiler
