@@ -10,6 +10,7 @@ nmap <space>n :Neoformat <CR>
 autocmd FileType python compiler pylint
 autocmd FileType javascript compiler eslint
 autocmd FileType typescript compiler eslint
+autocmd FileType svelte compiler eslint
 nmap <space>m :lmake %<CR>
 " run make on write
 " autocmd BufWritePost *.py,*.js,*.ts,*.tsx silent make! <afile> | silent redraw!
@@ -18,5 +19,7 @@ nmap <space>m :lmake %<CR>
 " autocmd QuickFixCmdPost [^l]* TroubleToggle quickfix
 
 " vim dispatch
+autocmd FileType python let b:dispatch = 'pylint %'
 autocmd FileType javascript let b:dispatch = 'eslint %'
 autocmd FileType typescript let b:dispatch = 'eslint %'
+autocmd FileType svelte let b:dispatch = 'eslint %'

@@ -39,3 +39,32 @@ endfunction
 " skip over open folds
 nnoremap <silent> <space>zj :<c-u>call RepeatCmd('call NextClosedFold("j")')<cr>
 nnoremap <silent> <space>zk :<c-u>call RepeatCmd('call NextClosedFold("k")')<cr>
+
+" go up to the start of the fold
+" this is so very hacky and bad if the file is big LMAO
+" should save the view and just restore it to go one backwards
+" does not work with dot repeat
+function! GoToPrevFoldStart(direction)
+  let view = winsaveview()
+  let end = line('.')
+  exe 'norm!gg'
+  let start = line('.')
+  let counter = 0
+  let continue = 1
+  let prev = -1
+  while (start < end) && (prev != start)
+    exe 'norm!zj'
+    let prev = start
+    let start = line('.')
+    let counter = counter + 1
+  endwhile
+  let jumpsNeeded = counter - 1
+  if jumpsNeeded > 0
+    exe 'norm!gg'
+    exe 'norm!' . jumpsNeeded . 'zj'
+  else
+    call winrestview(view)
+  endif
+endfunction
+nmap <silent> zb :cal GoToPrevFoldStart("prev")<Cr>
+

@@ -154,7 +154,7 @@ require('lualine').setup {
     theme = 'lychee',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
-    disabled_filetypes = { 'alpha', 'NvimTree' },
+    disabled_filetypes = { 'alpha', 'NvimTree', 'mind' },
     always_divide_middle = true,
     globalstatus = false,
   },

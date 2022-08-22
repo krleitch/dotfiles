@@ -60,9 +60,3 @@ nnoremap <silent> <C-e>s <cmd>Telescope git_status<CR>
 nnoremap <silent> <C-e>/ <cmd>Telescope current_buffer_fuzzy_find<CR>
 " search aerial
 nnoremap <silent> <C-e>a <cmd>Telescope aerial<CR>
-
-augroup TelescopeCursorLine
-  autocmd!
-  autocmd FileType TelescopePrompt setlocal nocursorline			
-  autocmd FileType alpha setlocal nocursorline			
-augroup END

@@ -13,6 +13,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
   " draw diagrams
   Plug 'jbyuki/venn.nvim'
+  " wd based trees
+  Plug 'phaazon/mind.nvim'
 
   " fuzzy finder
   Plug 'nvim-telescope/telescope.nvim'
@@ -179,4 +181,12 @@ augroup QuitFast
   autocmd FileType NvimTree nnoremap <C-c> :q!<CR>
   autocmd FileType TelescopePrompt nnoremap <C-c> :q!<CR>
   autocmd FileType vim-plug nnoremap <C-c> :q!<CR>
+  autocmd FileType mind nnoremap <C-c> :q!<CR>
+augroup END
+
+" no cursorline in these files
+augroup DisableCursorLine
+  autocmd!
+  autocmd FileType TelescopePrompt setlocal nocursorline			
+  autocmd FileType alpha setlocal nocursorline			
 augroup END

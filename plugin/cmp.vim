@@ -103,6 +103,11 @@ lua <<EOF
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-c>'] = cmp.mapping.abort(),
+      ['<C-e>'] = cmp.mapping(function(fallback)
+        -- close but i also use C-e to edit end of line in insert mode
+        cmp.abort()
+        fallback()
+      end, { "i", "s"}),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
