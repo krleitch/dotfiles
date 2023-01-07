@@ -30,7 +30,10 @@ alias slam="cd ~/Documents/repos/spot-lambda"
 # PATH
 export PATH=~/Documents/dev/sqlite:$PATH
 export PATH=/Library/Frameworks/Python.framework/Versions/3.9/bin:$PATH
-export PATH=~/Documents/dev/neovim/build/bin:$PATH
+# neovim from source
+# export PATH=~/Documents/dev/neovim/build/bin:$PATH
+# neovim release
+export PATH=~/Documents/dev/nvim-macos/bin:$PATH
 export PATH=~/Documents/dev/logo-ls:$PATH
 export PATH=~/Documents/dev/rust:$PATH
 
@@ -39,6 +42,11 @@ export API_DATABASE_URL="postgresql://postgres:root@localhost:5432/spot"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# Android SDK
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -111,7 +119,6 @@ plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # tweak the highlights for syntax-highlighting
-# its too colorful
 ZSH_HIGHLIGHT_STYLES[default]=none
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=161,bold #red
 ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=155 #green

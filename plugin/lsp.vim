@@ -44,18 +44,13 @@ local on_attach = function(client, bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format({async = true})<CR>', opts)
 
   -- attach aerial with keymaps for symbol list  
-  require("aerial").on_attach(client, bufnr)
+  -- require("aerial").on_attach(client, bufnr)
   -- bindings are moved to hydra
 
 end
 
 -- Setup lspconfig for cmp
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- ufo capabilities
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
-}
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- generics lsp setup for list of servers
 local servers = { 'tsserver', 'angularls', 'gopls', 'pyright', 'svelte', 'tailwindcss' }
@@ -121,20 +116,9 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
     table.insert(newVirtText, {suffix, 'MoreMsg'})
     return newVirtText
 end
-require('ufo').setup({
-    open_fold_hl_timeout = 0,
-    fold_virt_text_handler = handler
-})
--- buffer scope handler
--- will override global handler if it is existed
-local bufnr = vim.api.nvim_get_current_buf()
-require('ufo').setFoldVirtTextHandler(bufnr, handler)
-
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-
 
 -- hide diagnostic virtual text, but show signs
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with( 
   vim.lsp.diagnostic.on_publish_diagnostics, {
     -- This will disable virtual text, like doing:
     -- let g:diagnostic_enable_virtual_text = 0

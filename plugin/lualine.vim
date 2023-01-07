@@ -162,17 +162,17 @@ require('lualine').setup {
     lualine_a = {{ 'mode', fmt = function(str) return str:sub(1,1) end }},
     lualine_b = {{'branch', icon = '', fmt = function(str) return ' ' .. str end}},
     lualine_c = {
-      { save_icon, padding = { left = 1, right = 0 } }, 
       { 'filename', path = 0, symbols = {
           modified = '',      -- Text to show when the file is modified.
           readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
           unnamed = '[No Name]', -- Text to show for unnamed buffers.
         }},
       {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}},
+      { save_icon, padding = { left = 0, right = 0 } },
       { hydra_status, cond = function()
-                    local active = hydra.is_active()
-                    return active
-                    end }
+        local active = hydra.is_active()
+        return active
+        end }
       
     },
 
@@ -188,7 +188,7 @@ require('lualine').setup {
                       'ultest#is_test_file()'
                     )
                     return status_ok and is_test == 1
-                    end }
+                    end },
                  }
   },
   inactive_sections = {
@@ -199,11 +199,15 @@ require('lualine').setup {
           readonly = '  ',      -- Text to show when the file is non-modifiable or readonly.
           unnamed = '[No Name]', -- Text to show for unnamed buffers.
         }},
+      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}},
       { save_icon, padding = { left = 0, right = 0 } }, 
-      {'diff', source = diff_source, symbols = {added = ' ', modified = ' ', removed = ' '}}},
+    },
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {'location'}
+    lualine_z = {
+      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+      'location'
+      }
   },
   tabline = {},
   extensions = {}

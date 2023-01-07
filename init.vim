@@ -6,6 +6,7 @@ call plug#begin('~/.config/nvim/bundle')
 
   " notes inspired by emacs org mode, requires plenary 
   Plug 'nvim-lua/plenary.nvim'
+  Plug 'krleitch/neorg-tables'
   Plug 'nvim-neorg/neorg'
   " vim wiki
   Plug 'vimwiki/vimwiki'
@@ -14,7 +15,7 @@ call plug#begin('~/.config/nvim/bundle')
   " draw diagrams
   Plug 'jbyuki/venn.nvim'
   " wd based trees
-  Plug 'phaazon/mind.nvim'
+  Plug 'krleitch/mind.nvim'
 
   " fuzzy finder
   Plug 'nvim-telescope/telescope.nvim'
@@ -36,6 +37,7 @@ call plug#begin('~/.config/nvim/bundle')
   " Treesitter for syntax highlighting
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+  Plug 'nvim-treesitter/nvim-treesitter-context'
   " view lsp status on startup
   Plug 'j-hui/fidget.nvim'
   " Rust
@@ -46,9 +48,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'folke/trouble.nvim'
   " Show symbols list
   Plug 'stevearc/aerial.nvim'
-  " better folds
-  Plug 'kevinhwang91/promise-async'
-  Plug 'kevinhwang91/nvim-ufo'
 
   " Testing
   Plug 'vim-test/vim-test'
@@ -170,6 +169,10 @@ let g:ultest_deprecation_notice = 0
 " lualine for statusline
 set statusline=
 
+" fold with treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 " dont treat md files outside vimwiki as wiki files
 let g:vimwiki_global_ext = 0
 
@@ -182,11 +185,4 @@ augroup QuitFast
   autocmd FileType TelescopePrompt nnoremap <C-c> :q!<CR>
   autocmd FileType vim-plug nnoremap <C-c> :q!<CR>
   autocmd FileType mind nnoremap <C-c> :q!<CR>
-augroup END
-
-" no cursorline in these files
-augroup DisableCursorLine
-  autocmd!
-  autocmd FileType TelescopePrompt setlocal nocursorline			
-  autocmd FileType alpha setlocal nocursorline			
 augroup END

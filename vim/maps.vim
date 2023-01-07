@@ -13,6 +13,9 @@ inoremap <C-a> <C-o>^
 " Make Y work like D and C instead of just being yy
 map Y y$
 
+" re-source vim without restarting
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
 " run through camelCase characters better
 " generally use sneak or f/t for this in singlue use. use meta in rare case
 nnoremap <silent><M-b> :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>

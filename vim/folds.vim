@@ -2,17 +2,44 @@ setlocal foldmethod=indent
 set nofoldenable
 set foldlevel=99
 set fillchars=fold:\ "The backslash escapes a space
-set foldtext=CustomFoldText()
 
-function! CustomFoldText()
-  let indentation = indent(v:foldstart - 1)
-  let foldSize = 1 + v:foldend - v:foldstart
-  let foldSizeStr = " " . foldSize . " lines "
-  let foldLevelStr = repeat("+--", v:foldlevel)
-  let expansionString = repeat(" ", indentation)
-
-  return expansionString . foldLevelStr . foldSizeStr
-endfunction
+" Set a nicer foldtext function
+if has("folding")
+  set foldtext=MyFoldText()
+  function! MyFoldText()
+    " for now, just don't try if version isn't 7 or higher
+    if v:version < 701
+      return foldtext()
+    endif
+    " clear fold from fillchars to set it up the way we want later
+    let &l:fillchars = substitute(&l:fillchars,',\?fold:.','','gi')
+    let l:numwidth = (v:version < 701 ? 8 : &numberwidth)
+    if &fdm=='diff'
+      let l:linetext=''
+      let l:foldtext='---------- '.(v:foldend-v:foldstart+1).' lines the same ----------'
+      let l:align = winwidth(0)-&foldcolumn-(&nu ? Max(strlen(line('$'))+1, l:numwidth) : 0)
+      let l:align = (l:align / 2) + (strlen(l:foldtext)/2)
+      " note trailing space on next line
+      setlocal fillchars+=fold:\ 
+    elseif !exists('b:foldpat') || b:foldpat==0
+      let l:foldtext = ' '.(v:foldend-v:foldstart).' lines folded'.v:folddashes.'|'
+      let l:endofline = (&textwidth>0 ? &textwidth : 80)
+      let l:linetext = strpart(getline(v:foldstart),0,l:endofline-strlen(l:foldtext))
+      let l:align = l:endofline-strlen(l:linetext)
+      setlocal fillchars+=fold:-
+    elseif b:foldpat==1
+      let l:align = winwidth(0)-&foldcolumn-(&nu ? Max(strlen(line('$'))+1, l:numwidth) : 0)
+      let l:foldtext = ' '.v:folddashes
+      let l:linetext = substitute(getline(v:foldstart),'\s\+$','','')
+      let l:linetext .= ' ---'.(v:foldend-v:foldstart-1).' lines--- '
+      let l:linetext .= substitute(getline(v:foldend),'^\s\+','','')
+      let l:linetext = strpart(l:linetext,0,l:align-strlen(l:foldtext))
+      let l:align -= strlen(l:linetext)
+      setlocal fillchars+=fold:-
+    endif
+    return printf('%s%*s', l:linetext, l:align, l:foldtext)
+  endfunction
+endif
 
 function! NextClosedFold(dir)
     let cmd = 'norm!z' . a:dir
@@ -39,32 +66,3 @@ endfunction
 " skip over open folds
 nnoremap <silent> <space>zj :<c-u>call RepeatCmd('call NextClosedFold("j")')<cr>
 nnoremap <silent> <space>zk :<c-u>call RepeatCmd('call NextClosedFold("k")')<cr>
-
-" go up to the start of the fold
-" this is so very hacky and bad if the file is big LMAO
-" should save the view and just restore it to go one backwards
-" does not work with dot repeat
-function! GoToPrevFoldStart(direction)
-  let view = winsaveview()
-  let end = line('.')
-  exe 'norm!gg'
-  let start = line('.')
-  let counter = 0
-  let continue = 1
-  let prev = -1
-  while (start < end) && (prev != start)
-    exe 'norm!zj'
-    let prev = start
-    let start = line('.')
-    let counter = counter + 1
-  endwhile
-  let jumpsNeeded = counter - 1
-  if jumpsNeeded > 0
-    exe 'norm!gg'
-    exe 'norm!' . jumpsNeeded . 'zj'
-  else
-    call winrestview(view)
-  endif
-endfunction
-nmap <silent> zb :cal GoToPrevFoldStart("prev")<Cr>
-

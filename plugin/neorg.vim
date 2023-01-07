@@ -37,7 +37,11 @@ require('neorg').setup {
             workspace = "home"
           }
         },
-    }
+        ["utilities.tables"] = {}
+    },
+    -- logger = {
+    --     level = "trace"
+    -- }
 }
 EOF
 

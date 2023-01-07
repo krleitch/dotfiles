@@ -18,12 +18,13 @@ set ttyfast "speed up typing
 set exrc "use local .vimrc if exists 
 set guicursor= "keep cursor as block
 set noerrorbells "remove error bells
+
 "highlight cursor line only on active window
-augroup CursorLine
-  au!
-  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  au WinLeave * setlocal nocursorline
-augroup END
+" augroup CursorLine
+"   au!
+"   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+"   au WinLeave * setlocal nocursorline
+" augroup END
 
 " searching
 set hlsearch "highlight search results
