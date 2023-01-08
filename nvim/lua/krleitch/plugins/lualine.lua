@@ -8,6 +8,7 @@ local filename_status, filename = pcall(require, "lualine.components.filename")
 if not filename_status then
   return
 end
+
 local highlight_status, highlight = pcall(require, "lualine.highlight")
 if not highlight_status then
   return
@@ -107,8 +108,8 @@ lualine.setup({
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = {
-      statusline = { "alpha", "aerial", "NvimTree", "mind" },
-      winbar = { "alpha", "aerial", "NvimTree", "mind" },
+      statusline = { "packer", "alpha", "aerial", "NvimTree", "mind" },
+      winbar = { "packer", "alpha", "aerial", "NvimTree", "mind" },
     },
     ignore_focus = {},
     always_divide_middle = true,

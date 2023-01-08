@@ -16,6 +16,12 @@ if not mason_null_ls_status then
   return
 end
 
+-- import mason-nvim-dap plugin safely
+local mason_nvim_dap_status, mason_nvim_dap = pcall(require, "mason-nvim-dap")
+if not mason_nvim_dap_status then
+  return
+end
+
 -- enable mason
 mason.setup()
 
@@ -29,6 +35,7 @@ mason_lspconfig.setup({
     "sumneko_lua",
     "emmet_ls",
     "rust_analyzer",
+    "elixirls",
     "angularls",
     "gopls",
     "pyright",
@@ -48,3 +55,11 @@ mason_null_ls.setup({
   -- auto-install configured formatters & linters (with null-ls)
   automatic_installation = true,
 })
+
+mason_nvim_dap.setup({
+  ensure_installed = { "codelldb", "elixirls" },
+  automatic_installation = true,
+  automatic_setup = true,
+})
+
+mason_nvim_dap.setup_handlers()

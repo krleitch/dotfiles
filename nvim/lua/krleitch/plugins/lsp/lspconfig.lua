@@ -16,6 +16,12 @@ if not typescript_setup then
   return
 end
 
+-- import rust-tools plugin safely
+local rust_tools_setup, rust_tools = pcall(require, "rust-tools")
+if not rust_tools_setup then
+  return
+end
+
 local keymap = vim.keymap -- for conciseness
 
 -- enable keybinds only for when lsp server available
@@ -43,6 +49,12 @@ local on_attach = function(client, bufnr)
     keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports
     keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables
   end
+
+  -- rust specific keymaps
+  if client.name == "rust_analyzer" then
+    keymap.set("n", "<leader>K", rust_tools.hover_actions.hover_actions, { buffer = bufnr }) -- Hover actions
+    keymap.set("n", "<leader>ca", rust_tools.code_action_group.code_action_group, { buffer = bufnr }) -- Code action groups
+  end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -68,7 +80,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 -- **********************************************************
 
 -- generics lsp setup for list of servers
-local servers = { "html", "cssls", "angularls", "gopls", "pyright", "svelte", "tailwindcss" }
+local servers = { "elixirls", "html", "cssls", "angularls", "gopls", "pyright", "svelte", "tailwindcss" }
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup({
     capabilities = capabilities,
@@ -78,6 +90,14 @@ end
 
 -- configure typescript server with plugin
 typescript.setup({
+  server = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  },
+})
+
+-- configure rust-tools server with plugin
+rust_tools.setup({
   server = {
     capabilities = capabilities,
     on_attach = on_attach,

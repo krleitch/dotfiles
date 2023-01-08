@@ -1,3 +1,6 @@
+-- speed up start time if we are using impatient
+local impatient_status, impatient = pcall(require, "impatient")
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -34,10 +37,17 @@ return packer.startup(function(use)
   -- tmux & split windows
   use("christoomey/vim-tmux-navigator")
   use("szw/vim-maximizer")
+  use("Pocco81/true-zen.nvim")
 
   -- essential plugins
   use("tpope/vim-surround")
+  use("tpope/vim-fugitive")
+  use("tpope/vim-repeat")
+  use("tpope/vim-unimpaired")
   use("vim-scripts/ReplaceWithRegister")
+
+  -- faster startup time using a cache
+  use("lewis6991/impatient.nvim")
 
   -- comments
   use("numToStr/Comment.nvim")
@@ -60,7 +70,6 @@ return packer.startup(function(use)
   use("hrsh7th/cmp-buffer") -- source for text in buffer
   use("hrsh7th/cmp-path") -- source for file system paths
   use("hrsh7th/cmp-cmdline") -- source for the cmd line
-  use("hrsh7th/cmp-nvim-lsp-signature-help") -- lsp sig help
 
   -- snippets
   use("L3MON4D3/LuaSnip") -- snippet engine
@@ -75,9 +84,15 @@ return packer.startup(function(use)
   use("neovim/nvim-lspconfig") -- easily configure language servers
   use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
   use("hrsh7th/cmp-nvim-lsp-signature-help") -- lsp sig help
-  use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
   use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
+  use("simrat39/rust-tools.nvim") -- additional functionality for rust
+  use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
   use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
+  use("j-hui/fidget.nvim") -- show lsp loading progress on start
+
+  -- debugging lsp
+  use("mfussenegger/nvim-dap") -- debugging
+  use("jayp0521/mason-nvim-dap.nvim") -- bridges gap b/w mason and nvim-dap
 
   -- formatting & linting
   use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
@@ -98,6 +113,7 @@ return packer.startup(function(use)
 
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+  use("sindrets/diffview.nvim") -- see diffs side by side
 
   -- sessions and startup
   use("rmagatti/auto-session")
@@ -105,6 +121,22 @@ return packer.startup(function(use)
 
   -- code outline
   use("stevearc/aerial.nvim")
+
+  -- show indent lines
+  use("lukas-reineke/indent-blankline.nvim")
+
+  -- pretty diagnostic viewer and TODO comments
+  use("folke/trouble.nvim")
+  use("folke/todo-comments.nvim")
+
+  -- toggle a terminal
+  use("akinsho/toggleterm.nvim")
+
+  -- easymotion
+  use("ggandor/leap.nvim")
+
+  -- notes for local/global projects
+  use("phaazon/mind.nvim")
 
   if packer_bootstrap then
     require("packer").sync()

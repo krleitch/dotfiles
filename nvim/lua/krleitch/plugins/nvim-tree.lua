@@ -8,25 +8,59 @@ end
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- change color for arrows in tree to light blue
-vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
-
 -- configure nvim-tree
 nvimtree.setup({
-  -- change folder arrow icons
-  renderer = {
-    icons = {
-      glyphs = {
-        folder = {
-          arrow_closed = "", -- arrow when folder is closed
-          arrow_open = "", -- arrow when folder is open
-        },
+  update_focused_file = { enable = true },
+  hijack_cursor = true,
+  view = {
+    side = "left",
+    number = false,
+    relativenumber = false,
+    cursorline = false,
+    auto_resize = true,
+    mappings = {
+      list = {
+        -- user mappings go here
+        { key = "u", action = "dir_up" },
+        { key = "e", action = "preview" },
       },
     },
   },
-  -- disable window_picker for
-  -- explorer to work well with
-  -- window splits
+  renderer = {
+    icons = {
+      webdev_colors = true,
+      git_placement = "before",
+      modified_placement = "after",
+      padding = " ",
+      symlink_arrow = " ➛ ",
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = false,
+        git = false,
+        modified = false,
+      },
+      glyphs = {
+        default = "",
+        symlink = "",
+        bookmark = "",
+        modified = "●",
+        folder = {
+          arrow_closed = "",
+          arrow_open = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
+        },
+      },
+    },
+    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    symlink_destination = true,
+  },
+  -- disable window_picker
   actions = {
     open_file = {
       window_picker = {
@@ -34,7 +68,4 @@ nvimtree.setup({
       },
     },
   },
-  -- 	git = {
-  -- 		ignore = false,
-  -- 	},
 })

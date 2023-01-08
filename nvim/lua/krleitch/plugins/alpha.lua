@@ -62,7 +62,7 @@ dashboard.section.buttons.val = {
 dashboard.section.footer.val = fortune()
 
 local function get_var(my_var_name, default_value)
-  s, v = pcall(function()
+  local s, v = pcall(function()
     return vim.api.nvim_get_var(my_var_name)
   end)
   if s then

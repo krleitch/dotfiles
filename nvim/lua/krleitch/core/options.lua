@@ -17,7 +17,8 @@ opt.wrap = false
 
 -- cursor
 opt.guicursor = ""
--- opt.cursorline = true
+opt.cursorline = true
+opt.cursorlineopt = "number"
 
 -- serach
 opt.ignorecase = true

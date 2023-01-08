@@ -58,3 +58,15 @@ keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current c
 keymap.set("n", "<leader>at", "<cmd>AerialToggle!<CR>") -- toggle aerial
 keymap.set("n", "<leader>an", "<cmd>AerialNext<CR>") -- next token
 keymap.set("n", "<leader>ap", "<cmd>AerialPrev<CR>") -- prev token
+
+-- trouble
+keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true })
+keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { silent = true, noremap = true })
+keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
+keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
+keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+
+-- toggleterm
+-- an extra keymap for lazy git can be found in toggleterm.lua
+keymap.set("n", "<F12>", ":ToggleTerm size=10 direction=horizontal<CR>") -- open a terminal
