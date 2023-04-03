@@ -1,4 +1,5 @@
 -- call find_files if we can't find a git repo
+-- used by alpha for a generic open files
 
 local M = {}
 
