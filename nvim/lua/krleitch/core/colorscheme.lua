@@ -32,7 +32,7 @@ lychee.setup({
       },
     },
     alpha = true,
-    leap = false,
+    leap = true,
     lsp_trouble = true,
     cmp = true,
     lsp_saga = true,

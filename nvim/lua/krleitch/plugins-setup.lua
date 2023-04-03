@@ -1,5 +1,5 @@
 -- speed up start time if we are using impatient
-local impatient_status, impatient = pcall(require, "impatient")
+local _impatient_status, _impatient = pcall(require, "impatient")
 
 local ensure_packer = function()
   local fn = vim.fn
@@ -22,6 +22,19 @@ vim.cmd([[
   augroup end
 ]])
 
+-- Quit these files fast
+vim.cmd([[
+  augroup QuitFast
+    autocmd!
+    autocmd FileType Help nnoremap <C-c> :q!<CR>
+    autocmd FileType harpoon nnoremap <C-c> :q!<CR>
+    autocmd FileType NvimTree nnoremap <C-c> :q!<CR>
+    autocmd FileType TelescopePrompt nnoremap <C-c> :q!<CR>
+    autocmd FileType vim-plug nnoremap <C-c> :q!<CR>
+    autocmd FileType mind nnoremap <C-c> :q!<CR>
+  augroup END
+]])
+
 local status, packer = pcall(require, "packer")
 if not status then
   return
@@ -33,6 +46,9 @@ return packer.startup(function(use)
 
   -- colorscheme
   use("krleitch/nvim-lychee")
+
+  -- see colors in buffer
+  use("norcalli/nvim-colorizer.lua")
 
   -- tmux & split windows
   use("christoomey/vim-tmux-navigator")
@@ -52,8 +68,9 @@ return packer.startup(function(use)
   -- comments
   use("numToStr/Comment.nvim")
 
-  -- file explorer
+  -- file explorer and undo tree
   use("nvim-tree/nvim-tree.lua")
+  use("mbbill/undotree")
 
   -- icons
   use("nvim-tree/nvim-web-devicons")

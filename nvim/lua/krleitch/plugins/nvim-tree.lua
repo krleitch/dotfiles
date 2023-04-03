@@ -17,7 +17,6 @@ nvimtree.setup({
     number = false,
     relativenumber = false,
     cursorline = false,
-    auto_resize = true,
     mappings = {
       list = {
         -- user mappings go here
