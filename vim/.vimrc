@@ -1,15 +1,17 @@
-set nocompatible "nvim is always nocompatible
-
 " ---------------------------------------
 " OPTIONS
 " ---------------------------------------
+
+" Enabling filetype support provides filetype-specific indenting,
+" syntax highlighting, omni-completion and other useful settings.
+filetype plugin indent on
+syntax on
 
 " matchit.vim is built-in so enable it 
 runtime macros/matchit.vim
 
 " Fundamental settings
 set title "show the title at top
-set scrolloff=8 "scroll before at top or bottom
 set backspace=indent,eol,start "make backspace work like normal
 set ruler "show line position in bottom right
 set hidden "hide file buffers
@@ -21,6 +23,7 @@ set noerrorbells "remove error bells
 " line numbers
 set number
 set relativenumber
+set scrolloff=8 "scroll before at top or bottom
 
 " searching
 set hlsearch "highlight search results
@@ -59,10 +62,7 @@ set wildmenu
 set path+=**
 set wildignore+=*/node_modules/*
 
-" true color
-syntax enable
-filetype plugin indent on
-set t_Co=256
+" color
 set termguicolors
 set background=dark
 
@@ -74,6 +74,9 @@ endif
 " ---------------------------------------
 " MAPS
 " ---------------------------------------
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
 
 inoremap jj <ESC>
 
@@ -91,21 +94,17 @@ map Y y$
 " re-source vim without restarting
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" run through camelCase characters better
-" generally use sneak or f/t for this in singlue use. use meta in rare case
-nnoremap <silent><M-b> :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-nnoremap <silent><M-w> :<C-u>call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
-inoremap <silent><M-b> <C-o>:call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%^','bW')<CR>
-inoremap <silent><M-w> <C-o>:call search('\<\<Bar>\U\@<=\u\<Bar>\u\ze\%(\U\&\>\@!\)\<Bar>\%$','W')<CR>
-
-" add a new line above or below without leaving insert mode with repeat
-nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-
 " tabs
 nnoremap <leader>te :tabnew %<cr>
+nnoremap <leader>tx :tabclose<cr>
 nnoremap ]t :tabn<cr>
 nnoremap [t :tabp<cr>
+
+" splits
+nnoremap <leader>sv <C-w>v
+nnoremap <leader>sh <C-w>s
+nnoremap <leader>sx :close<cr>
+nnoremap <leader>se <C-w>=
 
 " use [[ ]] ][ [] when not in first column
 map [[ :silent! eval search('{', 'b')<CR>w99[{
@@ -121,7 +120,7 @@ nnoremap <silent> ]f :call
 \ search('\(\(if\\|for\\|while\\|switch\\|catch\)\_s*\)\@64<!(\_[^)]*)\_[^;{}()]*\zs{', "w")<CR>
 
 " clear highlighting
-nnoremap <space><space> :noh<CR>
+nnoremap <leader>nh :noh<CR>
 
 " Allow saving of files as sudo when I forget to start vim using sudo
 " doesnt work in neovim
@@ -136,12 +135,12 @@ endfunction
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 " quick norm modes
-vnoremap <space>n :'<,'>norm
+vnoremap <leader>n :'<,'>norm
 
 " buffers
 nnoremap <F2> :buffers<Cr>:b<Space>
 " last used buffer
-nnoremap ga :e#<Cr>
+nnoremap <leader>ga :e#<Cr>
 
 " ---------------------------------------
 " BUFFERS

@@ -28,6 +28,7 @@ require("krleitch.plugins.todo-comments")
 require("krleitch.plugins.leap")
 require("krleitch.plugins.diffview")
 require("krleitch.plugins.nvim-colorizer")
+require("krleitch.plugins.harpoon")
 
 -- lsp & lsp plugins
 require("krleitch.plugins.lsp.mason")

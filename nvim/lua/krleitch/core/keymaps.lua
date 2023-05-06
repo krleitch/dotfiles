@@ -1,10 +1,10 @@
 -- change the leader key from '\' to space
 vim.g.mapleader = " "
 
-local keymap = vim.keymap -- readability
+local keymap = vim.keymap
 
 ---------------------------
--- general
+-- GENERAL
 ---------------------------
 
 -- insert
@@ -24,10 +24,10 @@ keymap.set("n", "<leader>sh", "<C-w>s") -- horizontal split
 keymap.set("n", "<leader>sx", ":close<CR>") -- close split
 keymap.set("n", "<leader>se", "<C-w>=") -- equalize splits
 
-keymap.set("n", "<leader>to", ":tabnew<CR>") -- new tab
+keymap.set("n", "<leader>te", ":tabnew<CR>") -- new tab
 keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close tab
-keymap.set("n", "<leader>tn", ":tabn<CR>") -- next tab
-keymap.set("n", "<leader>tp", ":tabp<CR>") -- prev tab
+keymap.set("n", "]t", ":tabn<CR>") -- next tab
+keymap.set("n", "[t", ":tabp<CR>") -- prev tab
 
 keymap.set("n", "<leader>ga", "<C-^>") -- go to alt file
 
@@ -35,9 +35,12 @@ keymap.set("n", "Y", "y$") -- make Y work like D and C instead of just being yy
 
 -- visual
 keymap.set("v", "<leader>n", ":'<,'>norm") -- quick norm mode
+keymap.set("x", "@", function() -- apply macro over visual range
+  return ":norm @" .. vim.fn.getcharstr() .. "<cr>"
+end, { expr = true })
 
 ---------------------------
--- plugin keymaps
+-- PLUGIN
 ---------------------------
 
 -- true-zen
@@ -48,6 +51,14 @@ keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 
 -- undotree
 keymap.set("n", "<leader>u", ":UndotreeToggle<CR>") -- toggle undotree
+
+-- harpoon
+keymap.set("n", "<leader>ha", ":lua require('harpoon.mark').add_file()<cr>")
+keymap.set("n", "<leader>hh", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
+keymap.set("n", "<leader>hq", ":lua require('harpoon.ui').nav_file(1)<cr>")
+keymap.set("n", "<leader>hw", ":lua require('harpoon.ui').nav_file(2)<cr>")
+keymap.set("n", "<leader>he", ":lua require('harpoon.ui').nav_file(3)<cr>")
+keymap.set("n", "<leader>hr", ":lua require('harpoon.ui').nav_file(4)<cr>")
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
@@ -62,9 +73,9 @@ keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git bra
 keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 
 -- aerial
-keymap.set("n", "<leader>at", "<cmd>AerialToggle!<CR>") -- toggle aerial
-keymap.set("n", "<leader>an", "<cmd>AerialNext<CR>") -- next token
-keymap.set("n", "<leader>ap", "<cmd>AerialPrev<CR>") -- prev token
+keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>") -- toggle aerial
+keymap.set("n", "]f", "<cmd>AerialNext<CR>") -- next token
+keymap.set("n", "[f", "<cmd>AerialPrev<CR>") -- prev token
 
 -- trouble
 keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })

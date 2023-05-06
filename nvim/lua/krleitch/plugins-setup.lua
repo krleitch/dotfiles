@@ -58,6 +58,9 @@ return packer.startup(function(use)
   use("tpope/vim-unimpaired")
   use("vim-scripts/ReplaceWithRegister")
 
+  -- harpoon
+  use("ThePrimeagen/harpoon")
+
   -- faster startup time using a cache
   use("lewis6991/impatient.nvim")
 
