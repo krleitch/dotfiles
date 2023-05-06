@@ -1,17 +1,21 @@
 # dotfiles
 
-## Create soft links
+## Bash setup
 
-- ln -s ~/dotfiles/vim/.vimrc ~/.vimrc
-- ln -s ~/dotfiles/snippets ~/.config/nvim/lua
-- ln -s ~/dotfiles/.zshrc ~/.zshrc
-- ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
-- ln -s ~/dotfiles/.bashrc ~/.bashrc
-- ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
-- ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-- ln -s ~/dotfiles/.kitty.conf ~/.kitty.conf
+### Create soft links
 
-### source .bashrc from .bash_profile
+```bash
+ln -s ~/dotfiles/vim/.vimrc ~/.vimrc
+ln -s ~/dotfiles/snippets ~/.config/nvim/lua
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
+ln -s ~/dotfiles/.bashrc ~/.bashrc
+ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
+ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/.kitty.conf ~/.kitty.conf
+```
+
+### source bashrc from .bash_profile
 
 ```bash
 if [ -r ~/.bashrc ]; then
@@ -19,13 +23,7 @@ if [ -r ~/.bashrc ]; then
 fi
 ```
 
-- PS1 - http://bashrcgenerator.com/
-
-## Colors
-
-- vim - https://github.com/Reewr/vim-monokai-phoenix
-  - add to .vim/colors
-- neovim - https://github.com/krleitch/nvim-lychee
+- PS1: http://bashrcgenerator.com/
 
 ## Tmux
 
@@ -33,10 +31,16 @@ fi
 - https://github.com/tmux-plugins/tmux-battery
 - https://github.com/robhurring/tmux-uptime
 
-## Neovim
+## Neovim / Vim
 
 - Philosophy: https://github.com/romainl/idiomatic-vimrc
 - Useful Gists: https://gist.github.com/romainl/4b9f139d2a8694612b924322de1025ce
+
+## Colors
+
+- vim: https://github.com/Reewr/vim-monokai-phoenix
+  - add to .vim/colors
+- neovim: https://github.com/krleitch/nvim-lychee
 
 ## Fonts
 

@@ -3,20 +3,21 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- readability
 
+---------------------------
 -- general
+---------------------------
 
+-- insert
 keymap.set("i", "jj", "<ESC>") -- fast escape
 keymap.set("i", "<C-e>", "<C-o>$") -- go to end
 keymap.set("i", "<C-a>", "<C-o>^") -- go to start
 
+-- normal
 keymap.set("n", "j", "gj") -- multiline down as default
 keymap.set("n", "k", "gk") -- multiline up as default
 keymap.set("n", "<leader>nh", ":nohl<CR>") -- remove highlights
 
 keymap.set("n", "x", '"_x') -- delete single char without overwriting register
-
-keymap.set("n", "<leader>+", "<C-a>") -- increment
-keymap.set("n", "<leader>-", "<C-x>") -- decrement
 
 keymap.set("n", "<leader>sv", "<C-w>v") -- vertical split
 keymap.set("n", "<leader>sh", "<C-w>s") -- horizontal split
@@ -32,12 +33,15 @@ keymap.set("n", "<leader>ga", "<C-^>") -- go to alt file
 
 keymap.set("n", "Y", "y$") -- make Y work like D and C instead of just being yy
 
+-- visual
 keymap.set("v", "<leader>n", ":'<,'>norm") -- quick norm mode
 
+---------------------------
 -- plugin keymaps
+---------------------------
 
--- vim-maximizer
-keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- maximize split
+-- true-zen
+keymap.set("n", "<leader>sm", "<cmd>TZFocus<cr>") -- focus on current windows, remembers prev splits
 
 -- nvim-tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
@@ -71,5 +75,5 @@ keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true
 keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 
 -- toggleterm
--- an extra keymap for lazy git can be found in toggleterm.lua
-keymap.set("n", "<F12>", ":ToggleTerm size=10 direction=horizontal<CR>") -- open a terminal
+keymap.set("n", "<leader>tt", ":ToggleTerm size=10 direction=horizontal<CR>") -- open a terminal
+keymap.set("n", "<leader>lg", "<cmd>lua _Lazygit_toggle()<CR>", { silent = true, noremap = true })

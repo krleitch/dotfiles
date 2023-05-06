@@ -1,6 +1,3 @@
--- speed up start time if we are using impatient
-local _impatient_status, _impatient = pcall(require, "impatient")
-
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -50,9 +47,8 @@ return packer.startup(function(use)
   -- see colors in buffer
   use("norcalli/nvim-colorizer.lua")
 
-  -- tmux & split windows
+  -- window management
   use("christoomey/vim-tmux-navigator")
-  use("szw/vim-maximizer")
   use("Pocco81/true-zen.nvim")
 
   -- essential plugins
@@ -151,9 +147,6 @@ return packer.startup(function(use)
 
   -- easymotion
   use("ggandor/leap.nvim")
-
-  -- notes for local/global projects
-  use("phaazon/mind.nvim")
 
   if packer_bootstrap then
     require("packer").sync()

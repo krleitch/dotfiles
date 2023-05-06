@@ -33,5 +33,3 @@ local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", size = 40, 
 function _Lazygit_toggle()
   lazygit:toggle()
 end
-
-vim.api.nvim_set_keymap("n", "<leader>lg", "<cmd>lua _Lazygit_toggle()<CR>", { noremap = true, silent = true })

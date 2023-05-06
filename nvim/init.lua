@@ -1,3 +1,6 @@
+-- speed up start time
+pcall(require, "impatient")
+
 require("krleitch.plugins-setup")
 
 -- core
@@ -23,7 +26,6 @@ require("krleitch.plugins.true-zen")
 require("krleitch.plugins.toggleterm")
 require("krleitch.plugins.todo-comments")
 require("krleitch.plugins.leap")
-require("krleitch.plugins.mind")
 require("krleitch.plugins.diffview")
 require("krleitch.plugins.nvim-colorizer")
 

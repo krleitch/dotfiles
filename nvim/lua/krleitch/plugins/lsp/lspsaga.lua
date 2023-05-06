@@ -20,7 +20,7 @@ saga.setup({
     enable_in_insert = false,
     cache_code_action = true,
     sign = true,
-    update_time = 150,
+    aupdate_time = 150,
     sign_priority = 20,
     virtual_text = true,
   },
