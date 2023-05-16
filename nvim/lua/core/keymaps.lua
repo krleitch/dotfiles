@@ -52,14 +52,6 @@ keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 -- undotree
 keymap.set("n", "<leader>u", ":UndotreeToggle<CR>") -- toggle undotree
 
--- harpoon
-keymap.set("n", "<leader>ha", ":lua require('harpoon.mark').add_file()<cr>")
-keymap.set("n", "<leader>hh", ":lua require('harpoon.ui').toggle_quick_menu()<cr>")
-keymap.set("n", "<leader>hq", ":lua require('harpoon.ui').nav_file(1)<cr>")
-keymap.set("n", "<leader>hw", ":lua require('harpoon.ui').nav_file(2)<cr>")
-keymap.set("n", "<leader>he", ":lua require('harpoon.ui').nav_file(3)<cr>")
-keymap.set("n", "<leader>hr", ":lua require('harpoon.ui').nav_file(4)<cr>")
-
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
@@ -84,7 +76,3 @@ keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { s
 keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
 keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
 keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
-
--- toggleterm
-keymap.set("n", "<leader>tt", ":ToggleTerm size=10 direction=horizontal<CR>") -- open a terminal
-keymap.set("n", "<leader>lg", "<cmd>lua _Lazygit_toggle()<CR>", { silent = true, noremap = true })

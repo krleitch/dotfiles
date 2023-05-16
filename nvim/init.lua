@@ -1,38 +1,26 @@
 -- speed up start time
-pcall(require, "impatient")
-
-require("krleitch.plugins-setup")
+vim.loader.enable()
 
 -- core
-require("krleitch.core.options")
-require("krleitch.core.keymaps")
-require("krleitch.core.colorscheme")
+require("core.options")
+require("core.keymaps")
+require("core.autocmd")
 
--- plugins
-require("krleitch.plugins.comment")
-require("krleitch.plugins.nvim-tree")
-require("krleitch.plugins.lualine")
-require("krleitch.plugins.telescope")
-require("krleitch.plugins.nvim-cmp")
-require("krleitch.plugins.autopairs")
-require("krleitch.plugins.treesitter")
-require("krleitch.plugins.gitsigns")
-require("krleitch.plugins.auto-session")
-require("krleitch.plugins.alpha")
-require("krleitch.plugins.aerial")
-require("krleitch.plugins.indent-blankline")
-require("krleitch.plugins.trouble")
-require("krleitch.plugins.true-zen")
-require("krleitch.plugins.toggleterm")
-require("krleitch.plugins.todo-comments")
-require("krleitch.plugins.leap")
-require("krleitch.plugins.diffview")
-require("krleitch.plugins.nvim-colorizer")
-require("krleitch.plugins.harpoon")
+-- Lazy plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- lsp & lsp plugins
-require("krleitch.plugins.lsp.mason")
-require("krleitch.plugins.lsp.lspsaga")
-require("krleitch.plugins.lsp.lspconfig")
-require("krleitch.plugins.lsp.null-ls")
-require("krleitch.plugins.lsp.fidget")
+require("lazy").setup({
+  { import = "plugins" },
+  { import = "plugins.lsp" },
+})
