@@ -1,26 +1,17 @@
 local M = {
-  "folke/trouble.nvim", -- show diagnostics
+  "folke/trouble.nvim", -- show diagnostics together with its own ui
   enabled = true,
   cmd = { "Trouble", "TroubleToggle" },
 }
 
-function M.config()
-  -- import trouble plugin safely
-  local trouble_status, trouble = pcall(require, "trouble")
-  if not trouble_status then
-    return
-  end
-
-  trouble.setup({
-    signs = {
-      -- icons / text used for a diagnostic
-      error = " ",
-      warning = " ",
-      hint = " ",
-      information = " ",
-      other = " ",
-    },
-  })
-end
+M.config = {
+  signs = {
+    error = " ",
+    warning = " ",
+    hint = " ",
+    information = " ",
+    other = " ",
+  },
+}
 
 return M

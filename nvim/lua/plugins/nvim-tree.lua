@@ -1,5 +1,5 @@
 local M = {
-  "nvim-tree/nvim-tree.lua",
+  "nvim-tree/nvim-tree.lua", -- File tree
   enabled = true,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
@@ -15,7 +15,7 @@ function M.config()
       return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
     end
 
-    -- Default mappings. Feel free to modify or remove as you wish.
+    -- Default mappings
     --
     -- BEGIN_DEFAULT_ON_ATTACH
     vim.keymap.set("n", "<C-]>", api.tree.change_root_to_node, opts("CD"))
@@ -72,9 +72,7 @@ function M.config()
     vim.keymap.set("n", "<2-RightMouse>", api.tree.change_root_to_node, opts("CD"))
     -- END_DEFAULT_ON_ATTACH
 
-    -- Mappings migrated from view.mappings.list
-    --
-    -- You will need to insert "your code goes here" for any mappings with a custom action_cb
+    -- CUSTOM MAPPINGS
     vim.keymap.set("n", "u", api.tree.change_root_to_parent, opts("Up"))
     vim.keymap.set("n", "e", api.node.open.preview, opts("Open Preview"))
   end

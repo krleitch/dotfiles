@@ -1,5 +1,6 @@
 local M = {
-  "nvim-telescope/telescope.nvim",
+  "nvim-telescope/telescope.nvim", -- file picker with fzf
+  tag = "0.1.1",
   enabled = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -7,7 +8,8 @@ local M = {
     "nvim-telescope/telescope-project.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
-  cmd = "Telescope",
+  event = "VeryLazy",
+  -- cmd = "Telescope",
 }
 
 function M.config()
@@ -47,14 +49,14 @@ function M.config()
         search_by = "title",
         on_project_selected = function(prompt_bufnr)
           project_actions.find_project_files(prompt_bufnr, false)
-          -- project_actions.change_working_directory(prompt_bufnr)
-          -- vim.cmd("%bw!")
         end,
       },
     },
   })
 
+  -- Load extensions
   telescope.load_extension("project")
+  telescope.load_extension("fzf")
 end
 
 return M

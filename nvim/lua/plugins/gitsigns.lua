@@ -1,11 +1,9 @@
 local M = {
-  "lewis6991/gitsigns.nvim", -- show line modifications on left hand side
+  "lewis6991/gitsigns.nvim", -- show git signs in sign column
   enabled = true,
   event = { "BufReadPost, BufNewFile" },
 }
 
-function M.config()
-  require("gitsigns").setup()
-end
+M.config = {}
 
 return M

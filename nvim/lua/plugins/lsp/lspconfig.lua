@@ -1,5 +1,5 @@
 local M = {
-  "neovim/nvim-lspconfig",
+  "neovim/nvim-lspconfig", -- setup lsp servers
   enabled = true,
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",

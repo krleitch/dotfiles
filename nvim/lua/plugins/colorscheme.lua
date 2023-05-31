@@ -1,7 +1,7 @@
 local M = {
-  "krleitch/nvim-lychee",
+  "krleitch/nvim-lychee", -- Lychee theme
   lazy = false,
-  priority = 1000,
+  priority = 1000, -- Load this first
 }
 
 function M.config()
@@ -32,7 +32,7 @@ function M.config()
           information = "underline",
         },
       },
-      alpha = true,
+      alpha = false,
       leap = false,
       lsp_trouble = true,
       cmp = true,
@@ -71,6 +71,7 @@ function M.config()
     },
   })
 
+  -- Change the theme
   vim.cmd.colorscheme("lychee")
 end
 

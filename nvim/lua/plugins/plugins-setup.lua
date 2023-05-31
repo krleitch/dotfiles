@@ -1,3 +1,4 @@
+-- Vim plugins that do not need setup
 return {
   {
     -- window management integrate with tmux

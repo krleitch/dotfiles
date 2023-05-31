@@ -1,13 +1,12 @@
 local M = {
-  "norcalli/nvim-colorizer.lua",
+  "norcalli/nvim-colorizer.lua", -- show hex and rgb colors in buffer
   enabled = true,
   event = { "BufReadPost", "BufNewFile" },
 }
 
-function M.config()
-  require("colorizer").setup({
-    "css",
-  })
-end
+M.config = {
+  -- only show by default in css files
+  "css",
+}
 
 return M

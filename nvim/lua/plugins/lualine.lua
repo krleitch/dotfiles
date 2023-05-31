@@ -1,5 +1,5 @@
 local M = {
-  "nvim-lualine/lualine.nvim",
+  "nvim-lualine/lualine.nvim", -- fancy cmdline status bar
   enabled = true,
   dependencies = {
     "nvim-tree/nvim-web-devicons",
@@ -106,8 +106,8 @@ function M.config()
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
       disabled_filetypes = {
-        statusline = { "packer", "alpha", "aerial", "NvimTree", "mind" },
-        winbar = { "packer", "alpha", "aerial", "NvimTree", "mind" },
+        statusline = { "alpha", "aerial", "NvimTree", "Trouble" },
+        winbar = { "alpha", "aerial", "NvimTree", "Trouble" },
       },
       ignore_focus = {},
       always_divide_middle = true,

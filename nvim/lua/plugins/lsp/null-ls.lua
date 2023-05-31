@@ -1,10 +1,9 @@
 local M = {
-  "jose-elias-alvarez/null-ls.nvim",
+  "jose-elias-alvarez/null-ls.nvim", -- run formatters that arent with lsp
   event = "VeryLazy",
 }
 
 function M.config()
-
   local null_ls = require("null-ls")
 
   -- for conciseness
