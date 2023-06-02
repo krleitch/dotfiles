@@ -12,7 +12,8 @@ ln -s ~/dotfiles/.p10k.zsh ~/.p10k.zsh
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/.kitty.conf ~/.kitty.conf
+ln -s ~/dotfiles/kitty/kitty.conf ~/.kitty.conf
+ln -s ~/dotfiles/kitty/themes/lychee.conf ~/.config/kitty/themes/lychee.conf
 ```
 
 ### source bashrc from .bash_profile
@@ -24,6 +25,14 @@ fi
 ```
 
 - PS1: http://bashrcgenerator.com/
+
+## Kitty
+
+- After adding the theme to ~/.config/kitty/themes/
+
+```bash
+kitty +kitten themes
+```
 
 ## Tmux
 

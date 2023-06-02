@@ -2,6 +2,8 @@
 " OPTIONS
 " ---------------------------------------
 
+set nocompatible
+
 " Enabling filetype support provides filetype-specific indenting,
 " syntax highlighting, omni-completion and other useful settings.
 filetype plugin indent on
@@ -138,7 +140,7 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 vnoremap <leader>n :'<,'>norm
 
 " buffers
-nnoremap <F2> :buffers<Cr>:b<Space>
+nnoremap <leader>fb :buffers<Cr>:b<Space>
 " last used buffer
 nnoremap <leader>ga :e#<Cr>
 
@@ -147,10 +149,7 @@ nnoremap <leader>ga :e#<Cr>
 " ---------------------------------------
 
 " delete all buffers but current one
-command! Bonly execute '%bdelete|edit#|bdelete#|normal `"'
-command! BOnly execute '%bdelete|edit#|bdelete#|normal `"'
 command! Bo execute '%bdelete|edit#|bdelete#|normal `"'
-command! BO execute '%bdelete|edit#|bdelete#|normal `"'
 
 " Search for buffers by name with partial matchings
 function! BufSel(pattern)
