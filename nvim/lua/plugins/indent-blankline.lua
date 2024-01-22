@@ -1,13 +1,11 @@
 local M = {
   "lukas-reineke/indent-blankline.nvim", -- show indent lines
+  main = "ibl",
+  opt = {},
   enabled = true,
   event = { "BufReadPre", "BufNewFile" },
 }
 
-M.config = {
-  -- context is off by default, use this to turn it on
-  show_current_context = true,
-  show_current_context_start = false,
-}
+M.config = {}
 
 return M
