@@ -1,12 +1,10 @@
--- Mason with lsp, null-ls, nvim-dap
+-- Mason with lsp, null-ls
 local M = {
   "williamboman/mason.nvim",
   enabled = true,
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "jay-babu/mason-null-ls.nvim",
-    "mfussenegger/nvim-dap",
-    "williamboman/mason-nvim-dap.nvim",
   },
   event = "VeryLazy",
 }
@@ -40,12 +38,6 @@ function M.config()
     },
     -- auto-install configured formatters & linters (with null-ls)
     automatic_installation = true,
-  })
-
-  require("mason-nvim-dap").setup({
-    ensure_installed = { "codelldb", "elixirls" },
-    automatic_installation = true,
-    automatic_setup = true,
   })
 end
 
