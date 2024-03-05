@@ -1,6 +1,6 @@
 local M = {
   "nvim-telescope/telescope.nvim", -- file picker with fzf
-  tag = "0.1.1",
+  tag = "0.1.4",
   enabled = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -39,9 +39,7 @@ function M.config()
       },
       project = {
         base_dirs = {
-          "~/Documents/repos/spot/",
-          "~/Documents/repos/resume/",
-          "~/Documents/repos/wasm-rust-synth/",
+          "~/repos/Kevin-Leitch-resume/",
         },
         hidden_files = false,
         theme = "dropdown",

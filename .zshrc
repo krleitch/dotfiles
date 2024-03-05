@@ -9,33 +9,33 @@ alias nv="nvim"
 # Only alias things that you know wont be overwritten by plugins here
 
 # Alias Directories
-alias repos="cd ~/Documents/repos"
-alias dev="cd ~/Documents/dev"
-alias notes="cd ~/Documents/notes"
+alias repos="cd ~/repos"
+alias dev="cd ~/dev"
+alias notes="cd ~/notes"
 alias down="cd ~/Downloads"
 alias dot="cd ~/dotfiles"
 
 # Alias Current project
-alias spot="cd ~/Documents/repos/spot"
-alias sweb="cd ~/Documents/repos/spot/spot-web"
-alias sapi="cd ~/Documents/repos/spot/spot-server"
-alias scom="cd ~/Documents/repos/spot/spot-commons"
-alias smob="cd ~/Documents/repos/spot-mobile"
-alias scha="cd ~/Documents/repos/spot-chat"
-alias slam="cd ~/Documents/repos/spot-lambda"
+# alias spot="cd ~/repos/spot"
+# alias sweb="cd ~/repos/spot/spot-web"
+# alias sapi="cd ~/repos/spot/spot-server"
+# alias scom="cd ~/repos/spot/spot-commons"
+# alias smob="cd ~/repos/spot-mobile"
+# alias scha="cd ~/repos/spot-chat"
+# alias slam="cd ~/repos/spot-lambda"
 
 # PATH
-export PATH=~/Documents/dev/sqlite:$PATH
-export PATH=/Library/Frameworks/Python.framework/Versions/3.9/bin:$PATH
+# export PATH=~/dev/sqlite:$PATH
+# export PATH=/Library/Frameworks/Python.framework/Versions/3.9/bin:$PATH
 # neovim from source
-# export PATH=~/Documents/dev/neovim/build/bin:$PATH
+# export PATH=~/dev/neovim/build/bin:$PATH
 # neovim release
-export PATH=~/Documents/dev/nvim-macos/bin:$PATH
-export PATH=~/Documents/dev/logo-ls:$PATH
-export PATH=~/Documents/dev/rust:$PATH
+export PATH=~/dev/nvim-macos/bin:$PATH
+export PATH=~/dev/logo-ls:$PATH
+# export PATH=~/dev/rust:$PATH
 
 # spot
-export API_DATABASE_URL="postgresql://postgres:root@localhost:5432/spot"
+# export API_DATABASE_URL="postgresql://postgres:root@localhost:5432/spot"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -46,8 +46,8 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 # Update ruby to use rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
