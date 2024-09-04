@@ -6,33 +6,31 @@ local M = {
   event = { "BufReadPost", "BufNewFile" },
 }
 
-M.config = {
-  highlight = {
-    enable = true,
-  },
-  indent = { enable = true },
-  -- enable autotagging (w/ nvim-ts-autotag plugin)
-  autotag = { enable = true },
-  ensure_installed = {
-    "json",
-    "javascript",
-    "typescript",
-    "tsx",
-    "yaml",
-    "html",
-    "css",
-    "scss",
-    "markdown",
-    "svelte",
-    "graphql",
-    "bash",
-    "lua",
-    "vim",
-    "dockerfile",
-    "gitignore",
-  },
-  -- auto install above language parsers
-  auto_install = true,
-}
+M.config = function()
+  local configs = require("nvim-treesitter.configs")
+
+  configs.setup({
+    ensure_installed = {
+      "c",
+      "lua",
+      "vim",
+      "vimdoc",
+      "query",
+      "elixir",
+      "heex",
+      "javascript",
+      "html",
+      "javascript",
+      "typescript",
+      "svelte",
+      "css",
+      "json",
+      "scss",
+    },
+    sync_install = false,
+    highlight = { enable = true },
+    indent = { enable = true },
+  })
+end
 
 return M
