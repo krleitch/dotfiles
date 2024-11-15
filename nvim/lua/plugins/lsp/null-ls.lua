@@ -23,7 +23,10 @@ function M.config()
       formatting.prettier.with({
         extra_filetypes = { "svelte" },
       }),
-      formatting.stylua, -- lua formatter
+      formatting.prettierd.with({
+        extra_filetypes = { "svelte" },
+      }),
+      formatting.stylua, -- lua formatter1jk
       diagnostics.eslint_d.with({ -- js/ts linter
         -- only enable eslint if root has .eslintrc.js
         condition = function(utils)
@@ -40,11 +43,11 @@ function M.config()
           buffer = bufnr,
           callback = function()
             vim.lsp.buf.format({
-              filter = function(client)
-                --  only use null-ls for formatting instead of lsp server
-                return client.name == "null-ls"
-              end,
-              bufnr = bufnr,
+              -- filter = function(client)
+              --   --  only use null-ls for formatting instead of lsp server
+              --   return client.name == "null-ls"
+              -- end,
+              -- bufnr = bufnr,
             })
           end,
         })

@@ -14,7 +14,7 @@ function M.config()
 
   require("mason-lspconfig").setup({
     ensure_installed = {
-      "tsserver",
+      "ts_ls",
       "html",
       "cssls",
       "tailwindcss",
@@ -33,6 +33,7 @@ function M.config()
     -- list of formatters & linters for mason to install
     ensure_installed = {
       "prettier", -- ts/js formatter
+      "prettierd", -- ts/js formatter
       "stylua", -- lua formatter
       "eslint_d", -- ts/js linter
     },

@@ -3,7 +3,6 @@ local M = {
   enabled = true,
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
-    "jose-elias-alvarez/typescript.nvim",
     "simrat39/rust-tools.nvim",
   },
   event = "VeryLazy",
@@ -11,7 +10,6 @@ local M = {
 
 function M.config()
   local lspconfig = require("lspconfig")
-  local typescript = require("typescript")
   local cmp_nvim_lsp = require("cmp_nvim_lsp")
   local rust_tools = require("rust-tools")
 
@@ -35,13 +33,6 @@ function M.config()
     keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
     keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
     keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
-
-    -- typescript specific keymaps (e.g. rename file and update imports)
-    if client.name == "tsserver" then
-      keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
-      keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports
-      keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables
-    end
 
     -- rust specific keymaps
     if client.name == "rust_analyzer" then
@@ -73,21 +64,13 @@ function M.config()
   -- **********************************************************
 
   -- generics lsp setup for list of servers
-  local servers = { "elixirls", "html", "cssls", "angularls", "gopls", "pyright", "svelte", "tailwindcss" }
+  local servers = { "ts_ls", "elixirls", "html", "cssls", "angularls", "gopls", "svelte", "pyright", "tailwindcss" }
   for _, lsp in pairs(servers) do
     lspconfig[lsp].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })
   end
-
-  -- configure typescript server with plugin
-  typescript.setup({
-    server = {
-      capabilities = capabilities,
-      on_attach = on_attach,
-    },
-  })
 
   -- configure rust-tools server with plugin
   rust_tools.setup({
